@@ -12,7 +12,7 @@ class NewProduct extends Component {
 
     this.state = {
       colorPickerIds: [firstColorPickerId],
-      colorPickerValues: []
+      imagesURLs: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -26,24 +26,29 @@ class NewProduct extends Component {
 
     const {
       colorPickerIds,
-      colorPickerValues,
+      imagesURLs,
       title,
       description,
       price
     } = this.state;
 
+    let colorPickerValues = [];
+
+    // Get color picker values
     for (let i = 0; i < colorPickerIds.length; i++) {
       const currentColorPicker = document.getElementById(colorPickerIds[i]);
       colorPickerValues.push(currentColorPicker.value);
     }
 
-    this.setState({ colorPickerValues });
+    // Get image urls
+    const images = imagesURLs.split(',');
 
     this.props.addRobe({
       title,
       description,
       price,
-      colorPickerValues
+      colorPickerValues,
+      images
     });
   }
 
@@ -86,7 +91,13 @@ class NewProduct extends Component {
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="title">Titlu:</label>
             <br />
-            <input type="text" name="title" onChange={this.handleChange} />
+            <input
+              type="text"
+              name="title"
+              required
+              pattern=".*\S+.*"
+              onChange={this.handleChange}
+            />
             <br />
 
             <label htmlFor="description">Descriere:</label>
@@ -100,7 +111,13 @@ class NewProduct extends Component {
 
             <label htmlFor="price">Pret:</label>
             <br />
-            <input type="number" name="price" onChange={this.handleChange} />
+            <input
+              type="number"
+              name="price"
+              required
+              pattern=".*\S+.*"
+              onChange={this.handleChange}
+            />
             <br />
 
             <label>Culori:</label>
@@ -110,6 +127,16 @@ class NewProduct extends Component {
               {colorPickers}
               <input type="button" value="+" onClick={this.addColorPicker} />
             </div>
+            <br />
+
+            <label>Imagini:</label>
+            <br />
+            <textarea
+              type="text"
+              name="imagesURLs"
+              id="images-input"
+              onChange={this.handleChange}
+            />
 
             <button type="submit">Adauga Produs</button>
           </form>
