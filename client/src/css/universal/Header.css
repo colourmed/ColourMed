@@ -1,0 +1,57 @@
+#header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 50px;
+  border: 2px solid #999;
+  border-top: none;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+#header #page-title {
+  font-size: 30px;
+  font-weight: bold;
+  padding: 20px;
+  transition: all .2s;
+  text-decoration: none;
+  display: block;
+  color: #333;
+  border-radius: 5px;
+}
+
+#header #page-title:hover {
+  color: #006cb4;
+}
+
+#header #navigation {
+  position: relative;
+  top: 10px;
+}
+
+#header #navigation a {
+  padding: 20px;
+  padding-bottom: 10px;
+  margin: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 18px;
+  color: #333;
+  transition: all 0.2s;
+  border-radius: 3px;
+}
+
+#header #navigation a.active {
+  color: #006cb4;
+  border-bottom: 10px solid rgba(0, 93, 180, 0.5);
+}
+
+#header #navigation a:hover {
+  background-color: rgba(3, 128, 211, 0.1);
+  color: #006cb4;
+  border-bottom: 10px solid rgba(0, 93, 180, 0.5);
+}
+
+#header #navigation a .svgIcon {
+  margin-left: 15px;
+  margin-bottom: 5px;
+}
