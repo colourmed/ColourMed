@@ -135,6 +135,7 @@ class NewProduct extends Component {
               type="text"
               name="imagesURLs"
               id="images-input"
+              required
               onChange={this.handleChange}
             />
 
