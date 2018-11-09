@@ -28,7 +28,15 @@ class NewProduct extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    const { colorPickerIds, imageURLs, title, description, price, forMen } = this.state;
+    const {
+      colorPickerIds,
+      imageURLs,
+      title,
+      description,
+      price,
+      forMen,
+      sizes
+    } = this.state;
 
     let colorPickerValues = [];
 
@@ -41,6 +49,9 @@ class NewProduct extends Component {
     // Get trimmed image urls
     const images = imageURLs.trim().split(',');
 
+    // Get array of sizes
+    const sizesList = sizes.split(',');
+
     // Check if there are any inputed images (input's "required" doesn't check for trimmed strings)
     if (!images.length || !images[0]) {
       this.props.addError('Please add an image before adding a new product.');
@@ -51,7 +62,8 @@ class NewProduct extends Component {
         price,
         colorPickerValues,
         images,
-        forMen
+        forMen,
+        sizesList
       });
     }
   }
@@ -143,7 +155,7 @@ class NewProduct extends Component {
             </div>
             <br />
 
-            <label>Imagini:</label>
+            <label htmlFor="images-input">Imagini:</label>
             <br />
             <textarea
               type="text"
@@ -154,7 +166,20 @@ class NewProduct extends Component {
             />
 
             <label>Sex:</label>
-            <Switch isToggled={forMen} changeToggledValue={this.changeGender}/>
+            <Switch isToggled={forMen} changeToggledValue={this.changeGender} />
+            <br />
+            <br />
+
+            <label htmlFor="sizes">Marimi:</label>
+            <br />
+            <input
+              type="text"
+              name="sizes"
+              required
+              pattern=".*\S+.*"
+              onChange={this.handleChange}
+            />
+            <br />
 
             <button type="submit">Adauga Produs</button>
           </form>

@@ -7,7 +7,7 @@ exports.addRobe = async function(req, res, next) {
       description: req.body.desctription,
       price: req.body.price,
       colors: req.body.colorPickerValues,
-      sizes: ['S', 'L', 'XL', 'XXL'],
+      sizes: req.body.sizesList,
       images: req.body.images,
       forMen: req.body.forMen
     });
