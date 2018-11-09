@@ -19,7 +19,7 @@ class Robes extends Component {
 
           <h3 className="robe-title">{robe.title}</h3>
           <div className="robe-colors">{robeColors}</div>
-          <h4 className="robe-price">{robe.price}</h4>
+          <h4 className="robe-price">{robe.price} RON</h4>
         </Link>
       );
     });
