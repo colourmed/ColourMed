@@ -1,0 +1,52 @@
+#switch-container {
+	width: 220px;
+	height: 36px;
+	border: 1px solid #999;
+	position: relative;
+	top: 7px;
+	border-radius: 6px;
+	overflow: hidden;
+	user-select: none;
+	cursor: pointer;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+#switch-container .inner-container {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: inherit;
+	height: inherit;
+	text-transform: uppercase;
+  font-size: 12px;
+  font-weight: bold;
+	letter-spacing: .2em;
+}
+
+#switch-container .inner-container:first-child {
+	background: #e9e9e9;
+	color: #a9a9a9;
+}
+
+#switch-container .inner-container:nth-child(2) {
+	background: dodgerblue;
+	color: white;
+	clip-path: inset(0 50% 0 0);
+	transition: .3s cubic-bezier(0,0,0,1);
+}
+
+#switch-container .toggle {
+	width: 50%;
+	position: absolute;
+	height: inherit;
+	display: flex;
+	box-sizing: border-box;
+}
+
+#switch-container .toggle p {
+	margin: auto;
+}
+
+#switch-container .toggle:nth-child(1) {
+	right: 0;
+}

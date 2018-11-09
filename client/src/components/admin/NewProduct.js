@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { addRobe } from '../../store/actions/robes';
 import '../../css/admin/NewProduct.css';
 
+import Switch from '../universal/Switch';
+
 class NewProduct extends Component {
   constructor(props) {
     super(props);
@@ -12,19 +14,21 @@ class NewProduct extends Component {
 
     this.state = {
       colorPickerIds: [firstColorPickerId],
-      imageURLs: ''
+      imageURLs: '',
+      forMen: true
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addColorPicker = this.addColorPicker.bind(this);
     this.removeColorPicker = this.removeColorPicker.bind(this);
+    this.changeGender = this.changeGender.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
 
-    const { colorPickerIds, imageURLs, title, description, price } = this.state;
+    const { colorPickerIds, imageURLs, title, description, price, forMen } = this.state;
 
     let colorPickerValues = [];
 
@@ -46,7 +50,8 @@ class NewProduct extends Component {
         description,
         price,
         colorPickerValues,
-        images
+        images,
+        forMen
       });
     }
   }
@@ -75,8 +80,12 @@ class NewProduct extends Component {
     this.setState({ colorPickerIds });
   }
 
+  changeGender(forMen) {
+    this.setState({ forMen });
+  }
+
   render() {
-    const { colorPickerIds } = this.state;
+    const { colorPickerIds, forMen } = this.state;
     const { history, removeError, removeSuccess } = this.props;
 
     history.listen(() => {
@@ -143,6 +152,9 @@ class NewProduct extends Component {
               required
               onChange={this.handleChange}
             />
+
+            <label>Sex:</label>
+            <Switch isToggled={forMen} changeToggledValue={this.changeGender}/>
 
             <button type="submit">Adauga Produs</button>
           </form>

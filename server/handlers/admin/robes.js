@@ -9,7 +9,7 @@ exports.addRobe = async function(req, res, next) {
       colors: req.body.colorPickerValues,
       sizes: ['S', 'L', 'XL', 'XXL'],
       images: req.body.images,
-      forMen: true
+      forMen: req.body.forMen
     });
 
     return res.status(200).json(robe);
