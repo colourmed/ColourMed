@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchRobes } from '../../store/actions/robes';
-import '../../css/user/Main.css';
+import '../../css/universal/Main.css';
 
 import Robes from './Robes';
 import Login from './Login';
+import Error from '../universal/Error';
 
 class Main extends Component {
   constructor(props) {
@@ -24,6 +25,7 @@ class Main extends Component {
 
   render() {
     const { robes } = this.state;
+    const { errors } = this.props;
 
     const Root = () => <h1>ROOT</h1>;
     const Contact = () => <h1>Contact</h1>;
@@ -31,6 +33,8 @@ class Main extends Component {
 
     return (
       <div id="main">
+        <Error error={errors} />
+
         <Switch>
           <Route exact path="/" component={Root} />
           <Route exact path="/contact" component={Contact} />

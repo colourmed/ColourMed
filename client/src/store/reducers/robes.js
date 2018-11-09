@@ -9,7 +9,7 @@ export default (state = DEFAULT_STATE, action) => {
     case GET_ROBES:
       return [...action.robes];
     case ADD_ROBE:
-      return [...state.robes, action.robe];
+      return [...state, action.robe];
     default:
       return state;
   }

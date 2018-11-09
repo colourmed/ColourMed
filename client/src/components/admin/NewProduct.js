@@ -12,7 +12,7 @@ class NewProduct extends Component {
 
     this.state = {
       colorPickerIds: [firstColorPickerId],
-      imagesURLs: ''
+      imageURLs: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -24,13 +24,7 @@ class NewProduct extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    const {
-      colorPickerIds,
-      imagesURLs,
-      title,
-      description,
-      price
-    } = this.state;
+    const { colorPickerIds, imageURLs, title, description, price } = this.state;
 
     let colorPickerValues = [];
 
@@ -40,16 +34,21 @@ class NewProduct extends Component {
       colorPickerValues.push(currentColorPicker.value);
     }
 
-    // Get image urls
-    const images = imagesURLs.split(',');
+    // Get trimmed image urls
+    const images = imageURLs.trim().split(',');
 
-    this.props.addRobe({
-      title,
-      description,
-      price,
-      colorPickerValues,
-      images
-    });
+    // Check if there are any inputed images (input's "required" doesn't check for trimmed strings)
+    if (!images.length || !images[0]) {
+      this.props.addError('Please add an image before adding a new product.');
+    } else {
+      this.props.addRobe({
+        title,
+        description,
+        price,
+        colorPickerValues,
+        images
+      });
+    }
   }
 
   handleChange(e) {
@@ -133,7 +132,7 @@ class NewProduct extends Component {
             <br />
             <textarea
               type="text"
-              name="imagesURLs"
+              name="imageURLs"
               id="images-input"
               required
               onChange={this.handleChange}

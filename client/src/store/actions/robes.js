@@ -26,7 +26,7 @@ export const fetchRobes = () => dispatch => {
 export const addRobe = robe => dispatch => {
   return apiCall('post', 'api/admin/robes/new', robe)
     .then(data => {
-      dispatch(setRobes(data));
+      dispatch(newRobe(data));
       dispatch(removeError());
     })
     .catch(err => {

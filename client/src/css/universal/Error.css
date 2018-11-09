@@ -1,0 +1,15 @@
+.error-container {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.error {
+  background-color: rgba(255, 122, 122, 0.4);
+  color: #380000;
+  padding: 20px 40px;
+  border-radius: 5px;
+  font-size: 15px;
+  margin: auto;
+  text-align: center;
+  display: inline-block;
+}
