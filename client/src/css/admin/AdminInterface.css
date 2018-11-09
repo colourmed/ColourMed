@@ -2,3 +2,9 @@
   width: 90%;
   margin: auto;
 }
+
+@media only screen and (max-width: 1350px) {
+  #admin {
+    width: 100%;
+  }
+}

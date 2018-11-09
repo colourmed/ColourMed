@@ -55,3 +55,46 @@
   margin-left: 15px;
   margin-bottom: 5px;
 }
+
+@media only screen and (max-width: 1350px) {
+  #header {
+    margin: 0 40px;
+  }
+}
+
+@media only screen and (max-width: 1050px) {
+  #header {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  #header {
+    border-radius: 0;
+    border: none;
+    border-bottom: 2px solid #999;
+  }
+
+  #header #page-title {
+    padding: 10px 0 0;
+  }
+
+  #header #navigation {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #header #navigation a {
+    margin: 0 auto;
+    width: 200px;
+    display: block;
+    padding: 10px;
+  }
+
+  #header #navigation a:hover,
+  #header #navigation a.active {
+    border: none;
+  }
+}
