@@ -1,6 +1,7 @@
 import { apiCall } from '../../services/api';
 import { GET_ROBES, ADD_ROBE } from '../actionTypes';
 import { addError, removeError } from './errors';
+import { addSuccess, removeSuccess } from './success';
 
 export const setRobes = robes => ({
   type: GET_ROBES,
@@ -19,6 +20,7 @@ export const fetchRobes = () => dispatch => {
       dispatch(removeError());
     })
     .catch(err => {
+      dispatch(removeSuccess());
       dispatch(addError(err.message));
     });
 };
@@ -28,8 +30,10 @@ export const addRobe = robe => dispatch => {
     .then(data => {
       dispatch(newRobe(data));
       dispatch(removeError());
+      dispatch(addSuccess('Halat adaugat.'));
     })
     .catch(err => {
+      dispatch(removeSuccess());
       dispatch(addError(err.message));
     });
 };

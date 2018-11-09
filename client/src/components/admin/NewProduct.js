@@ -77,6 +77,12 @@ class NewProduct extends Component {
 
   render() {
     const { colorPickerIds } = this.state;
+    const { history, removeError, removeSuccess } = this.props;
+
+    history.listen(() => {
+      removeError();
+      removeSuccess();
+    });
 
     const colorPickers = colorPickerIds.map(id => (
       <input type="color" name="color" id={id} key={id} />

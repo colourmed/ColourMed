@@ -1,6 +1,7 @@
 import { apiCall, setTokenHeader } from '../../services/api';
 import { SET_CURRENT_USER, USER_LOGOUT } from '../actionTypes';
 import { addError, removeError } from './errors';
+import { addSuccess, removeSuccess } from './success';
 
 export function setCurrentUser(user) {
   return {
@@ -28,16 +29,6 @@ export function logout() {
   };
 }
 
-export function deleteAccount(userId) {
-  return dispatch => {
-    return apiCall('delete', `api/account/${userId}/delete_account`).catch(
-      err => {
-        dispatch(addError(err.message));
-      }
-    );
-  };
-}
-
 export function authUser(type, userData) {
   return dispatch => {
     return new Promise((resolve, reject) => {
@@ -47,9 +38,11 @@ export function authUser(type, userData) {
           setAuthorizationToken(token);
           dispatch(setCurrentUser(user));
           dispatch(removeError());
+          dispatch(addSuccess('Logat cu succes.'))
           resolve();
         })
         .catch(err => {
+          dispatch(removeSuccess());
           dispatch(addError(err.message));
           reject();
         });
