@@ -101,3 +101,28 @@
   padding: 15px 25px;
   opacity: 1;
 }
+
+@media only screen and (max-width: 1500px) {
+  #new-product .form-container {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  #new-product .form-container {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #new-product {
+    padding: 0;
+  }
+
+  #new-product form {
+    margin-left: -20px;
+    width: 85%;
+    padding-left: 20px;
+    padding-right: 70px;
+  }
+}
