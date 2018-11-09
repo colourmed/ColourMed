@@ -27,13 +27,13 @@ exports.login = async function(req, res, next) {
     } else {
       return next({
         status: 400,
-        message: 'Invalid  Email/Password.'
+        message: 'Email-ul sau parola nu este corecta.'
       });
     }
   } catch (err) {
     return next({
       status: 400,
-      message: 'Invalid  Email/Password.'
+      message: 'Email-ul sau parola nu este corecta.'
     });
   }
 };
@@ -57,7 +57,7 @@ exports.signup = async function(req, res, next) {
   } catch (err) {
     if (err.code === 11000) {
       err.message =
-        'Sorry, that email has already been used. Are you trying to log in?';
+        'Emailul este deja folosit.';
     }
     return next({
       status: 400,

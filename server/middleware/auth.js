@@ -11,14 +11,14 @@ exports.loginRequired = function(req, res, next) {
       } else {
         return next({
           status: 401,
-          message: 'Please log in first.'
+          message: 'Trebuie sa fii conectat in cont pentru a face actiunea dorita.'
         });
       }
     });
   } catch (err) {
     return next({
       status: 401,
-      message: 'Please log in first.'
+      message: 'Trebuie sa fii conectat in cont pentru a face actiunea dorita.'
     });
   }
 };
