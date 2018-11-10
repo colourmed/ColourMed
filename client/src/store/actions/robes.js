@@ -35,7 +35,7 @@ export const addRobe = robe => dispatch => {
     .then(data => {
       dispatch(newRobe(data));
       dispatch(removeError());
-      dispatch(addSuccess('Halat adaugat.'));
+      dispatch(addSuccess('Produs adaugat.'));
     })
     .catch(err => {
       dispatch(removeSuccess());
