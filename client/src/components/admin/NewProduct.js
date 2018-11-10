@@ -11,7 +11,7 @@ class NewProduct extends Component {
 
     this.addNewRobe = this.addNewRobe.bind(this);
   }
-  
+
   addNewRobe(newRobe) {
     this.props.addRobe(newRobe);
   }
@@ -28,7 +28,12 @@ class NewProduct extends Component {
       <div id="new-product">
         <h2>Produs Nou</h2>
 
-        <ProductForm handleData={this.addNewRobe} />
+        <ProductForm
+          addError={this.props.addError}
+          handleData={this.addNewRobe}
+          onSubmitAction={() => {}}
+          ctaText="Adauga Produs"
+        />
       </div>
     );
   }

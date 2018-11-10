@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { ICONS } from '../../constants/Icons';
 import '../../css/universal/Robes.css';
 
+import ProductForm from '../admin/ProductForm';
 import Icon from '../universal/Icon';
 import Overlay from '../universal/Overlay';
 
@@ -12,10 +13,12 @@ class Robes extends Component {
     this.state = {
       showEditOverlay: false,
       showRemoveOverlay: false,
-      robeId: ''
+      robeToRemoveId: '',
+      robeToEdit: {}
     };
 
     this.handleCardClick = this.handleCardClick.bind(this);
+    this.handleEditRobe = this.handleEditRobe.bind(this);
     this.handleRemoveRobe = this.handleRemoveRobe.bind(this);
   }
 
@@ -25,11 +28,18 @@ class Robes extends Component {
     history.push(`/products/${id}`);
   }
 
+  handleEditRobe(updatedRobe) {
+    const { robeToEdit } = this.state;
+    const { editRobe } = this.props;
+
+    editRobe(updatedRobe, robeToEdit._id);
+  }
+
   handleRemoveRobe() {
-    const { robeId } = this.state;
+    const { robeToRemoveId } = this.state;
     const { removeRobe } = this.props;
 
-    removeRobe(robeId);
+    removeRobe(robeToRemoveId);
   }
 
   // Stops the element's parent onClick event (to stop getting redirected to product's page)
@@ -40,24 +50,34 @@ class Robes extends Component {
 
   showEditRobeOverlay(e, id) {
     this.stopEventPropagation(e);
-    this.setState({ showEditOverlay: true, robeId: id });
+
+    const { robes } = this.props;
+
+    // .filter() returns an array so we need to get the first element.
+    const robeToEdit = robes.filter(robe => robe._id === id)[0];
+
+    this.setState({
+      showEditOverlay: true,
+      robeToEdit
+    });
   }
 
   showRemoveRobeOverlay(e, id) {
     this.stopEventPropagation(e);
-    this.setState({ showRemoveOverlay: true, robeId: id });
+    this.setState({ showRemoveOverlay: true, robeToRemoveId: id });
   }
 
   hideOverlays() {
     this.setState({
       showEditOverlay: false,
       showRemoveOverlay: false,
-      robeId: ''
+      robeToRemoveId: '',
+      robeToEdit: {}
     });
   }
 
   render() {
-    const { showEditOverlay, showRemoveOverlay } = this.state;
+    const { showEditOverlay, showRemoveOverlay, robeToEdit } = this.state;
 
     const {
       robes,
@@ -67,10 +87,12 @@ class Robes extends Component {
       removeSuccess
     } = this.props;
 
-    history.listen(() => {
-      removeError();
-      removeSuccess();
-    });
+    if (showAdminControls) {
+      history.listen(() => {
+        removeError();
+        removeSuccess();
+      });
+    }
 
     // Render robe card for each robe
     const robesList = robes.map(robe => {
@@ -110,6 +132,16 @@ class Robes extends Component {
     const EditOverlay = () => (
       <div className="edit-overlay">
         <h3 className="overlay-title">Editare Produs</h3>
+
+        <ProductForm
+          addError={this.props.addError}
+          handleData={this.handleEditRobe}
+          onSubmitAction={() => {
+            this.hideOverlays();
+          }}
+          robeToEdit={robeToEdit}
+          ctaText="Editeaza Produsul"
+        />
       </div>
     );
 

@@ -8,12 +8,19 @@ class ProductForm extends Component {
   constructor(props) {
     super(props);
 
-    const firstColorPickerId = 'color-picker-' + idGenerator();
+    const { forMen, colors, images, sizes, title, description, price } = this.props.robeToEdit;
+
+    const colorPickerIds = colors.map(() => 'color-picker-' + idGenerator());
 
     this.state = {
-      colorPickerIds: [firstColorPickerId],
-      imageURLs: '',
-      forMen: true
+      colorPickerIds,
+      colorPickerValues: colors,
+      title,
+      description,
+      price,
+      forMen,
+      imageURLs: images.join(','),
+      sizes: sizes.join(',')
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -48,7 +55,7 @@ class ProductForm extends Component {
     const images = imageURLs.trim().split(',');
 
     // Get array of sizes
-    const sizesList = sizes.split(',');
+    const sizesList = sizes.trim().split(',');
 
     // Check if there are any inputed images (input's "required" doesn't check for trimmed strings)
     if (!images.length || !images[0]) {
@@ -66,6 +73,8 @@ class ProductForm extends Component {
 
       this.props.handleData(robe);
     }
+
+    this.props.onSubmitAction();
   }
 
   handleChange(e) {
@@ -98,9 +107,26 @@ class ProductForm extends Component {
 
   render() {
     const { colorPickerIds, forMen } = this.state;
+    const { ctaText } = this.props;
 
-    const colorPickers = colorPickerIds.map(id => (
-      <input type="color" name="color" id={id} key={id} />
+    const {
+      title,
+      description,
+      colors,
+      sizes,
+      images,
+      price
+    } = this.props.robeToEdit;
+
+    // TODO: Map through ids but also use colors as defaultValue.
+    const colorPickers = colorPickerIds.map((id, index) => (
+      <input
+        type="color"
+        name="color"
+        defaultValue={colors[index]}
+        id={id}
+        key={id}
+      />
     ));
 
     return (
@@ -113,6 +139,7 @@ class ProductForm extends Component {
             name="title"
             required
             pattern=".*\S+.*"
+            defaultValue={title}
             onChange={this.handleChange}
           />
           <br />
@@ -122,6 +149,7 @@ class ProductForm extends Component {
           <textarea
             type="text"
             name="description"
+            defaultValue={description}
             onChange={this.handleChange}
           />
           <br />
@@ -133,6 +161,7 @@ class ProductForm extends Component {
             name="price"
             required
             pattern=".*\S+.*"
+            defaultValue={price}
             onChange={this.handleChange}
           />
           <br />
@@ -152,6 +181,7 @@ class ProductForm extends Component {
             type="text"
             name="imageURLs"
             id="images-input"
+            defaultValue={images.join(',')}
             required
             onChange={this.handleChange}
           />
@@ -168,15 +198,27 @@ class ProductForm extends Component {
             name="sizes"
             required
             pattern=".*\S+.*"
+            defaultValue={sizes.join(',')}
             onChange={this.handleChange}
           />
           <br />
 
-          <button type="submit">Adauga Produs</button>
+          <button type="submit">{ctaText}</button>
         </form>
       </div>
     );
   }
 }
+
+ProductForm.defaultProps = {
+  robeToEdit: {
+    colors: ['#FFFFFF'],
+    sizes: [],
+    images: [],
+    title: '',
+    price: '',
+    forMen: true
+  }
+};
 
 export default ProductForm;

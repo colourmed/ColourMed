@@ -25,7 +25,7 @@ class Main extends Component {
 
   render() {
     const { robes } = this.state;
-    const { errors } = this.props;
+    const { errors, history } = this.props;
 
     const Root = () => <h1>ROOT</h1>;
     const Contact = () => <h1>Contact</h1>;
@@ -42,7 +42,7 @@ class Main extends Component {
           <Route
             exact
             path="/products"
-            render={() => <Robes robes={robes} />}
+            render={() => <Robes robes={robes} history={history} />}
           />
           <Route exact path="/login" component={Login} />
         </Switch>

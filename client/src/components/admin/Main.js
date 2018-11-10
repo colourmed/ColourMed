@@ -51,6 +51,7 @@ class Main extends Component {
                 history={history}
                 removeError={removeError}
                 removeSuccess={removeSuccess}
+                addError={addError}
               />
             )}
           />
