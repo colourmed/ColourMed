@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { fetchRobes } from '../../store/actions/robes';
 import '../../css/universal/Main.css';
 
-import Robes from './Robes';
+import Robes from '../universal/Robes';
 import Login from './Login';
 import Error from '../universal/Error';
 

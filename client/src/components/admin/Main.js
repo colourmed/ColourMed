@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchRobes } from '../../store/actions/robes';
+import { fetchRobes, editRobe, removeRobe } from '../../store/actions/robes';
 import { addError, removeError } from '../../store/actions/errors';
 import { addSuccess, removeSuccess } from '../../store/actions/success';
 import '../../css/universal/Main.css';
 
 import NewProduct from './NewProduct';
+import Robes from '../universal/Robes';
 import Error from '../universal/Error';
 import Success from '../universal/Success';
 
 class Main extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchRobes();
   }
 
@@ -23,11 +24,13 @@ class Main extends Component {
       removeError,
       success,
       addSuccess,
-      removeSuccess
+      removeSuccess,
+      editRobe,
+      removeRobe,
+      robes
     } = this.props;
 
     const Root = () => <h1>ROOT</h1>;
-    const Products = () => <h1>Products</h1>;
 
     return (
       <div id="admin-main">
@@ -36,7 +39,21 @@ class Main extends Component {
 
         <Switch>
           <Route exact path="/admin" component={Root} />
-          <Route exact path="/admin/products" component={Products} />
+          <Route
+            exact
+            path="/admin/products"
+            render={() => (
+              <Robes
+                robes={robes}
+                showAdminControls={true}
+                editRobe={editRobe}
+                removeRobe={removeRobe}
+                history={history}
+                removeError={removeError}
+                removeSuccess={removeSuccess}
+              />
+            )}
+          />
           <Route
             exact
             path="/admin/new"
@@ -68,6 +85,14 @@ function mapStateToProps(state) {
 export default withRouter(
   connect(
     mapStateToProps,
-    { fetchRobes, addError, removeError, addSuccess, removeSuccess }
+    {
+      fetchRobes,
+      addError,
+      removeError,
+      addSuccess,
+      removeSuccess,
+      editRobe,
+      removeRobe
+    }
   )(Main)
 );

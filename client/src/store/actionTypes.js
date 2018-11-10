@@ -9,3 +9,4 @@ export const USER_LOGOUT = 'USER_LOGOUT';
 
 export const GET_ROBES = 'GET_ROBES';
 export const ADD_ROBE = 'ADD_ROBE';
+export const REMOVE_ROBE = 'REMOVE_ROBE';

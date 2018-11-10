@@ -17,3 +17,41 @@ exports.addRobe = async function(req, res, next) {
     return next(err);
   }
 };
+
+exports.editRobe = async function(req, res, next) {
+  try {
+    const robeId = req.params.id;
+
+    const updatedRobe = await db.Robe.update(
+      { _id: robeId },
+      {
+        $set: {
+          title: req.body.title,
+          description: req.body.desctription,
+          price: req.body.price,
+          colors: req.body.colorPickerValues,
+          sizes: req.body.sizesList,
+          images: req.body.images,
+          forMen: req.body.forMen
+        }
+      }
+    );
+
+    // Send back the updated robe
+    return res.status(200).json(updatedRobe);
+  } catch (err) {
+    return next(err);
+  }
+};
+
+exports.removeRobe = async function(req, res, next) {
+  try {
+    const robeId = req.params.id;
+    await db.Robe.findOneAndDelete({ _id: robeId });
+
+    // Send back the id of the removed robe
+    return res.status(200).json(robeId);
+  } catch (err) {
+    return next(err);
+  }
+};
