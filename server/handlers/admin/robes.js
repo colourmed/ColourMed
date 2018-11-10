@@ -22,7 +22,7 @@ exports.editRobe = async function(req, res, next) {
   try {
     const robeId = req.params.id;
 
-    const updatedRobe = await db.Robe.update(
+    await db.Robe.updateOne(
       { _id: robeId },
       {
         $set: {
@@ -36,6 +36,8 @@ exports.editRobe = async function(req, res, next) {
         }
       }
     );
+
+    const updatedRobe = await db.Robe.findOne({ _id: robeId });
 
     // Send back the updated robe
     return res.status(200).json(updatedRobe);
