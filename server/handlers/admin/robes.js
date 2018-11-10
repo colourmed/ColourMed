@@ -4,7 +4,7 @@ exports.addRobe = async function(req, res, next) {
   try {
     let robe = await db.Robe.create({
       title: req.body.title,
-      description: req.body.desctription,
+      description: req.body.description,
       price: req.body.price,
       colors: req.body.colorPickerValues,
       sizes: req.body.sizesList,
@@ -27,7 +27,7 @@ exports.editRobe = async function(req, res, next) {
       {
         $set: {
           title: req.body.title,
-          description: req.body.desctription,
+          description: req.body.description,
           price: req.body.price,
           colors: req.body.colorPickerValues,
           sizes: req.body.sizesList,
