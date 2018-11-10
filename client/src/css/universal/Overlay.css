@@ -53,6 +53,6 @@
 
 @media only screen and (max-width: 500px) {
   .overlay-container {
-    max-width: 80% !important;
+    max-width: 99% !important;
   }
 }
