@@ -37,6 +37,7 @@
   display: block;
   max-width: 300px;
   min-width: 300px;
+  min-height: 100px;
   width: auto;
   height: auto;
   border-bottom: 3px solid #999;
