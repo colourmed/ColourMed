@@ -118,7 +118,6 @@ class ProductForm extends Component {
       price
     } = this.props.robeToEdit;
 
-    // TODO: Map through ids but also use colors as defaultValue.
     const colorPickers = colorPickerIds.map((id, index) => (
       <input
         type="color"
