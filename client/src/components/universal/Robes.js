@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ICONS } from '../../constants/Icons';
 
 import { fetchRobes } from '../../store/actions/robes';
 import {
@@ -8,11 +7,10 @@ import {
   addItemToCart,
   removeItemFromCart
 } from '../../store/actions/cart';
-
 import '../../css/universal/Robes.css';
 
+import RobeCard from './RobeCard';
 import ProductForm from '../admin/ProductForm';
-import Icon from '../universal/Icon';
 import Overlay from '../universal/Overlay';
 
 class Robes extends Component {
@@ -27,8 +25,11 @@ class Robes extends Component {
     };
 
     this.handleCardClick = this.handleCardClick.bind(this);
+    this.handleAddToCart = this.handleAddToCart.bind(this);
     this.handleEditRobe = this.handleEditRobe.bind(this);
     this.handleRemoveRobe = this.handleRemoveRobe.bind(this);
+    this.showRemoveRobeOverlay = this.showRemoveRobeOverlay.bind(this);
+    this.showEditRobeOverlay = this.showEditRobeOverlay.bind(this);
   }
 
   componentDidMount() {
@@ -73,7 +74,7 @@ class Robes extends Component {
 
     const { robes } = this.props;
 
-    // .filter() returns an array so we need to get the first element.
+    // .filter() returns an array so we need to get the first (and only) element.
     const robeToEdit = robes.filter(robe => robe._id === id)[0];
 
     this.setState({
@@ -115,47 +116,17 @@ class Robes extends Component {
     }
 
     // Render robe card for each robe
-    const robesList = robes.map(robe => {
-      // Render colored div for each color
-      const robeColors = robe.colors.map(color => (
-        <div
-          className="robe-color"
-          style={{ backgroundColor: color }}
-          key={color}
-        />
-      ));
-
-      return (
-        <div
-          onClick={() => this.handleCardClick(robe._id)}
-          className="robe-card"
-          key={robe._id}>
-          <img src={robe.images[0]} alt={robe.title} />
-          <h3 className="robe-title">{robe.title}</h3>
-          <div className="robe-colors">{robeColors}</div>
-          <h4 className="robe-price">{robe.price} RON</h4>
-
-          {showAdminControls ? (
-            <div className="admin-controls">
-              <button onClick={e => this.showEditRobeOverlay(e, robe._id)}>
-                <Icon icon={ICONS.EDIT} color="#777" size={24} />
-              </button>
-              <button onClick={e => this.showRemoveRobeOverlay(e, robe._id)}>
-                <Icon icon={ICONS.REMOVE} color="#c92e2e" size={24} />
-              </button>
-            </div>
-          ) : null}
-
-          {!showAdminControls ? (
-            <button
-              className="add-to-cart-btn"
-              onClick={e => this.handleAddToCart(e, robe._id)}>
-              Adauga in cos
-            </button>
-          ) : null}
-        </div>
-      );
-    });
+    const robesList = robes.map(robe => (
+      <RobeCard
+        robe={robe}
+        key={robe._id}
+        handleCardClick={this.handleCardClick}
+        showEditRobeOverlay={this.showEditRobeOverlay}
+        showRemoveRobeOverlay={this.showRemoveRobeOverlay}
+        handleAddToCart={this.handleAddToCart}
+        showAdminControls={showAdminControls}
+      />
+    ));
 
     const EditOverlay = () => (
       <div className="edit-overlay">
