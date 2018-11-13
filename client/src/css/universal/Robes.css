@@ -77,6 +77,24 @@
   opacity: 1;
 }
 
+#robes .robe-card .add-to-cart-btn {
+  color: #222;
+  font-size: 17px;
+  border: 2px solid #666;
+  border-radius: 5px;
+  padding: 5px 8px;
+  background-color: none;
+  background: none;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+#robes .robe-card .add-to-cart-btn:hover {
+  border-color: #333;
+  box-shadow: 3px 3px 13px #888;
+}
+
 #robes #remove-button {
   color: rgb(59, 0, 0);
   border: 2px solid rgb(139, 0, 0);

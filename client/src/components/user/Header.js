@@ -1,37 +1,55 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fetchCartItems } from '../../store/actions/cart';
 import { ICONS } from '../../constants/Icons';
 import '../../css/universal/Header.css';
 
 import Icon from '../universal/Icon';
 
 class Header extends Component {
+  componentDidMount() {
+    this.props.fetchCartItems();
+  }
+
   render() {
+    const { cart } = this.props;
+
     return (
       <div id="header">
-        <NavLink id="page-title" to="/">
+        <Link id="page-title" to="/">
           ColourMed Design
-        </NavLink>
+        </Link>
 
         <ul id="navigation">
-          <NavLink to="/products" activeClassName="active">
+          <Link to="/products">
             Halate
             <Icon icon={ICONS.MONEY} color="#333" size={24} />
-          </NavLink>
+          </Link>
 
-          <NavLink to="/contact">
+          <Link to="/contact">
             Contact
             <Icon icon={ICONS.CONTACT} color="#333" size={24} />
-          </NavLink>
+          </Link>
 
-          <NavLink to="/cart">
-            Cart
+          <Link to="/cart">
+            Cos
             <Icon icon={ICONS.CART} color="#333" size={24} />
-          </NavLink>
+            {cart.length ? (
+              <div className="cart-items-number">{cart.length}</div>
+            ) : null}
+          </Link>
         </ul>
       </div>
     );
   }
 }
 
-export default Header;
+function mapStateToProps(state) {
+  return { cart: state.cart };
+}
+
+export default connect(
+  mapStateToProps,
+  { fetchCartItems }
+)(Header);

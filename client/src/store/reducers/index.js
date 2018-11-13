@@ -3,12 +3,14 @@ import currentUser from './currentUser';
 import errors from './errors';
 import success from './success'
 import robes from './robes';
+import cart from './cart';
 
 const appReducer = combineReducers({
   currentUser,
   errors,
   success,
-  robes
+  robes,
+  cart
 });
 
 const rootReducer = (state, action) => {

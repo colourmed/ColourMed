@@ -10,3 +10,7 @@ export const USER_LOGOUT = 'USER_LOGOUT';
 export const GET_ROBES = 'GET_ROBES';
 export const ADD_ROBE = 'ADD_ROBE';
 export const REMOVE_ROBE = 'REMOVE_ROBE';
+
+export const SET_CART_ITEMS = 'SET_CART_ITEMS';
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';

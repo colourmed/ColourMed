@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ICONS } from '../../constants/Icons';
 import '../../css/universal/Header.css';
 
@@ -9,9 +9,9 @@ class Header extends Component {
   render() {
     return (
       <div id="header">
-        <NavLink id="page-title" to="/admin">
+        <Link id="page-title" to="/admin">
           Admin Console
-        </NavLink>
+        </Link>
 
         <ul id="navigation">
           <Link to="/">
@@ -19,15 +19,15 @@ class Header extends Component {
             <Icon icon={ICONS.WEB} color="#333" size={24} />
           </Link>
 
-          <NavLink to="/admin/products" activeClassName="active">
+          <Link to="/admin/products">
             Halate
             <Icon icon={ICONS.MONEY} color="#333" size={24} />
-          </NavLink>
+          </Link>
 
-          <NavLink to="/admin/new">
+          <Link to="/admin/new">
             Produs Nou
             <Icon icon={ICONS.NEW} color="#333" size={24} />
-          </NavLink>
+          </Link>
         </ul>
       </div>
     );

@@ -17,15 +17,8 @@ class Main extends Component {
     };
   }
 
-  componentDidMount() {
-    this.props.fetchRobes().then(() => {
-      this.setState({ robes: this.props.robes });
-    });
-  }
-
   render() {
-    const { robes } = this.state;
-    const { errors, history } = this.props;
+    const { errors, history, robes } = this.props;
 
     const Root = () => <h1>ROOT</h1>;
     const Contact = () => <h1>Contact</h1>;
@@ -53,9 +46,7 @@ class Main extends Component {
 
 function mapStateToProps(state) {
   return {
-    currentUser: state.currentUser,
-    errors: state.errors,
-    robes: state.robes
+    errors: state.errors
   };
 }
 

@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { ICONS } from '../../constants/Icons';
+
+import { fetchRobes } from '../../store/actions/robes';
+import {
+  fetchCartItems,
+  addItemToCart,
+  removeItemFromCart
+} from '../../store/actions/cart';
+
 import '../../css/universal/Robes.css';
 
 import ProductForm from '../admin/ProductForm';
@@ -22,6 +31,11 @@ class Robes extends Component {
     this.handleRemoveRobe = this.handleRemoveRobe.bind(this);
   }
 
+  componentDidMount() {
+    this.props.fetchRobes();
+    this.props.fetchCartItems();
+  }
+
   handleCardClick(id) {
     const { history } = this.props;
 
@@ -40,6 +54,12 @@ class Robes extends Component {
     const { removeRobe } = this.props;
 
     removeRobe(robeToRemoveId);
+  }
+
+  handleAddToCart(e, id) {
+    this.stopEventPropagation(e);
+
+    this.props.addItemToCart(id);
   }
 
   // Stops the element's parent onClick event (to stop getting redirected to product's page)
@@ -125,6 +145,14 @@ class Robes extends Component {
               </button>
             </div>
           ) : null}
+
+          {!showAdminControls ? (
+            <button
+              className="add-to-cart-btn"
+              onClick={e => this.handleAddToCart(e, robe._id)}>
+              Adauga in cos
+            </button>
+          ) : null}
         </div>
       );
     });
@@ -198,4 +226,14 @@ Robes.defaultProps = {
   showAdminControls: false
 };
 
-export default Robes;
+function mapStateToProps(state) {
+  return {
+    cart: state.cart,
+    robes: state.robes
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  { fetchCartItems, addItemToCart, removeItemFromCart, fetchRobes }
+)(Robes);

@@ -38,11 +38,7 @@
   color: #333;
   transition: all 0.2s;
   border-radius: 3px;
-}
-
-#header #navigation a.active {
-  color: #006cb4;
-  border-bottom: 10px solid rgba(0, 93, 180, 0.5);
+  position: relative;
 }
 
 #header #navigation a:hover {
@@ -54,6 +50,20 @@
 #header #navigation a .svgIcon {
   margin-left: 15px;
   margin-bottom: 5px;
+}
+
+#header #navigation a .cart-items-number {
+  background-color: rgb(0, 183, 255);
+  border-radius: 500px;
+  text-align: center;
+  width: 20px;
+  color: #eee;
+  font-size: 15px;
+  padding: 3px;
+  position: absolute;
+  font-family: Arial, Arial, Helvetica, sans-serif;
+  top: 3px;
+  right: 7px;
 }
 
 @media only screen and (max-width: 1350px) {
@@ -93,8 +103,12 @@
     padding: 10px;
   }
 
-  #header #navigation a:hover,
-  #header #navigation a.active {
+  #header #navigation a:hover {
     border: none;
+  }
+
+  #header #navigation a .cart-items-number {
+    top: 0;
+    right: 58px;
   }
 }
