@@ -40,16 +40,13 @@ export const addItemToCart = id => dispatch => {
   dispatch(addSuccess('Produs adaugat in cos.'));
 };
 
-export const removeItemFromCart = id => dispatch => {
+export const removeItemsFromCart = id => dispatch => {
   // Get item ids.
   const cartItemIds = localStorage.getItem('cartItemIds');
-  const cartItemIdsList = cartItemIds ? cartItemIds.split(',') : [];
+  let cartItemIdsList = cartItemIds ? cartItemIds.split(',') : [];
 
-  if (cartItemIdsList.length) {
-    // Remove id from the array.
-    const idIndex = cartItemIdsList.indexOf(id);
-    cartItemIdsList.splice(idIndex, 1);
-  }
+  // Remove all items with given id.
+  cartItemIdsList = cartItemIdsList.filter(itemId => itemId !== id);
 
   // Set the updated cart to localStorage.
   localStorage.setItem('cartItemIds', cartItemIdsList);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ICONS } from '../../constants/Icons';
+import '../../css/universal/RobeCard.css';
 
 import Icon from '../universal/Icon';
 
@@ -10,8 +11,11 @@ class RobeCard extends Component {
       handleCardClick,
       showEditRobeOverlay,
       showRemoveRobeOverlay,
+      showRemoveFromCartOverlay,
       handleAddToCart,
-      showAdminControls
+      showAdminControls,
+      showUserControls,
+      showCartControls
     } = this.props;
 
     const robeColors = robe.colors.map(color => (
@@ -43,16 +47,38 @@ class RobeCard extends Component {
           </div>
         ) : null}
 
-        {!showAdminControls ? (
+        {showUserControls ? (
           <button
             className="add-to-cart-btn"
             onClick={e => handleAddToCart(e, robe._id)}>
             Adauga in cos
           </button>
         ) : null}
+
+        {showCartControls ? (
+          <button
+            className="remove-from-cart-btn"
+            onClick={e => showRemoveFromCartOverlay(e, robe)}>
+            <Icon icon={ICONS.CROSS} color="#333" size={24} />
+          </button>
+        ) : null}
+
+        {robe.itemCount ? (
+          <div className="item-count">Bucati: {robe.itemCount}</div>
+        ) : null}
       </div>
     );
   }
 }
+
+RobeCard.defaultProps = {
+  robe: {
+    colors: [],
+    images: []
+  },
+  showAdminControls: false,
+  showUserControls: false,
+  showCartControls: false
+};
 
 export default RobeCard;

@@ -1,16 +1,17 @@
-#robes h2 {
+#cart #cart-title {
   margin-top: 60px;
+  margin-bottom: 30px;
   text-align: center;
   font-size: 32px;
 }
 
-#robes #robe-list {
+#cart #cart-items {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-#robes #remove-button {
+#cart #remove-button {
   color: rgb(59, 0, 0);
   border: 2px solid rgb(139, 0, 0);
   background-color: rgb(255, 160, 160);

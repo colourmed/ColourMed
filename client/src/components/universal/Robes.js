@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import { fetchRobes } from '../../store/actions/robes';
 import {
   fetchCartItems,
   addItemToCart,
-  removeItemFromCart
+  removeItemsFromCart
 } from '../../store/actions/cart';
+import { stopEventPropagation } from '../../services/stopPropagation';
 import '../../css/universal/Robes.css';
 
 import RobeCard from './RobeCard';
@@ -58,19 +58,13 @@ class Robes extends Component {
   }
 
   handleAddToCart(e, id) {
-    this.stopEventPropagation(e);
+    stopEventPropagation(e);
 
     this.props.addItemToCart(id);
   }
 
-  // Stops the element's parent onClick event (to stop getting redirected to product's page)
-  stopEventPropagation(e) {
-    e.stopPropagation();
-    e.nativeEvent.stopImmediatePropagation();
-  }
-
   showEditRobeOverlay(e, id) {
-    this.stopEventPropagation(e);
+    stopEventPropagation(e);
 
     const { robes } = this.props;
 
@@ -84,7 +78,7 @@ class Robes extends Component {
   }
 
   showRemoveRobeOverlay(e, id) {
-    this.stopEventPropagation(e);
+    stopEventPropagation(e);
     this.setState({ showRemoveOverlay: true, robeToRemoveId: id });
   }
 
@@ -103,6 +97,7 @@ class Robes extends Component {
     const {
       robes,
       showAdminControls,
+      showUserControls,
       history,
       removeError,
       removeSuccess
@@ -125,6 +120,7 @@ class Robes extends Component {
         showRemoveRobeOverlay={this.showRemoveRobeOverlay}
         handleAddToCart={this.handleAddToCart}
         showAdminControls={showAdminControls}
+        showUserControls={showUserControls}
       />
     ));
 
@@ -193,10 +189,6 @@ class Robes extends Component {
   }
 }
 
-Robes.defaultProps = {
-  showAdminControls: false
-};
-
 function mapStateToProps(state) {
   return {
     cart: state.cart,
@@ -206,5 +198,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { fetchCartItems, addItemToCart, removeItemFromCart, fetchRobes }
+  { fetchCartItems, addItemToCart, removeItemsFromCart, fetchRobes }
 )(Robes);
