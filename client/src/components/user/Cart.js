@@ -117,7 +117,7 @@ class Cart extends Component {
     const RemoveOverlay = props => (
       <div className="remove-overlay">
         <h3 className="overlay-title">
-          Esti sigur ca vrei sa elimini "{robeToRemove.title}" din cos?
+          Ești sigur că vrei să elimini "{robeToRemove.title}" din coș?
         </h3>
 
         <button
@@ -127,7 +127,7 @@ class Cart extends Component {
             props.handleRemoveFromCart();
             props.closeOverlay();
           }}>
-          Elimina
+          Elimină
         </button>
       </div>
     );
@@ -150,13 +150,13 @@ class Cart extends Component {
 
     return (
       <div id="cart">
-        <h2 id="cart-title">Cos de cumparaturi</h2>
+        <h2 id="cart-title">Coș de cumparaturi</h2>
 
         <div id="cart-items">
           {cartItems.length ? (
             cartItems
           ) : (
-            <h4 className="no-products-message">Nu exista produse in cos.</h4>
+            <h4 className="no-products-message">Nu exista produse in coș.</h4>
           )}
         </div>
 

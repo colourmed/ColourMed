@@ -35,7 +35,7 @@ export const addRobe = robe => dispatch => {
     .then(data => {
       dispatch(newRobe(data));
       dispatch(removeError());
-      dispatch(addSuccess('Produs adaugat.'));
+      dispatch(addSuccess('Produs adăugat.'));
     })
     .catch(err => {
       dispatch(removeSuccess());
@@ -62,7 +62,7 @@ export const removeRobe = id => dispatch => {
     .then(removedRobeId => {
       dispatch(deleteRobe(removedRobeId));
       dispatch(removeError());
-      dispatch(addSuccess(`Produsul cu id-ul "${removedRobeId}" a fost sters.`));
+      dispatch(addSuccess(`Produsul cu id-ul "${removedRobeId}" a fost șters.`));
     })
     .catch(err => {
       dispatch(removeSuccess());

@@ -59,7 +59,7 @@ class ProductForm extends Component {
 
     // Check if there are any inputed images (input's "required" doesn't check for trimmed strings)
     if (!images.length || !images[0]) {
-      this.props.addError('Please add an image before adding a new product.');
+      this.props.addError('Te rog adauga o imagine inainte de a adauga un produs.');
     } else {
       const robe = {
         title,
@@ -153,7 +153,7 @@ class ProductForm extends Component {
           />
           <br />
 
-          <label htmlFor="price">Pret:</label>
+          <label htmlFor="price">Preț:</label>
           <br />
           <input
             type="number"
@@ -190,7 +190,7 @@ class ProductForm extends Component {
           <br />
           <br />
 
-          <label htmlFor="sizes">Marimi:</label>
+          <label htmlFor="sizes">Mărimi:</label>
           <br />
           <input
             type="text"

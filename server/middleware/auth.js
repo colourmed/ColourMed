@@ -11,14 +11,14 @@ exports.loginRequired = function(req, res, next) {
       } else {
         return next({
           status: 401,
-          message: 'Trebuie sa fii conectat in cont pentru a face actiunea dorita.'
+          message: 'Trebuie să fii conectat pentru a face acțiunea dorită.'
         });
       }
     });
   } catch (err) {
     return next({
       status: 401,
-      message: 'Trebuie sa fii conectat in cont pentru a face actiunea dorita.'
+      message: 'Trebuie să fii conectat pentru a face acțiunea dorită.'
     });
   }
 };

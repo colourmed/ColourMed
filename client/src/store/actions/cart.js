@@ -37,7 +37,7 @@ export const addItemToCart = id => dispatch => {
 
   dispatch(addToCart(id));
   dispatch(removeError());
-  dispatch(addSuccess('Produs adaugat in cos.'));
+  dispatch(addSuccess('Produs adăugat in coș.'));
 };
 
 export const removeItemsFromCart = id => dispatch => {
@@ -53,5 +53,5 @@ export const removeItemsFromCart = id => dispatch => {
 
   dispatch(removeFromCart(id));
   dispatch(removeError());
-  dispatch(addSuccess('Produs eliminat din cos.'));
+  dispatch(addSuccess('Produs eliminat din coș.'));
 };

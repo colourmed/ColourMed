@@ -51,7 +51,7 @@ class RobeCard extends Component {
           <button
             className="add-to-cart-btn"
             onClick={e => handleAddToCart(e, robe._id)}>
-            Adauga in cos
+            Adaugă in coș
           </button>
         ) : null}
 
@@ -64,7 +64,7 @@ class RobeCard extends Component {
         ) : null}
 
         {robe.itemCount ? (
-          <div className="item-count">Bucati: {robe.itemCount}</div>
+          <div className="item-count">Bucăți: {robe.itemCount}</div>
         ) : null}
       </div>
     );

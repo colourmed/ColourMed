@@ -33,7 +33,7 @@ class Header extends Component {
           </Link>
 
           <Link to="/cart">
-            Cos
+            Coș
             <Icon icon={ICONS.CART} color="#333" size={24} />
             {cart.length ? (
               <div className="cart-items-number">{cart.length}</div>

@@ -143,7 +143,7 @@ class Robes extends Component {
     const RemoveOverlay = props => (
       <div className="remove-overlay">
         <h3 className="overlay-title">
-          Esti sigur ca vrei sa stergi acest produs?
+          Ești sigur că vrei să ștergi acest produs?
         </h3>
 
         <button
@@ -153,7 +153,7 @@ class Robes extends Component {
             props.handleRemoveRobe();
             props.closeOverlay();
           }}>
-          Stergere
+          Ștergere
         </button>
       </div>
     );

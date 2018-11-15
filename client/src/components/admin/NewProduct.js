@@ -32,7 +32,7 @@ class NewProduct extends Component {
           addError={this.props.addError}
           handleData={this.addNewRobe}
           onSubmitAction={() => {}}
-          ctaText="Adauga Produs"
+          ctaText="Adaugă Produs"
         />
       </div>
     );
