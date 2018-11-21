@@ -1,4 +1,4 @@
-import { SET_CART_ITEMS, ADD_TO_CART, REMOVE_FROM_CART } from '../actionTypes';
+import { SET_CART_ITEMS, ADD_TO_CART } from '../actionTypes';
 import { removeError } from './errors';
 import { addSuccess } from './success';
 
@@ -10,11 +10,6 @@ export const setCartItems = robes => ({
 export const addToCart = robe => ({
   type: ADD_TO_CART,
   robe
-});
-
-export const removeFromCart = remainingRobes => ({
-  type: REMOVE_FROM_CART,
-  remainingRobes
 });
 
 export const fetchCartItems = () => dispatch => {
