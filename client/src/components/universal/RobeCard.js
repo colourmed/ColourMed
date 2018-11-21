@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { ICONS } from '../../constants/Icons';
 import '../../css/universal/RobeCard.css';
 
+import Color from '../universal/Color';
 import Icon from '../universal/Icon';
 
 class RobeCard extends Component {
@@ -12,18 +13,14 @@ class RobeCard extends Component {
       showEditRobeOverlay,
       showRemoveRobeOverlay,
       showRemoveFromCartOverlay,
-      handleAddToCart,
+      showAddRobeOverlay,
       showAdminControls,
       showUserControls,
       showCartControls
     } = this.props;
 
     const robeColors = robe.colors.map(color => (
-      <div
-        className="robe-color"
-        style={{ backgroundColor: color }}
-        key={color}
-      />
+      <Color color={color} key={color} />
     ));
 
     return (
@@ -50,7 +47,7 @@ class RobeCard extends Component {
         {showUserControls ? (
           <button
             className="add-to-cart-btn"
-            onClick={e => handleAddToCart(e, robe._id)}>
+            onClick={e => showAddRobeOverlay(e, robe)}>
             Adaugă in coș
           </button>
         ) : null}
@@ -63,8 +60,8 @@ class RobeCard extends Component {
           </button>
         ) : null}
 
-        {robe.itemCount ? (
-          <div className="item-count">Bucăți: {robe.itemCount}</div>
+        {robe.quantity ? (
+          <div className="item-count">Bucăți: {robe.quantity}</div>
         ) : null}
       </div>
     );

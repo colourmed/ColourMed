@@ -5,11 +5,11 @@ const DEFAULT_STATE = [];
 export default (state = DEFAULT_STATE, action) => {
   switch (action.type) {
     case SET_CART_ITEMS:
-      return action.robeIds;
+      return action.robes;
     case ADD_TO_CART:
-      return [...state, action.robeId];
+      return [...state, action.robe];
     case REMOVE_FROM_CART:
-      return state.filter(robeId => robeId !== action.robeId);
+      return action.remainingRobes;
     default:
       return state;
   }

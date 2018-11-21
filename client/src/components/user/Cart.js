@@ -13,81 +13,12 @@ class Cart extends Component {
     super(props);
 
     this.state = {
-      uniqueIds: [],
-      uniqueRobes: [],
       robeToRemove: {},
       showRemoveOverlay: false
     };
 
-    this.getUniqueRobesAndIds = this.getUniqueRobesAndIds.bind(this);
     this.showRemoveFromCartOverlay = this.showRemoveFromCartOverlay.bind(this);
     this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this);
-  }
-
-  componentDidMount() {
-    this.props.fetchCartItems();
-    
-    this.props.fetchRobes().then(() => {
-      const uniqueRobesAndIds = this.getUniqueRobesAndIds([], []);
-      this.setState(uniqueRobesAndIds);
-    });
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    let { uniqueIds, uniqueRobes } = this.state;
-    const { cart, robes } = this.props;
-
-    if (cart && robes) {
-      // If cart items were removed, reset uniqueIds and uniqueRobes
-      if (prevProps.cart.length !== cart.length) {
-        uniqueIds = [];
-        uniqueRobes = [];
-      }
-
-      const uniqueRobesAndIds = this.getUniqueRobesAndIds(uniqueIds, uniqueRobes);
-
-      if (prevState.uniqueIds !== uniqueIds) {
-        this.setState(uniqueRobesAndIds);
-      }
-    }
-  }
-
-  getUniqueRobesAndIds(uniqueIds, uniqueRobes) {
-    const { cart, robes } = this.props;
-
-    cart.forEach(cartItemId => {
-      const foundRobe = robes.find(robe => robe._id === cartItemId);
-
-      if (foundRobe) {
-        if (!uniqueIds.includes(cartItemId)) {
-          uniqueIds.push(cartItemId);
-
-          const robeOccurrenciesInCart = this.countRobeOccurrencies(
-            cart,
-            cartItemId
-          );
-
-          uniqueRobes.push({
-            ...foundRobe,
-            itemCount: robeOccurrenciesInCart
-          });
-        }
-      }
-    });
-
-    return { uniqueIds, uniqueRobes };
-  }
-
-  countRobeOccurrencies(cart, robeId) {
-    let occurrencies = 0;
-
-    cart.forEach(id => {
-      if (id === robeId) {
-        occurrencies++;
-      }
-    });
-
-    return occurrencies;
   }
 
   showRemoveFromCartOverlay(e, robe) {
@@ -102,12 +33,12 @@ class Cart extends Component {
   handleRemoveFromCart() {
     const { robeToRemove } = this.state;
 
-    this.props.removeItemsFromCart(robeToRemove._id);
+    this.props.removeItemsFromCart(robeToRemove);
   }
 
   render() {
-    let { uniqueRobes, robeToRemove } = this.state;
-    const { history, removeError, removeSuccess } = this.props;
+    const { robeToRemove } = this.state;
+    const { history, removeError, removeSuccess, cart } = this.props;
 
     history.listen(() => {
       removeError();
@@ -132,21 +63,19 @@ class Cart extends Component {
       </div>
     );
 
-    const cartItems = uniqueRobes.map(robe => {
-      return (
-        <RobeCard
-          robe={robe}
-          key={robe._id}
-          handleCardClick={() => {
-            history.push(`/products/${robe._id}`);
-          }}
-          showCartControls={true}
-          showRemoveFromCartOverlay={(e, robe) =>
-            this.showRemoveFromCartOverlay(e, robe)
-          }
-        />
-      );
-    });
+    const cartItems = cart.map(item => (
+      <RobeCard
+        robe={item}
+        key={`${item._id}-${item.colors[0]}-${item.sizes[0]}`}
+        handleCardClick={() => {
+          history.push(`/products/${item._id}`);
+        }}
+        showCartControls={true}
+        showRemoveFromCartOverlay={(e, item) =>
+          this.showRemoveFromCartOverlay(e, item)
+        }
+      />
+    ));
 
     return (
       <div id="cart">

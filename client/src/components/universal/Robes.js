@@ -11,7 +11,8 @@ import '../../css/universal/Robes.css';
 
 import RobeCard from './RobeCard';
 import ProductForm from '../admin/ProductForm';
-import Overlay from '../universal/Overlay';
+import Overlay from './Overlay';
+import AddToCartOverlay from '../user/AddToCartOverlay';
 
 class Robes extends Component {
   constructor(props) {
@@ -20,8 +21,10 @@ class Robes extends Component {
     this.state = {
       showEditOverlay: false,
       showRemoveOverlay: false,
+      showAddOverlay: false,
       robeToRemoveId: '',
-      robeToEdit: {}
+      robeToEdit: {},
+      robeToAdd: {}
     };
 
     this.handleCardClick = this.handleCardClick.bind(this);
@@ -30,6 +33,7 @@ class Robes extends Component {
     this.handleRemoveRobe = this.handleRemoveRobe.bind(this);
     this.showRemoveRobeOverlay = this.showRemoveRobeOverlay.bind(this);
     this.showEditRobeOverlay = this.showEditRobeOverlay.bind(this);
+    this.showAddRobeOverlay = this.showAddRobeOverlay.bind(this);
   }
 
   componentDidMount() {
@@ -57,10 +61,8 @@ class Robes extends Component {
     removeRobe(robeToRemoveId);
   }
 
-  handleAddToCart(e, id) {
-    stopEventPropagation(e);
-
-    this.props.addItemToCart(id);
+  handleAddToCart(robe) {
+    this.props.addItemToCart(robe);
   }
 
   showEditRobeOverlay(e, id) {
@@ -82,17 +84,29 @@ class Robes extends Component {
     this.setState({ showRemoveOverlay: true, robeToRemoveId: id });
   }
 
+  showAddRobeOverlay(e, robe) {
+    stopEventPropagation(e);
+    this.setState({ showAddOverlay: true, robeToAdd: robe });
+  }
+
   hideOverlays() {
     this.setState({
       showEditOverlay: false,
       showRemoveOverlay: false,
+      showAddOverlay: false,
       robeToRemoveId: '',
       robeToEdit: {}
     });
   }
 
   render() {
-    const { showEditOverlay, showRemoveOverlay, robeToEdit } = this.state;
+    const {
+      showEditOverlay,
+      showRemoveOverlay,
+      showAddOverlay,
+      robeToEdit,
+      robeToAdd
+    } = this.state;
 
     const {
       robes,
@@ -118,7 +132,7 @@ class Robes extends Component {
         handleCardClick={this.handleCardClick}
         showEditRobeOverlay={this.showEditRobeOverlay}
         showRemoveRobeOverlay={this.showRemoveRobeOverlay}
-        handleAddToCart={this.handleAddToCart}
+        showAddRobeOverlay={this.showAddRobeOverlay}
         showAdminControls={showAdminControls}
         showUserControls={showUserControls}
       />
@@ -163,6 +177,14 @@ class Robes extends Component {
         <h2>Halate</h2>
 
         <div id="robe-list">{robesList}</div>
+
+        {showAddOverlay ? (
+          <Overlay
+            content={<AddToCartOverlay robe={robeToAdd} handleAddToCart={this.handleAddToCart} />}
+            closeOverlay={() => this.hideOverlays()}
+            maxWidth="300px"
+          />
+        ) : null}
 
         {showEditOverlay ? (
           <Overlay

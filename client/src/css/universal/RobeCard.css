@@ -37,14 +37,6 @@
   justify-content: center;
 }
 
-.robe-card .robe-color {
-  margin: 0 5px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 1px solid #999;
-}
-
 .robe-card .admin-controls {
   position: absolute;
   right: 5px;

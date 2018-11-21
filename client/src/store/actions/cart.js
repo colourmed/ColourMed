@@ -2,56 +2,90 @@ import { SET_CART_ITEMS, ADD_TO_CART, REMOVE_FROM_CART } from '../actionTypes';
 import { removeError } from './errors';
 import { addSuccess } from './success';
 
-export const setCartItems = robeIds => ({
+export const setCartItems = robes => ({
   type: SET_CART_ITEMS,
-  robeIds
+  robes
 });
 
-export const addToCart = robeId => ({
+export const addToCart = robe => ({
   type: ADD_TO_CART,
-  robeId
+  robe
 });
 
-export const removeFromCart = robeId => ({
+export const removeFromCart = remainingRobes => ({
   type: REMOVE_FROM_CART,
-  robeId
+  remainingRobes
 });
 
 export const fetchCartItems = () => dispatch => {
-  // Get item ids and convert them to an array.
-  const cartItemIds = localStorage.getItem('cartItemIds');
-  const cartItemIdsList = cartItemIds ? cartItemIds.split(',') : [];
+  // Get items and convert them to an array.
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
-  // Set array to redux store.
-  dispatch(setCartItems(cartItemIdsList));
+  // Set array to redux's store.
+  dispatch(setCartItems(cartItems));
   dispatch(removeError());
 };
 
-export const addItemToCart = id => dispatch => {
-  // Get item ids, push the new id and set them back to localStorage.
-  const cartItemIds = localStorage.getItem('cartItemIds');
-  const cartItemIdsList = cartItemIds ? cartItemIds.split(',') : [];
+export const addItemToCart = newItem => dispatch => {
+  // Get items and convert them to an array.
+  let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
-  cartItemIdsList.push(id);
-  localStorage.setItem('cartItemIds', cartItemIdsList);
+  let isNewItemInCart = false;
+  let itemIndexInCart = 0;
 
-  dispatch(addToCart(id));
-  dispatch(removeError());
-  dispatch(addSuccess('Produs adăugat in coș.'));
+  // Loop through cart to see if newItem is already in cart.
+  for (let i = 0; i < cartItems.length; i++) {
+    const areItemsEqual =
+      cartItems[i].id === newItem.id &&
+      cartItems[i].colors[0] === newItem.colors[0] &&
+      cartItems[i].sizes[0] === newItem.sizes[0];
+
+    if (areItemsEqual) {
+      isNewItemInCart = true;
+      itemIndexInCart = i;
+    }
+  }
+
+  if (isNewItemInCart) {
+    // if newItem is already in cart, add to its quantity
+    cartItems[itemIndexInCart].quantity = (
+      Number(cartItems[itemIndexInCart].quantity) + Number(newItem.quantity)
+    ).toString();
+
+    dispatch(setCartItems(cartItems));
+  } else {
+    // if newItem is not already in cart, push it into the cart
+    cartItems.push(newItem);
+    dispatch(addToCart(newItem));
+  }
+
+  localStorage.setItem('cartItems', JSON.stringify(cartItems));
 };
 
-export const removeItemsFromCart = id => dispatch => {
-  // Get item ids.
-  const cartItemIds = localStorage.getItem('cartItemIds');
-  let cartItemIdsList = cartItemIds ? cartItemIds.split(',') : [];
+export const removeItemsFromCart = itemToRemove => dispatch => {
+  // Get items and convert them to an array.
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
-  // Remove all items with given id.
-  cartItemIdsList = cartItemIdsList.filter(itemId => itemId !== id);
+  let remainingCartItems = [];
+
+  // Loop through cart items.
+  for (let i = 0; i < cartItems.length; i++) {
+    const currentItem = cartItems[i];
+
+    const areItemsEqual =
+      cartItems[i].id === itemToRemove.id &&
+      cartItems[i].colors[0] === itemToRemove.colors[0] &&
+      cartItems[i].sizes[0] === itemToRemove.sizes[0];
+
+    if (!areItemsEqual) {
+      remainingCartItems.push(currentItem);
+    }
+  }
 
   // Set the updated cart to localStorage.
-  localStorage.setItem('cartItemIds', cartItemIdsList);
+  localStorage.setItem('cartItems', JSON.stringify(remainingCartItems));
 
-  dispatch(removeFromCart(id));
+  dispatch(setCartItems(remainingCartItems));
   dispatch(removeError());
-  dispatch(addSuccess('Produs eliminat din coș.'));
+  dispatch(addSuccess('Produse eliminate din coș.'));
 };
