@@ -124,7 +124,6 @@ class Robes extends Component {
       });
     }
 
-    // Render robe card for each robe
     const robesList = robes.map(robe => (
       <RobeCard
         robe={robe}

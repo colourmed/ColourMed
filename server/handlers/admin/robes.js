@@ -39,7 +39,6 @@ exports.editRobe = async function(req, res, next) {
 
     const updatedRobe = await db.Robe.findOne({ _id: robeId });
 
-    // Send back the updated robe
     return res.status(200).json(updatedRobe);
   } catch (err) {
     return next(err);
@@ -51,7 +50,6 @@ exports.removeRobe = async function(req, res, next) {
     const robeId = req.params.id;
     await db.Robe.findOneAndDelete({ _id: robeId });
 
-    // Send back the id of the removed robe
     return res.status(200).json(robeId);
   } catch (err) {
     return next(err);

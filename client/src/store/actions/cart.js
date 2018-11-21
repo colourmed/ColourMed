@@ -21,7 +21,6 @@ export const fetchCartItems = () => dispatch => {
   // Get items and convert them to an array.
   const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
-  // Set array to redux's store.
   dispatch(setCartItems(cartItems));
   dispatch(removeError());
 };
@@ -77,6 +76,7 @@ export const removeItemsFromCart = itemToRemove => dispatch => {
       cartItems[i].colors[0] === itemToRemove.colors[0] &&
       cartItems[i].sizes[0] === itemToRemove.sizes[0];
 
+    // Push to a new array all items that do not match itemToRemove.
     if (!areItemsEqual) {
       remainingCartItems.push(currentItem);
     }
