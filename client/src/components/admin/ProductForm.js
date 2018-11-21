@@ -211,7 +211,7 @@ class ProductForm extends Component {
 
 ProductForm.defaultProps = {
   robeToEdit: {
-    colors: ['#FFFFFF'],
+    colors: ['#000000'],
     sizes: [],
     images: [],
     title: '',
