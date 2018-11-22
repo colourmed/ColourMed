@@ -47,10 +47,14 @@ export const addItemToCart = newItem => dispatch => {
     ).toString();
 
     dispatch(setCartItems(cartItems));
+    dispatch(removeError());
+    dispatch(addSuccess('Cantitate adaugata la produsul din cos.'));
   } else {
     // if newItem is not already in cart, push it into the cart
     cartItems.push(newItem);
     dispatch(addToCart(newItem));
+    dispatch(removeError());
+    dispatch(addSuccess('Produs adaugat in cos.'));
   }
 
   localStorage.setItem('cartItems', JSON.stringify(cartItems));
