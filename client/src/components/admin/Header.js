@@ -14,14 +14,14 @@ class Header extends Component {
         </Link>
 
         <ul id="navigation">
-          <Link to="/">
-            ColourMed
-            <Icon icon={ICONS.WEB} color="#333" size={24} />
-          </Link>
-
           <Link to="/admin/products">
             Halate
             <Icon icon={ICONS.MONEY} color="#333" size={24} />
+          </Link>
+
+          <Link to="/admin/featured">
+            Recomandate
+            <Icon icon={ICONS.FEATURES} color="#333" size={24} />
           </Link>
 
           <Link to="/admin/new">

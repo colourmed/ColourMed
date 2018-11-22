@@ -6,8 +6,8 @@ class Footer extends Component {
   render() {
     return (
       <div id="footer">
-        <Link to="/admin" className="admin">
-          Admin
+        <Link to="/">
+          ColourMed
         </Link>
       </div>
     );

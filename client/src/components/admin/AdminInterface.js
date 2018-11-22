@@ -3,6 +3,7 @@ import '../../css/admin/AdminInterface.css';
 
 import Header from './Header';
 import Main from './Main';
+import Footer from './Footer';
 
 class AdminInterface extends Component {
   render() {
@@ -10,6 +11,7 @@ class AdminInterface extends Component {
       <div id="admin">
         <Header />
         <Main />
+        <Footer />
       </div>
     );
   }

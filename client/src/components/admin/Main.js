@@ -33,7 +33,7 @@ class Main extends Component {
     const Root = () => <h1>ROOT</h1>;
 
     return (
-      <div id="admin-main">
+      <div id="main">
         <Error error={errors} />
         <Success success={success} />
 
