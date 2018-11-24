@@ -1,0 +1,14 @@
+#featured {
+  padding: 50px 0;
+}
+
+#featured h2 {
+  text-align: center;
+  font-size: 32px;
+}
+
+#featured .featured-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

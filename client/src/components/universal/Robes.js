@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchRobes } from '../../store/actions/robes';
+import { fetchFeatured, addToFeatured } from '../../store/actions/featured';
 import {
   fetchCartItems,
   addItemToCart,
@@ -31,6 +32,7 @@ class Robes extends Component {
     this.handleAddToCart = this.handleAddToCart.bind(this);
     this.handleEditRobe = this.handleEditRobe.bind(this);
     this.handleRemoveRobe = this.handleRemoveRobe.bind(this);
+    this.addRobeToFeatured = this.addRobeToFeatured.bind(this);
     this.showRemoveRobeOverlay = this.showRemoveRobeOverlay.bind(this);
     this.showEditRobeOverlay = this.showEditRobeOverlay.bind(this);
     this.showAddRobeOverlay = this.showAddRobeOverlay.bind(this);
@@ -39,6 +41,7 @@ class Robes extends Component {
   componentDidMount() {
     this.props.fetchRobes();
     this.props.fetchCartItems();
+    this.props.fetchFeatured();
   }
 
   handleCardClick(id) {
@@ -63,6 +66,12 @@ class Robes extends Component {
 
   handleAddToCart(robe) {
     this.props.addItemToCart(robe);
+  }
+
+  addRobeToFeatured(e, id) {
+    stopEventPropagation(e);
+
+    this.props.addToFeatured(id);
   }
 
   showEditRobeOverlay(e, id) {
@@ -129,6 +138,7 @@ class Robes extends Component {
         robe={robe}
         key={robe._id}
         handleCardClick={this.handleCardClick}
+        addRobeToFeatured={this.addRobeToFeatured}
         showEditRobeOverlay={this.showEditRobeOverlay}
         showRemoveRobeOverlay={this.showRemoveRobeOverlay}
         showAddRobeOverlay={this.showAddRobeOverlay}
@@ -179,7 +189,12 @@ class Robes extends Component {
 
         {showAddOverlay ? (
           <Overlay
-            content={<AddToCartOverlay robe={robeToAdd} handleAddToCart={this.handleAddToCart} />}
+            content={
+              <AddToCartOverlay
+                robe={robeToAdd}
+                handleAddToCart={this.handleAddToCart}
+              />
+            }
             closeOverlay={() => this.hideOverlays()}
             maxWidth="300px"
           />
@@ -219,5 +234,12 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { fetchCartItems, addItemToCart, removeItemsFromCart, fetchRobes }
+  {
+    fetchCartItems,
+    addItemToCart,
+    removeItemsFromCart,
+    fetchRobes,
+    fetchFeatured,
+    addToFeatured
+  }
 )(Robes);

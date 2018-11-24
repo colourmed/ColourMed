@@ -4,13 +4,15 @@ import errors from './errors';
 import success from './success'
 import robes from './robes';
 import cart from './cart';
+import featured from './featured';
 
 const appReducer = combineReducers({
   currentUser,
   errors,
   success,
   robes,
-  cart
+  cart,
+  featured
 });
 
 const rootReducer = (state, action) => {

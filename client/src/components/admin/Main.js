@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchRobes, editRobe, removeRobe } from '../../store/actions/robes';
+import { fetchFeatured, removeFromFeatured } from '../../store/actions/featured';
 import { addError, removeError } from '../../store/actions/errors';
 import { addSuccess, removeSuccess } from '../../store/actions/success';
 import '../../css/universal/Main.css';
 
+import Featured from './Featured';
 import NewProduct from './NewProduct';
 import Robes from '../universal/Robes';
 import Error from '../universal/Error';
@@ -27,7 +29,10 @@ class Main extends Component {
       removeSuccess,
       editRobe,
       removeRobe,
-      robes
+      robes,
+      removeFromFeatured,
+      fetchFeatured,
+      featured
     } = this.props;
 
     const Root = () => <h1>ROOT</h1>;
@@ -39,6 +44,7 @@ class Main extends Component {
 
         <Switch>
           <Route exact path="/admin" component={Root} />
+
           <Route
             exact
             path="/admin/products"
@@ -55,6 +61,25 @@ class Main extends Component {
               />
             )}
           />
+
+          <Route
+            exact
+            path="/admin/featured"
+            render={() => (
+              <Featured
+                addError={addError}
+                addSuccess={addSuccess}
+                history={history}
+                removeError={removeError}
+                removeSuccess={removeSuccess}
+                fetchFeatured={fetchFeatured}
+                removeFromFeatured={removeFromFeatured}
+                featured={featured}
+                robes={robes}
+              />
+            )}
+          />
+
           <Route
             exact
             path="/admin/new"
@@ -79,7 +104,8 @@ function mapStateToProps(state) {
     currentUser: state.currentUser,
     errors: state.errors,
     success: state.success,
-    robes: state.robes
+    robes: state.robes,
+    featured: state.featured
   };
 }
 
@@ -93,7 +119,9 @@ export default withRouter(
       addSuccess,
       removeSuccess,
       editRobe,
-      removeRobe
+      removeRobe,
+      fetchFeatured,
+      removeFromFeatured
     }
   )(Main)
 );

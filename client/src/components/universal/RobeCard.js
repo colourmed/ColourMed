@@ -10,13 +10,15 @@ class RobeCard extends Component {
     const {
       robe,
       handleCardClick,
+      addRobeToFeatured,
       showEditRobeOverlay,
       showRemoveRobeOverlay,
       showRemoveFromCartOverlay,
       showAddRobeOverlay,
       showAdminControls,
       showUserControls,
-      showCartControls
+      showCartControls,
+      showFeaturedControls
     } = this.props;
 
     const robeColors = robe.colors.map(color => (
@@ -35,12 +37,26 @@ class RobeCard extends Component {
 
         {showAdminControls ? (
           <div className="admin-controls">
-            <button onClick={e => showEditRobeOverlay(e, robe._id)}>
-              <Icon icon={ICONS.EDIT} color="#777" size={24} />
-            </button>
-            <button onClick={e => showRemoveRobeOverlay(e, robe._id)}>
-              <Icon icon={ICONS.REMOVE} color="#c92e2e" size={24} />
-            </button>
+            <div className="controls-left">
+              <button
+                title="Adauga la Produse Recomandate."
+                onClick={e => addRobeToFeatured(e, robe._id)}>
+                <Icon icon={ICONS.NEW} color="#444" size={24} />
+              </button>
+            </div>
+
+            <div className="controls-right">
+              <button
+                title="Editeaza Produsul."
+                onClick={e => showEditRobeOverlay(e, robe._id)}>
+                <Icon icon={ICONS.EDIT} color="#777" size={24} />
+              </button>
+              <button
+                title="Sterge Produsul."
+                onClick={e => showRemoveRobeOverlay(e, robe._id)}>
+                <Icon icon={ICONS.REMOVE} color="#c92e2e" size={24} />
+              </button>
+            </div>
           </div>
         ) : null}
 
@@ -60,6 +76,15 @@ class RobeCard extends Component {
           </button>
         ) : null}
 
+        {showFeaturedControls ? (
+          <button
+            className="remove-from-featured-btn"
+            title="Elimina din recomandate"
+            onClick={() => this.props.removeFromFeatured(robe._id)}>
+            <Icon icon={ICONS.CROSS} color="#c51e1e" size={24} />
+          </button>
+        ) : null}
+
         {robe.quantity ? (
           <div className="item-count">Bucăți: {robe.quantity}</div>
         ) : null}
@@ -75,7 +100,9 @@ RobeCard.defaultProps = {
   },
   showAdminControls: false,
   showUserControls: false,
-  showCartControls: false
+  showCartControls: false,
+  showFeaturedControls: false,
+  handleCardClick: () => {}
 };
 
 export default RobeCard;

@@ -14,3 +14,4 @@ mongoose.connect(
 
 module.exports.Admin = require('./admin');
 module.exports.Robe = require('./robe');
+module.exports.FeaturedItems = require('./featured');
