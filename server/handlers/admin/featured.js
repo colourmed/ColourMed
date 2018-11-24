@@ -5,8 +5,6 @@ exports.addFeaturedItem = async function(req, res, next) {
     let featuredItems = await db.FeaturedItems.find();
     const newRobeId = req.params.id;
 
-    console.log(featuredItems);
-
     let isItemAlreadyFeatured = false;
 
     for (let item of featuredItems) {
@@ -36,15 +34,6 @@ exports.removeFeaturedItem = async function(req, res, next) {
     await db.FeaturedItems.findOneAndDelete({ robeRef: req.params.id });
 
     return res.status(200).json(req.params.id);
-  } catch (err) {
-    return next(err);
-  }
-};
-
-exports.changeFeaturedItemsOrder = async function(req, res, next) {
-  try {
-    console.log('Change Featured Items called');
-    return res.status(200);
   } catch (err) {
     return next(err);
   }

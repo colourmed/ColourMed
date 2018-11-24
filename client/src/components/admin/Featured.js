@@ -27,8 +27,6 @@ class Featured extends Component {
         }
       }
 
-      console.log(featuredItems);
-
       this.setState({ featuredItems });
     }
   }

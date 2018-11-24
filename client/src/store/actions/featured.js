@@ -57,7 +57,3 @@ export const removeFromFeatured = robeId => dispatch => {
       dispatch(addError(err.message));
     });
 };
-
-export const changeFeaturedOred = () => dispatch => {
-  console.log("About to change order");
-}
