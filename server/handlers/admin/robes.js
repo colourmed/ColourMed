@@ -49,6 +49,7 @@ exports.removeRobe = async function(req, res, next) {
   try {
     const robeId = req.params.id;
     await db.Robe.findOneAndDelete({ _id: robeId });
+    await db.FeaturedItems.findOneAndDelete({ robeRef: robeId });
 
     return res.status(200).json(robeId);
   } catch (err) {
