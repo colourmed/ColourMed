@@ -20,7 +20,7 @@ exports.addFeaturedItem = async function(req, res, next) {
       return res.status(200).json(updatedFeaturedItems);
     } else {
       return next({
-        status: 401,
+        status: 400,
         message: 'Produsul este deja recomandat.'
       });
     }
