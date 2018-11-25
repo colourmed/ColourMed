@@ -1,0 +1,148 @@
+#detailed-product {
+  padding-top: 60px;
+}
+
+#detailed-product .product-title {
+  text-align: center;
+  font-size: 30px;
+}
+
+#detailed-product .flex-container {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: auto;
+  margin-top: 50px;
+  color: #333;
+  font-size: 20px;
+  transition: all 0.2s;
+}
+
+#detailed-product .card-slider {
+  width: 470px;
+  margin-bottom: 50px;
+}
+
+#detailed-product .left-side {
+  text-align: center;
+}
+
+#detailed-product .right-side {
+  width: 90%;
+  padding: 0 0 0 80px;
+}
+
+#detailed-product .right-side > *:not(:first-child) {
+  margin-top: 65px;
+}
+
+#detailed-product .slider-image {
+  max-height: 430px;
+  min-height: 430px;
+  max-width: 430px;
+  border-radius: 15px;
+  width: auto;
+  height: auto;
+}
+
+#detailed-product .card-slider .slick-arrow::before {
+  opacity: 1;
+  color: #333;
+}
+
+#detailed-product .card-slider .slick-arrow {
+  border-radius: 50%;
+}
+
+#detailed-product .product-colors {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+#detailed-product .gender-label {
+  margin-bottom: 15px;
+}
+
+#detailed-product .product-title {
+  margin-bottom: 30px;
+}
+
+#detailed-product .right-side .product-description {
+  margin-top: 5px;
+}
+
+#detailed-product .add-to-cart {
+  background-color: transparent;
+  color: #333;
+  font-size: 18px;
+  position: relative;
+  top: 5px;
+  left: 25%;
+  border: 2px solid #555;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 3px 3px 7px #888;
+  transition: all 0.2s;
+}
+
+#detailed-product .add-to-cart:hover {
+  box-shadow: 3px 3px 16px #666;
+}
+
+@media only screen and (max-width: 1100px) {
+  #detailed-product .add-to-cart {
+    top: -30px;
+    left: -1px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  #detailed-product .flex-container {
+    width: 75vw;
+    flex-direction: column;
+    margin: auto;
+  }
+
+  #detailed-product .left-side {
+    margin: auto;
+  }
+
+  #detailed-product .right-side {
+    padding-left: 32px;
+  }
+
+  #detailed-product .right-side > *:not(:first-child) {
+    margin-top: 35px;
+  }
+
+  #detailed-product .gender-label {
+    margin-bottom: 0;
+  }
+
+  #detailed-product .slider-image {
+    margin: auto;
+  }
+
+  #detailed-product .add-to-cart {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  #detailed-product .flex-container {
+    width: 100%;
+  }
+
+  #detailed-product .card-slider {
+    width: 330px;
+  }
+
+  #detailed-product .slider-image {
+    max-width: 300px;
+    max-height: 300px;
+    min-height: 300px;
+  }
+}

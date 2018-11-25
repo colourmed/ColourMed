@@ -3,6 +3,7 @@ import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchRobes } from '../../store/actions/robes';
 import { fetchFeatured } from '../../store/actions/featured';
+import { addItemToCart } from '../../store/actions/cart';
 import { removeError } from '../../store/actions/errors';
 import { removeSuccess } from '../../store/actions/success';
 import '../../css/universal/Main.css';
@@ -10,6 +11,7 @@ import '../../css/universal/Main.css';
 import Error from '../universal/Error';
 import Success from '../universal/Success';
 import Products from './Products';
+import DetailedProduct from './DetailedProduct';
 import Cart from './Cart';
 import Login from './Login';
 
@@ -26,6 +28,7 @@ class Main extends Component {
       robes,
       fetchRobes,
       featured,
+      addItemToCart,
       fetchFeatured,
       removeSuccess,
       removeError
@@ -69,6 +72,18 @@ class Main extends Component {
             )}
           />
 
+          <Route
+            exact
+            path="/products/:product_id"
+            render={props => (
+              <DetailedProduct
+                robes={robes}
+                addItemToCart={addItemToCart}
+                match={props.match}
+              />
+            )}
+          />
+
           <Route exact path="/login" component={Login} />
         </Switch>
       </div>
@@ -88,6 +103,6 @@ function mapStateToProps(state) {
 export default withRouter(
   connect(
     mapStateToProps,
-    { fetchRobes, fetchFeatured, removeSuccess, removeError }
+    { fetchRobes, fetchFeatured, addItemToCart, removeSuccess, removeError }
   )(Main)
 );
