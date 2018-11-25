@@ -86,7 +86,10 @@ class RobeCard extends Component {
         ) : null}
 
         {robe.quantity ? (
-          <div className="item-count">Bucăți: {robe.quantity}</div>
+          <div className="order-details">
+            <div className="item-count">Bucăți: {robe.quantity}</div>
+            <div className="item-size">Marime: {robe.sizes[0]}</div>
+          </div>
         ) : null}
       </div>
     );

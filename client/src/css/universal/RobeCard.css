@@ -104,11 +104,12 @@
   box-shadow: 3px 3px 13px #888;
 }
 
-.robe-card .item-count {
-  color: #333;
-  border-bottom: 1px solid #333;
-  display: inline;
-  position: relative;
-  bottom: 12px;
+.robe-card .order-details {
+  margin-bottom: 15px;
+}
+
+.robe-card .order-details > * {
   font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 8px;
+  text-decoration: underline;
 }
