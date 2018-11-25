@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchRobes, editRobe, removeRobe } from '../../store/actions/robes';
 import { fetchFeatured, removeFromFeatured } from '../../store/actions/featured';
@@ -35,15 +35,13 @@ class Main extends Component {
       featured
     } = this.props;
 
-    const Root = () => <h1>ROOT</h1>;
-
     return (
       <div id="main">
         <Error error={errors} />
         <Success success={success} />
 
         <Switch>
-          <Route exact path="/admin" component={Root} />
+          <Route exact path="/admin" render={() => <Redirect to="/admin/products" />} />
 
           <Route
             exact

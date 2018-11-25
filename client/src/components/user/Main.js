@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchRobes } from '../../store/actions/robes';
 import { fetchFeatured } from '../../store/actions/featured';
@@ -31,7 +31,6 @@ class Main extends Component {
       removeError
     } = this.props;
 
-    const Root = () => <h1>ROOT</h1>;
     const Contact = () => <h1>Contact</h1>;
 
     return (
@@ -40,7 +39,7 @@ class Main extends Component {
         <Success success={success} />
 
         <Switch>
-          <Route exact path="/" component={Root} />
+          <Route exact path="/" render={() => <Redirect to="/products" />} />
 
           <Route exact path="/contact" component={Contact} />
 
