@@ -58,7 +58,7 @@ class DetailedProduct extends Component {
     const { product, showAddToCartOverlay } = this.state;
 
     const productColors = product.colors.map(color => (
-      <Color color={color} key={color} />
+      <Color color={color} key={color} size={20} />
     ));
 
     const productImages = product.images.map(image => (
