@@ -1,0 +1,27 @@
+#products .card-slider {
+  margin: 50px auto;
+  width: 90%;
+}
+
+#products .card-slider .slick-arrow::before {
+  opacity: 1;
+  color: #333;
+}
+
+@media only screen and (max-width: 1500px) {
+  #products .card-slider {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 680px) {
+  #products .card-slider {
+    width: 85vw;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  #products .card-slider {
+    width: 95vw;
+  }
+}
