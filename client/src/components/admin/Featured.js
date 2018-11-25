@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import Slider from 'react-slick';
 import '../../css/admin/Featured.css';
 
 import RobeCard from '../universal/RobeCard';
+import FullRobe from '../universal/FullRobe';
 
 class Featured extends Component {
   constructor(props) {
@@ -33,24 +35,58 @@ class Featured extends Component {
 
   render() {
     const { featuredItems } = this.state;
-    const { removeFromFeatured } = this.props;
+    const { removeFromFeatured, history } = this.props;
 
     const featuredItemsList = featuredItems.map(item => (
       <RobeCard
         robe={item}
-        key={item._id}
+        key={"featured-item-" + item._id}
         removeFromFeatured={removeFromFeatured}
         showFeaturedControls={true}
       />
     ));
 
-    return (
-      <div id="featured">
-        <h2>Produse Recomandate:</h2>
+    const featuredItemsInSlider = featuredItems.map(item => (
+      <FullRobe robe={item} key={"slider-item-" + item._id} history={history} />
+    ));
 
-        <div className="featured-list">{featuredItemsList}</div>
-      </div>
-    );
+    const sliderSettings = {
+      dots: true,
+      infinite: true,
+      speed: 300,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      easing: 'ease-in',
+      responsive: [
+        {
+          breakpoint: 680,
+          settings: {
+            arrows: false
+          }
+        }
+      ]
+    };
+
+    if (featuredItemsList.length) {
+      return (
+        <div id="featured">
+          <h2>Produse Recomandate:</h2>
+          <div className="featured-list">{featuredItemsList}</div>
+
+          <h2>Vizualizare produse:</h2>
+
+          <Slider {...sliderSettings} className="card-slider">
+            {featuredItemsInSlider}
+          </Slider>
+        </div>
+      );
+    } else {
+      return (
+        <h3 id="featured" className="no-items-error">
+          Nu exista produse recomandate.
+        </h3>
+      );
+    }
   }
 }
 

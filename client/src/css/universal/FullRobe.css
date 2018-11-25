@@ -1,0 +1,114 @@
+.full-robe-card {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  border: 5px solid #666;
+  border-radius: 3px;
+  width: 900px;
+  text-decoration: none;
+  color: #333;
+  font-size: 17px;
+  transition: all 0.2s;
+}
+
+.full-robe-card .left-side {
+  text-align: center;
+}
+
+.full-robe-card .right-side {
+  width: 90%;
+  padding: 0 20px;
+}
+
+.full-robe-card .right-side > * {
+  margin-top: 35px;
+}
+
+.full-robe-card img {
+  display: block;
+  max-height: 300px;
+  min-height: 300px;
+  min-width: 300px;
+  width: auto;
+  height: auto;
+  border-bottom: 3px solid #999;
+  border-right: 3px solid #999;
+}
+
+.full-robe-card .robe-colors {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+.full-robe-card .gender-label {
+  margin-bottom: 15px;
+}
+
+.full-robe-card .robe-title {
+  margin-bottom: 30px;
+}
+
+.full-robe-card button {
+  background-color: transparent;
+  color: #333;
+  font-size: 18px;
+  position: relative;
+  top: 5px;
+  left: 25%;
+  border: 2px solid #555;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 3px 3px 7px #888;
+  transition: all 0.2s;
+}
+
+.full-robe-card button:hover {
+  box-shadow: 3px 3px 16px #666;
+}
+
+@media only screen and (max-width: 1100px) {
+  .full-robe-card {
+    width: 590px;
+  }
+
+  .full-robe-card button {
+    top: -30px;
+    left: -1px;
+  }
+}
+
+@media only screen and (max-width: 680px) {
+  .full-robe-card {
+    width: 75vw;
+    flex-direction: column;
+  }
+
+  .full-robe-card .gender-label {
+    margin-bottom: 0;
+  }
+
+  .full-robe-card img {
+    border-right: none;
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+  }
+
+  .full-robe-card button {
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .full-robe-card {
+    width: 85vw;
+  }
+
+  .full-robe-card img {
+    max-width: 85vw;
+  }
+}
