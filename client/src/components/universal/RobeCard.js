@@ -9,6 +9,7 @@ class RobeCard extends Component {
   render() {
     const {
       robe,
+      colorSize,
       handleCardClick,
       addRobeToFeatured,
       showEditRobeOverlay,
@@ -22,7 +23,7 @@ class RobeCard extends Component {
     } = this.props;
 
     const robeColors = robe.colors.map(color => (
-      <Color color={color} key={color} />
+      <Color color={color} key={color} size={colorSize} />
     ));
 
     return (
@@ -101,6 +102,7 @@ RobeCard.defaultProps = {
     colors: [],
     images: []
   },
+  colorSize: '10px',
   showAdminControls: false,
   showUserControls: false,
   showCartControls: false,

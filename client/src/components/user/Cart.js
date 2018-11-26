@@ -66,6 +66,7 @@ class Cart extends Component {
     const cartItems = cart.map(item => (
       <RobeCard
         robe={item}
+        colorSize="15px"
         key={`${item._id}-${item.colors[0]}-${item.sizes[0]}`}
         handleCardClick={() => {
           history.push(`/products/${item._id}`);
