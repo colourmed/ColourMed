@@ -52,7 +52,7 @@ class Products extends Component {
       easing: 'ease-in',
       responsive: [
         {
-          breakpoint: 680,
+          breakpoint: 1350,
           settings: {
             arrows: false
           }
