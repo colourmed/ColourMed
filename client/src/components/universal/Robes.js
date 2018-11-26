@@ -196,7 +196,7 @@ class Robes extends Component {
               />
             }
             closeOverlay={() => this.hideOverlays()}
-            maxWidth="300px"
+            maxWidth="400px"
           />
         ) : null}
 

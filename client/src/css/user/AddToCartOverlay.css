@@ -1,3 +1,7 @@
+#add-to-cart-overlay > * {
+  text-align: center;
+}
+
 #add-to-cart-overlay .overlay-title {
   margin-top: 15px;
   border-bottom: 2px solid #999;
@@ -14,6 +18,7 @@
 
 #add-to-cart-overlay .robe-colors {
   display: flex;
+  justify-content: center;
   margin: 15px auto;
 }
 
@@ -29,7 +34,6 @@
 
 #add-to-cart-overlay select {
   width: 100px;
-  margin-left: 10px;
   margin-bottom: 20px;
   color: #333;
   font-size: 20px;
@@ -41,7 +45,6 @@
 #add-to-cart-overlay #quantity-input {
   width: 85px;
   padding: 1px 5px;
-  margin-left: 10px;
   color: #333;
   font-size: 20px;
   background: none;
@@ -57,7 +60,7 @@
   padding: 15px 20px;
   border-radius: 10px;
   text-align: center;
-  margin: 20px auto;
+  margin: 40px auto 20px;
   font-weight: bold;
   color: rgb(255, 255, 255);
   border: none;
