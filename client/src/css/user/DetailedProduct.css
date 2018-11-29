@@ -37,6 +37,7 @@
 }
 
 #detailed-product .slider-image {
+  border: 1px solid #ccc;
   max-height: 430px;
   min-height: 430px;
   max-width: 430px;
