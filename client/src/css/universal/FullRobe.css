@@ -1,5 +1,6 @@
 .full-robe-card {
   display: flex;
+  position: relative;
   justify-content: space-between;
   margin: 20px;
   border: 5px solid #666;
@@ -50,14 +51,17 @@
   margin-bottom: 30px;
 }
 
+.full-robe-card .robe-sizes {
+  margin-bottom: 100px;
+}
+
 .full-robe-card button {
   background-color: transparent;
   color: #333;
   font-size: 18px;
-  position: relative;
-  margin-bottom: 30px;
-  top: 5px;
-  left: 25%;
+  position: absolute;
+  bottom: 25px;
+  right: 250px;
   border: 2px solid #555;
   padding: 5px 10px;
   border-radius: 5px;
@@ -76,8 +80,7 @@
   }
 
   .full-robe-card button {
-    top: -30px;
-    left: -1px;
+    right: 100px;
   }
 }
 
@@ -99,9 +102,14 @@
     width: 100%;
   }
 
+  .full-robe-card .robe-sizes {
+    margin-bottom: 20px;
+  }
+
   .full-robe-card button {
     left: 50%;
     transform: translate(-50%, 0);
+    position: relative;
   }
 }
 
