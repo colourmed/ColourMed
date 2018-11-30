@@ -27,8 +27,9 @@ class Checkout extends Component {
   }
 
   handleOrder() {
-    const { placeOrder } = this.props;
+    const { placeOrder, history } = this.props;
 
+    history.push('/products');
     placeOrder(this.state);
   }
 
