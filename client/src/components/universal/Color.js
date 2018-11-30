@@ -12,8 +12,9 @@ class Color extends Component {
           backgroundColor: color,
           width: size,
           height: size,
-          boxShadow: selected ? '3px 3px 10px #444' : 'none',
-          border: selected ? '1px solid #000' : '1px solid #999'
+          boxShadow: selected ? '2px 2px 10px #777' : 'none',
+          border: '1px solid #999',
+          transform: selected ? 'scale(1.2)' : 'none'
         }}
         onClick={handleColorClick}
       />
