@@ -42,27 +42,37 @@ class Checkout extends Component {
       />
     ));
 
-    return (
-      <div id="checkout">
-        <h1 className="checkout-title">Finalizare Comanda</h1>
+    if (cart.length) {
+      return (
+        <div id="checkout">
+          <h1 className="checkout-title">Finalizare Comanda</h1>
 
-        <div className="flex-container">
-          <div className="user-details">
-            <h2 className="title">Detalii Livrare</h2>
-            <UserDetailsForm handleFormData={this.handleFormData} />
+          <div className="flex-container">
+            <div className="user-details">
+              <h2 className="title">Detalii Livrare</h2>
+              <UserDetailsForm handleFormData={this.handleFormData} />
+            </div>
+
+            <div className="compact-products">
+              <h2 className="title">Produse</h2>
+              <div className="compact-products-list">{compactItems}</div>
+            </div>
           </div>
 
-          <div className="compact-products">
-            <h2 className="title">Produse</h2>
-            <div className="compact-products-list">{compactItems}</div>
-          </div>
+          <button className="place-order-btn" onClick={this.handleOrder}>
+            Plaseaza Comanda
+          </button>
         </div>
-
-        <button className="place-order-btn" onClick={this.handleOrder}>
-          Plaseaza Comanda
-        </button>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div id="checkout">
+          <h2 className="no-products-message checkout-title">
+            Nu exista produse in coș.
+          </h2>
+        </div>
+      );
+    }
   }
 }
 

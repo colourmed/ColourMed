@@ -110,7 +110,7 @@ export const placeOrder = userData => (dispatch, getState) => {
 
     apiCall('post', 'api/order', orderData).then(() => {
       // Clear cart
-      localStorage.setItem('cartItems', '');
+      localStorage.setItem('cartItems', '[]');
       dispatch(setCartItems({}));
 
       dispatch(removeError());

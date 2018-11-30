@@ -78,44 +78,48 @@ class Cart extends Component {
       />
     ));
 
-    return (
-      <div id="cart">
-        <h2 id="cart-title">Coș de cumparaturi</h2>
+    if (cartItems.length) {
+      return (
+        <div id="cart">
+          <h2 id="cart-title">Coș de cumparaturi</h2>
 
-        {cartItems.length ? (
-          <div id="cart-items">
-            {cartItems}
-            
-            <button
-              className="checkout-btn"
-              onClick={() => {
-                history.push('/checkout');
-              }}>
-              Cumpara Produse
-            </button>
-          </div>
-        ) : (
-          <h4 className="no-products-message">Nu exista produse in coș.</h4>
-        )}
+          <div id="cart-items">{cartItems}</div>
 
-        {this.state.showRemoveOverlay ? (
-          <Overlay
-            content={
-              <RemoveOverlay
-                handleRemoveFromCart={this.handleRemoveFromCart}
-                closeOverlay={() => {
-                  this.setState({ showRemoveOverlay: false });
-                }}
-              />
-            }
-            closeOverlay={() => {
-              this.setState({ showRemoveOverlay: false });
-            }}
-            maxWidth="450px"
-          />
-        ) : null}
-      </div>
-    );
+          <button
+            className="checkout-btn"
+            onClick={() => {
+              history.push('/checkout');
+            }}>
+            Cumpara Produse
+          </button>
+
+          {this.state.showRemoveOverlay ? (
+            <Overlay
+              content={
+                <RemoveOverlay
+                  handleRemoveFromCart={this.handleRemoveFromCart}
+                  closeOverlay={() => {
+                    this.setState({ showRemoveOverlay: false });
+                  }}
+                />
+              }
+              closeOverlay={() => {
+                this.setState({ showRemoveOverlay: false });
+              }}
+              maxWidth="450px"
+            />
+          ) : null}
+        </div>
+      );
+    } else {
+      return (
+        <div id="cart">
+          <h2 className="no-products-message" id="cart-title">
+            Nu exista produse in coș.
+          </h2>
+        </div>
+      );
+    }
   }
 }
 
