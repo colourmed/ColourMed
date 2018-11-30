@@ -12,6 +12,7 @@ const authRoutes = require('./routes/public/auth.js');
 
 const publicRobeRoutes = require('./routes/public/robes.js');
 const publicFeaturedRoutes = require('./routes/public/featured.js');
+const publicOrderRoutes = require('./routes/public/order.js');
 
 const adminRobeRoutes = require('./routes/admin/robes.js');
 const adminFeaturedRoutes = require('./routes/admin/featured.js');
@@ -33,6 +34,7 @@ app.use(bodyParser.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/robes', publicRobeRoutes);
 app.use('/api/featured', publicFeaturedRoutes);
+app.use('/api/order', publicOrderRoutes);
 
 // Admin routes
 app.use('/api/admin/robes', loginRequired, adminRobeRoutes);
