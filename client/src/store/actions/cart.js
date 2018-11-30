@@ -1,6 +1,7 @@
+import { apiCall } from '../../services/api';
 import { SET_CART_ITEMS, ADD_TO_CART } from '../actionTypes';
-import { removeError } from './errors';
-import { addSuccess } from './success';
+import { removeError, addError } from './errors';
+import { removeSuccess, addSuccess } from './success';
 
 export const setCartItems = robes => ({
   type: SET_CART_ITEMS,
@@ -87,4 +88,41 @@ export const removeItemsFromCart = itemToRemove => dispatch => {
   dispatch(setCartItems(remainingCartItems));
   dispatch(removeError());
   dispatch(addSuccess('Produse eliminate din coș.'));
+};
+
+export const placeOrder = userData => (dispatch, getState) => {
+  const { firstName, lastName, address, phoneNumber, email } = userData;
+  const { cart } = getState();
+
+  const isUserDataValid = !!(
+    firstName &&
+    lastName &&
+    address &&
+    phoneNumber &&
+    email
+  );
+
+  if (isUserDataValid) {
+    const orderData = {
+      userData: {...userData},
+      items: cart
+    };
+
+    apiCall('post', 'api/order', orderData).then(() => {
+      // Clear cart
+      localStorage.setItem('cartItems', '');
+      dispatch(setCartItems({}));
+
+      dispatch(removeError());
+      dispatch(addSuccess('Comanda este finalizata.'));
+    }).catch(err => {
+      dispatch(removeSuccess());
+      dispatch(addError(err.message));
+    });
+  } else {
+    dispatch(removeSuccess());
+    dispatch(
+      addError('Va rog completati tot formularul pentru a plasa comanda.')
+    );
+  }
 };

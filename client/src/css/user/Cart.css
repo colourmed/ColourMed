@@ -16,3 +16,22 @@
   border: 2px solid rgb(139, 0, 0);
   background-color: rgb(255, 160, 160);
 }
+
+#cart .checkout-btn {
+  display: block;
+  margin: 40px auto;
+  color: #222;
+  font-size: 17px;
+  border: 2px solid #666;
+  border-radius: 5px;
+  padding: 5px 8px;
+  background-color: none;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#cart .checkout-btn:hover {
+  border-color: #333;
+  box-shadow: 3px 3px 13px #888;
+}

@@ -13,6 +13,7 @@ import Success from '../universal/Success';
 import Products from './Products';
 import DetailedProduct from './DetailedProduct';
 import Cart from './Cart';
+import Checkout from './Checkout';
 import Login from './Login';
 
 class Main extends Component {
@@ -51,6 +52,18 @@ class Main extends Component {
             path="/cart"
             render={() => (
               <Cart
+                history={history}
+                removeError={removeError}
+                removeSuccess={removeSuccess}
+              />
+            )}
+          />
+
+          <Route
+            exact
+            path="/checkout"
+            render={() => (
+              <Checkout
                 history={history}
                 removeError={removeError}
                 removeSuccess={removeSuccess}
