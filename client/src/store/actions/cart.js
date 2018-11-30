@@ -104,21 +104,23 @@ export const placeOrder = userData => (dispatch, getState) => {
 
   if (isUserDataValid) {
     const orderData = {
-      userData: {...userData},
+      userData: { ...userData },
       items: cart
     };
 
-    apiCall('post', 'api/order', orderData).then(() => {
-      // Clear cart
-      localStorage.setItem('cartItems', '[]');
-      dispatch(setCartItems({}));
+    return apiCall('post', 'api/order', orderData)
+      .then(() => {
+        // Clear cart
+        localStorage.setItem('cartItems', '[]');
+        dispatch(setCartItems([]));
 
-      dispatch(removeError());
-      dispatch(addSuccess('Comanda este finalizata.'));
-    }).catch(err => {
-      dispatch(removeSuccess());
-      dispatch(addError(err.message));
-    });
+        dispatch(removeError());
+        dispatch(addSuccess('Comanda este finalizata.'));
+      })
+      .catch(err => {
+        dispatch(removeSuccess());
+        dispatch(addError(err.message));
+      });
   } else {
     dispatch(removeSuccess());
     dispatch(
