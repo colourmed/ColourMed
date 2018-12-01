@@ -13,9 +13,34 @@ export const addToCart = robe => ({
   robe
 });
 
-export const fetchCartItems = () => dispatch => {
+export const fetchCartItems = () => (dispatch, getState) => {
   // Get items and convert them to an array.
   const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+  const { robes } = getState();
+
+  // Check if all cart items are still "intact" (haven't been heavily edited).
+  for (let i = 0; i < cartItems.length; i++) {
+    let itemIsIntact = false;
+
+    for (const robe of robes) {
+      if (
+        robe._id === cartItems[i]._id &&
+        robe.price === cartItems[i].price &&
+        robe.forMen === cartItems[i].forMen &&
+        robe.colors.includes(cartItems[i].colors[0]) &&
+        robe.sizes.includes(cartItems[i].sizes[0])
+      ) {
+        itemIsIntact = true;
+      }
+    }
+
+    // If the item has been edited or removed, remove it from storage.
+    if (!itemIsIntact) {
+      cartItems.splice(i, 1);
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }
+  }
 
   dispatch(setCartItems(cartItems));
   dispatch(removeError());

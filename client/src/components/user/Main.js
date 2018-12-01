@@ -3,7 +3,7 @@ import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchRobes } from '../../store/actions/robes';
 import { fetchFeatured } from '../../store/actions/featured';
-import { addItemToCart } from '../../store/actions/cart';
+import { fetchCartItems, addItemToCart } from '../../store/actions/cart';
 import { removeError } from '../../store/actions/errors';
 import { removeSuccess } from '../../store/actions/success';
 import '../../css/universal/Main.css';
@@ -18,7 +18,9 @@ import Login from './Login';
 
 class Main extends Component {
   componentWillMount() {
-    this.props.fetchRobes();
+    this.props.fetchRobes().then(() => {
+      this.props.fetchCartItems();
+    });
   }
 
   render() {
@@ -116,6 +118,6 @@ function mapStateToProps(state) {
 export default withRouter(
   connect(
     mapStateToProps,
-    { fetchRobes, fetchFeatured, addItemToCart, removeSuccess, removeError }
+    { fetchRobes, fetchCartItems, fetchFeatured, addItemToCart, removeSuccess, removeError }
   )(Main)
 );
