@@ -10,14 +10,36 @@ class Checkout extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      totalPrice: 0
+    };
 
+    this.getTotalPrice = this.getTotalPrice.bind(this);
     this.handleFormData = this.handleFormData.bind(this);
     this.handleOrder = this.handleOrder.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchCartItems();
+    this.getTotalPrice();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.cart.length && this.props.cart.length) {
+      this.getTotalPrice();
+    }
+  }
+
+  getTotalPrice() {
+    const { cart } = this.props;
+
+    let totalPrice = 0;
+
+    for (const item of cart) {
+      totalPrice += item.price * item.quantity;
+    }
+
+    this.setState({ totalPrice });
   }
 
   handleFormData(dataName, dataValue) {
@@ -29,11 +51,11 @@ class Checkout extends Component {
   handleOrder() {
     const { placeOrder, history } = this.props;
 
-    history.push('/products');
-    placeOrder(this.state);
+    placeOrder(this.state, history);
   }
 
   render() {
+    const { totalPrice } = this.state;
     const { cart } = this.props;
 
     const compactItems = cart.map(item => (
@@ -60,6 +82,8 @@ class Checkout extends Component {
             </div>
           </div>
 
+          <p className="total-price">Pret Total: <span>{totalPrice}</span> RON</p>
+
           <button className="place-order-btn" onClick={this.handleOrder}>
             Plaseaza Comanda
           </button>
@@ -77,13 +101,7 @@ class Checkout extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    cart: state.cart
-  };
-}
-
 export default connect(
-  mapStateToProps,
+  null,
   { fetchCartItems, placeOrder }
 )(Checkout);

@@ -33,7 +33,7 @@ export const fetchCartItems = () => (dispatch, getState) => {
       ) {
         itemIsIntact = true;
       }
-  
+
       // If the item has been edited or removed, remove it from storage.
       if (!itemIsIntact) {
         cartItems.splice(i, 1);
@@ -115,11 +115,9 @@ export const removeItemsFromCart = itemToRemove => dispatch => {
   dispatch(addSuccess('Produse eliminate din coș.'));
 };
 
-export const placeOrder = userData => (dispatch, getState) => {
+export const placeOrder = (userData, history) => (dispatch, getState) => {
   const { firstName, lastName, address, phoneNumber, email } = userData;
   const { cart } = getState();
-
-  dispatch(addSuccess('Comanda este finalizata.'));
 
   const isUserDataValid = !!(
     firstName &&
@@ -141,7 +139,10 @@ export const placeOrder = userData => (dispatch, getState) => {
         localStorage.setItem('cartItems', '[]');
         dispatch(setCartItems([]));
 
+        history.push('/products');
+
         dispatch(removeError());
+        dispatch(addSuccess('Comanda este finalizata.'));
       })
       .catch(err => {
         dispatch(removeSuccess());

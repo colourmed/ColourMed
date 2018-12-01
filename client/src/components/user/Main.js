@@ -29,6 +29,7 @@ class Main extends Component {
       success,
       history,
       robes,
+      cart,
       fetchRobes,
       featured,
       addItemToCart,
@@ -66,6 +67,7 @@ class Main extends Component {
             path="/checkout"
             render={() => (
               <Checkout
+                cart={cart}
                 history={history}
                 removeError={removeError}
                 removeSuccess={removeSuccess}
@@ -110,6 +112,7 @@ function mapStateToProps(state) {
   return {
     featured: state.featured,
     robes: state.robes,
+    cart: state.cart,
     errors: state.errors,
     success: state.success
   };
@@ -118,6 +121,13 @@ function mapStateToProps(state) {
 export default withRouter(
   connect(
     mapStateToProps,
-    { fetchRobes, fetchCartItems, fetchFeatured, addItemToCart, removeSuccess, removeError }
+    {
+      fetchRobes,
+      fetchCartItems,
+      fetchFeatured,
+      addItemToCart,
+      removeSuccess,
+      removeError
+    }
   )(Main)
 );
