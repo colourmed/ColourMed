@@ -118,6 +118,8 @@ export const removeItemsFromCart = itemToRemove => dispatch => {
 export const placeOrder = userData => (dispatch, getState) => {
   const { firstName, lastName, address, phoneNumber, email } = userData;
   const { cart } = getState();
+  
+  dispatch(addSuccess('Comanda este finalizata.'));
 
   const isUserDataValid = !!(
     firstName &&
@@ -140,7 +142,6 @@ export const placeOrder = userData => (dispatch, getState) => {
         dispatch(setCartItems([]));
 
         dispatch(removeError());
-        dispatch(addSuccess('Comanda este finalizata.'));
       })
       .catch(err => {
         dispatch(removeSuccess());
