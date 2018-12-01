@@ -34,7 +34,7 @@ exports.placeOrder = async function(req, res, next) {
 
       `;
 
-      totalPrice += item.price;
+      totalPrice += item.price * item.quantity;
     });
 
     const mailText = `
