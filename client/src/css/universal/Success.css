@@ -1,15 +1,37 @@
 .success-container {
   text-align: center;
-  margin-top: 30px;
+  background-color: rgba(139, 222, 255, 0.9);
+  top: 50px;
+  position: fixed;
+  border-radius: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
 }
 
 .success {
-  background-color: rgba(167, 230, 255, 0.4);
   color: #00305c;
   padding: 20px 40px;
-  border-radius: 5px;
   font-size: 15px;
   margin: auto;
-  text-align: center;
   display: inline-block;
+}
+
+.success-container button {
+  background-color: transparent;
+  transition: all .2s;
+  position: absolute;
+  right: 0px;
+  top: 5px;
+  opacity: .5;
+  background: none;
+  color: #333;
+  border: none;
+  transform: scale(.5);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.success-container button:hover {
+  opacity: .8;
 }

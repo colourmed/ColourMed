@@ -42,8 +42,8 @@ class Main extends Component {
 
     return (
       <div id="main">
-        <Error error={errors} />
-        <Success success={success} />
+        <Error error={errors} removeError={removeError} />
+        <Success success={success} removeSuccess={removeSuccess} />
 
         <Switch>
           <Route exact path="/" render={() => <Redirect to="/products" />} />
