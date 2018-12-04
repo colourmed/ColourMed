@@ -18,6 +18,11 @@
   font-weight: normal;
 }
 
+#checkout .compact-products-list {
+  max-height: 350px;
+  overflow: auto;
+}
+
 #checkout .place-order-btn {
   background-color: rgb(0, 121, 202);
   margin: 20px auto 50px;
