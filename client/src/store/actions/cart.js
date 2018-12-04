@@ -22,20 +22,26 @@ export const fetchCartItems = () => (dispatch, getState) => {
   // Check if all cart items are still "intact" (haven't been heavily edited).
   for (let i = 0; i < cartItems.length; i++) {
     let itemIsIntact = false;
+    let itemIsFound = false;
 
     for (const robe of robes) {
-      if (
-        robe._id === cartItems[i]._id &&
-        robe.price === cartItems[i].price &&
-        robe.forMen === cartItems[i].forMen &&
-        robe.colors.includes(cartItems[i].colors[0]) &&
-        robe.sizes.includes(cartItems[i].sizes[0])
-      ) {
-        itemIsIntact = true;
+      // Find item by id
+      if (robe._id === cartItems[i]._id) {
+        itemIsFound = true;
+
+        // Check that the item hasn't been heavily edited.
+        if (
+          robe.price === cartItems[i].price &&
+          robe.forMen === cartItems[i].forMen &&
+          robe.colors.includes(cartItems[i].colors[0]) &&
+          robe.sizes.includes(cartItems[i].sizes[0])
+        ) {
+          itemIsIntact = true;
+        }
       }
 
       // If the item has been edited or removed, remove it from storage.
-      if (!itemIsIntact) {
+      if (!itemIsIntact && itemIsFound) {
         cartItems.splice(i, 1);
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
       }
