@@ -67,7 +67,7 @@ class AddToCartOverlay extends Component {
     return (
       <div id="add-to-cart-overlay">
         <form onSubmit={this.handleSubmit}>
-          <h2 className="overlay-title">Optiuni Produs</h2>
+          <h2 className="overlay-title">Opțiuni Produs</h2>
 
           <h3 className="add-robe-title">{robe.title}</h3>
 
@@ -75,7 +75,7 @@ class AddToCartOverlay extends Component {
           <div className="robe-colors">{robeColors}</div>
           <br />
 
-          <h4 className="input-label">Marime:</h4>
+          <h4 className="input-label">Mărime:</h4>
           <select name="size-select" id="size-select">
             {robeSizes}
           </select>
@@ -92,7 +92,7 @@ class AddToCartOverlay extends Component {
             max="150"
           />
 
-          <button type="submit">Adauga in cos</button>
+          <button type="submit">Adaugă in coș</button>
         </form>
       </div>
     );

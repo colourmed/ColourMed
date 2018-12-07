@@ -80,13 +80,13 @@ export const addItemToCart = newItem => dispatch => {
 
     dispatch(setCartItems(cartItems));
     dispatch(removeError());
-    dispatch(addSuccess('Cantitate adaugata la produsul din cos.'));
+    dispatch(addSuccess('Cantitate adăugată la produsul din coș.'));
   } else {
     // if newItem is not already in cart, push it into the cart
     cartItems.push(newItem);
     dispatch(addToCart(newItem));
     dispatch(removeError());
-    dispatch(addSuccess('Produs adaugat in cos.'));
+    dispatch(addSuccess('Produs adăugat in coș.'));
   }
 
   localStorage.setItem('cartItems', JSON.stringify(cartItems));
@@ -148,7 +148,7 @@ export const placeOrder = (userData, history) => (dispatch, getState) => {
         history.push('/products');
 
         dispatch(removeError());
-        dispatch(addSuccess('Comanda este finalizata.'));
+        dispatch(addSuccess('Comanda este finalizată.'));
       })
       .catch(err => {
         dispatch(removeSuccess());
@@ -157,7 +157,7 @@ export const placeOrder = (userData, history) => (dispatch, getState) => {
   } else {
     dispatch(removeSuccess());
     dispatch(
-      addError('Va rog completati tot formularul pentru a plasa comanda.')
+      addError('Vă rog completați tot formularul pentru a plasa comanda.')
     );
   }
 };

@@ -103,7 +103,7 @@ class DetailedProduct extends Component {
             <h4>Descriere Produs:</h4>
             <p className="product-description">{product.description}</p>
             <h4 className="product-sizes">
-              Marimi: {product.sizes.join(', ')}
+              Mărimi: {product.sizes.join(', ')}
             </h4>
             <h3 className="product-price">{product.price} RON</h3>
             <button
@@ -111,7 +111,7 @@ class DetailedProduct extends Component {
               onClick={() => {
                 this.setState({ showAddToCartOverlay: true });
               }}>
-              Adauga in cos
+              Adaugă in coș
             </button>
           </div>
         </div>

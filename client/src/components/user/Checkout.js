@@ -68,7 +68,7 @@ class Checkout extends Component {
     if (cart.length) {
       return (
         <div id="checkout">
-          <h1 className="checkout-title">Finalizare Comanda</h1>
+          <h1 className="checkout-title">Finalizare Comandă</h1>
 
           <div className="flex-container">
             <div className="user-details">
@@ -82,10 +82,10 @@ class Checkout extends Component {
             </div>
           </div>
 
-          <p className="total-price">Pret Total: <span>{totalPrice}</span> RON</p>
+          <p className="total-price">Preț Total: <span>{totalPrice}</span> RON</p>
 
           <button className="place-order-btn" onClick={this.handleOrder}>
-            Plaseaza Comanda
+            Plasează Comanda
           </button>
         </div>
       );
@@ -93,7 +93,7 @@ class Checkout extends Component {
       return (
         <div id="checkout">
           <h2 className="no-products-message checkout-title">
-            Nu exista produse in coș.
+            Nu există produse in coș.
           </h2>
         </div>
       );

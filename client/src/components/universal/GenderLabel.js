@@ -6,7 +6,7 @@ class GenderLabel extends Component {
     const { forMen } = this.props;
     const labelClassName = forMen ? 'male' : 'female';
 
-    return <div className={`gender-label ${labelClassName}`}>{forMen ? 'BARBATI': 'FEMEI'}</div>;
+    return <div className={`gender-label ${labelClassName}`}>{forMen ? 'BĂRBATI': 'FEMEI'}</div>;
   }
 }
 

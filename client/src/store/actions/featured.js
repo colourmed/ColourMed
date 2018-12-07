@@ -37,7 +37,7 @@ export const addToFeatured = newRobeId => dispatch => {
     .then(() => {
       dispatch(addItemToFeatured(newRobeId));
       dispatch(removeError());
-      dispatch(addSuccess("Produs adaugat la recomandate."))
+      dispatch(addSuccess("Produs adăugat la 'Recomandate'."))
     })
     .catch(err => {
       dispatch(removeSuccess());

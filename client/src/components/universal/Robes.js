@@ -158,7 +158,7 @@ class Robes extends Component {
             this.hideOverlays();
           }}
           robeToEdit={robeToEdit}
-          ctaText="Editeaza Produsul"
+          ctaText="Editează Produsul"
         />
       </div>
     );

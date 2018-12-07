@@ -83,7 +83,7 @@ class Featured extends Component {
     } else {
       return (
         <h3 id="featured" className="no-items-error">
-          Nu exista produse recomandate.
+          Nu există produse recomandate.
         </h3>
       );
     }

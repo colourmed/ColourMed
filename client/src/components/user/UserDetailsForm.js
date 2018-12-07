@@ -38,7 +38,7 @@ class UserDetailsForm extends Component {
             </div>
           </div>
 
-          <label htmlFor="address">Adresa:</label>
+          <label htmlFor="address">Adresă:</label>
           <input
             onChange={this.handleChange}
             type="text"

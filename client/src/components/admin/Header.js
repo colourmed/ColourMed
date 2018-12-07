@@ -10,7 +10,7 @@ class Header extends Component {
     return (
       <div id="header">
         <Link id="page-title" to="/admin">
-          Admin Console
+          Consola Admini
         </Link>
 
         <ul id="navigation">

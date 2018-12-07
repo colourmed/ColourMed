@@ -36,7 +36,7 @@ class Login extends Component {
             <input type="email" name="email" onChange={this.handleChange} />
             <br />
 
-            <label htmlFor="password">Password:</label>
+            <label htmlFor="password">Parolă:</label>
             <br />
             <input
               type="password"
@@ -45,7 +45,7 @@ class Login extends Component {
             />
             <br />
 
-            <button type="submit">Log In</button>
+            <button type="submit">Logare</button>
           </form>
         </div>
       </div>

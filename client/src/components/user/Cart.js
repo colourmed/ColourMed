@@ -81,7 +81,7 @@ class Cart extends Component {
     if (cartItems.length) {
       return (
         <div id="cart">
-          <h2 id="cart-title">Coș de cumparaturi</h2>
+          <h2 id="cart-title">Coș de cumpărături</h2>
 
           <div id="cart-items">{cartItems}</div>
 
@@ -90,7 +90,7 @@ class Cart extends Component {
             onClick={() => {
               history.push('/checkout');
             }}>
-            Cumpara Produse
+            Cumpără Produse
           </button>
 
           {this.state.showRemoveOverlay ? (
@@ -115,7 +115,7 @@ class Cart extends Component {
       return (
         <div id="cart">
           <h2 className="no-products-message" id="cart-title">
-            Nu exista produse in coș.
+            Nu există produse in coș.
           </h2>
         </div>
       );
