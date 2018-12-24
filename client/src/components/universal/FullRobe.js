@@ -23,7 +23,7 @@ class FullRobe extends Component {
         <div className="right-side">
           <h2 className="robe-title">{robe.title}</h2>
           <h3 className="robe-price">{robe.price} RON</h3>
-          <p>{robe.description}</p>
+          <p className="robe-description">{robe.description}</p>
           <h4 className="robe-sizes">Mărimi: {robe.sizes.join(', ')}</h4>
           <button
             onClick={() => {

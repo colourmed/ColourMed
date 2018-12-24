@@ -88,6 +88,21 @@
   .full-robe-card {
     width: 75vw;
     flex-direction: column;
+    text-align: center;
+  }
+  
+  .full-robe-card .robe-title {
+    margin-bottom: 10px;
+    margin-top: 15px;
+  }
+  
+  .full-robe-card .robe-sizes {
+    margin-bottom: 45px;
+    margin-top: 10px;
+  }
+
+  .full-robe-card .robe-price {
+    margin-top: 25px;
   }
 
   .full-robe-card .gender-label {
@@ -102,14 +117,16 @@
     width: 100%;
   }
 
-  .full-robe-card .robe-sizes {
-    margin-bottom: 20px;
+  .full-robe-card .robe-description {
+    display: none;
   }
 
-  .full-robe-card button {
+  .full-robe-card .right-side button {
     left: 50%;
     transform: translate(-50%, 0);
     position: relative;
+    display: block;
+    margin-top: 0px;
   }
 }
 
