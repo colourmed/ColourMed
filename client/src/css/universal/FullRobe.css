@@ -39,6 +39,7 @@
 
 .full-robe-card .robe-colors {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   margin: 20px auto;
 }

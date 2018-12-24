@@ -34,7 +34,14 @@
 
 .robe-card .robe-colors {
   display: flex;
+  flex-wrap: wrap;
+  width: 40%;
+  margin: auto;
   justify-content: center;
+}
+
+.robe-card .robe-colors > * {
+  margin-bottom: 5px;
 }
 
 .robe-card .admin-controls {

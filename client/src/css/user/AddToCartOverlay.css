@@ -18,12 +18,14 @@
 
 #add-to-cart-overlay .robe-colors {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   margin: 15px auto;
 }
 
 #add-to-cart-overlay .robe-colors > * {
   cursor: pointer;
+  margin-bottom: 10px;
 }
 
 #add-to-cart-overlay .input-label {
