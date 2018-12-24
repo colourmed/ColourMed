@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { addRobe } from '../../store/actions/robes';
-import '../../css/admin/NewProduct.css';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { addRobe } from "../../store/actions/robes";
+import "../../css/admin/NewProduct.css";
 
-import ProductForm from './ProductForm';
+import ProductForm from "./ProductForm/ProductForm";
 
 class NewProduct extends Component {
   constructor(props) {
@@ -25,14 +25,14 @@ class NewProduct extends Component {
     });
 
     return (
-      <div id="new-product">
+      <div id='new-product'>
         <h2>Produs Nou</h2>
 
         <ProductForm
           addError={this.props.addError}
           handleData={this.addNewRobe}
           onSubmitAction={() => {}}
-          ctaText="Adaugă Produs"
+          ctaText='Adaugă Produs'
         />
       </div>
     );

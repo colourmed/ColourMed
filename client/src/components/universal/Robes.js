@@ -11,7 +11,7 @@ import { stopEventPropagation } from '../../services/stopPropagation';
 import '../../css/universal/Robes.css';
 
 import RobeCard from './RobeCard';
-import ProductForm from '../admin/ProductForm';
+import ProductForm from '../admin/ProductForm/ProductForm';
 import Overlay from './Overlay';
 import AddToCartOverlay from '../user/AddToCartOverlay';
 
