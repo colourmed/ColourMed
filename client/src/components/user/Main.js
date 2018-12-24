@@ -10,6 +10,7 @@ import '../../css/universal/Main.css';
 
 import Error from '../universal/Error';
 import Success from '../universal/Success';
+import Contact from './Contact';
 import Products from './Products';
 import DetailedProduct from './DetailedProduct';
 import Cart from './Cart';
@@ -37,8 +38,6 @@ class Main extends Component {
       removeSuccess,
       removeError
     } = this.props;
-
-    const Contact = () => <h1>Contact</h1>;
 
     return (
       <div id="main">
