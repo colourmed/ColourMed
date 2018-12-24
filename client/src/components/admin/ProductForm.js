@@ -185,7 +185,7 @@ class ProductForm extends Component {
             onChange={this.handleChange}
           />
 
-          <label>Sex:</label>
+          <label>Pentru:</label>
           <Switch isToggled={forMen} changeToggledValue={this.changeGender} />
           <br />
           <br />

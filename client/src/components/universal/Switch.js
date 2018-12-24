@@ -43,19 +43,19 @@ class Switch extends Component {
       <div id="switch-container" onClick={this.onSwitchClick} >
         <div className="inner-container">
           <div className="toggle">
-            <p>Feminin</p>
+            <p>Femei</p>
           </div>
           <div className="toggle">
-            <p>Masculin</p>
+            <p>Barbati</p>
           </div>
         </div>
 
         <div className="inner-container" id='toggle-container'>
           <div className="toggle">
-            <p>Feminin</p>
+            <p>Femei</p>
           </div>
           <div className="toggle">
-            <p>Masculin</p>
+            <p>Barbati</p>
           </div>
         </div>
       </div>
