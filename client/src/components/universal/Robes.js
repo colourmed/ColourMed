@@ -7,6 +7,7 @@ import {
   addItemToCart,
   removeItemsFromCart
 } from '../../store/actions/cart';
+import { PRODUCT_TYPES } from '../../constants/ProductTypes';
 import { stopEventPropagation } from '../../services/stopPropagation';
 import '../../css/universal/Robes.css';
 
@@ -121,6 +122,7 @@ class Robes extends Component {
       robes,
       showAdminControls,
       showUserControls,
+      filter,
       history,
       removeError,
       removeSuccess
@@ -133,23 +135,62 @@ class Robes extends Component {
       });
     }
 
-    const robesList = robes.map(robe => (
-      <RobeCard
-        robe={robe}
-        key={robe._id}
-        handleCardClick={this.handleCardClick}
-        addRobeToFeatured={this.addRobeToFeatured}
-        showEditRobeOverlay={this.showEditRobeOverlay}
-        showRemoveRobeOverlay={this.showRemoveRobeOverlay}
-        showAddRobeOverlay={this.showAddRobeOverlay}
-        showAdminControls={showAdminControls}
-        showUserControls={showUserControls}
-      />
-    ));
+    const robesList = robes.map(robe => {
+      const robes = [];
+      if (filter === PRODUCT_TYPES.MEN) {
+        if (robe.forMen) {
+          robes.push(
+            <RobeCard
+              robe={robe}
+              key={robe._id}
+              handleCardClick={this.handleCardClick}
+              addRobeToFeatured={this.addRobeToFeatured}
+              showEditRobeOverlay={this.showEditRobeOverlay}
+              showRemoveRobeOverlay={this.showRemoveRobeOverlay}
+              showAddRobeOverlay={this.showAddRobeOverlay}
+              showAdminControls={showAdminControls}
+              showUserControls={showUserControls}
+            />
+          );
+        }
+      } else if (filter === PRODUCT_TYPES.WOMEN) {
+        if (!robe.forMen) {
+          robes.push(
+            <RobeCard
+              robe={robe}
+              key={robe._id}
+              handleCardClick={this.handleCardClick}
+              addRobeToFeatured={this.addRobeToFeatured}
+              showEditRobeOverlay={this.showEditRobeOverlay}
+              showRemoveRobeOverlay={this.showRemoveRobeOverlay}
+              showAddRobeOverlay={this.showAddRobeOverlay}
+              showAdminControls={showAdminControls}
+              showUserControls={showUserControls}
+            />
+          );
+        }
+      } else {
+        robes.push(
+          <RobeCard
+            robe={robe}
+            key={robe._id}
+            handleCardClick={this.handleCardClick}
+            addRobeToFeatured={this.addRobeToFeatured}
+            showEditRobeOverlay={this.showEditRobeOverlay}
+            showRemoveRobeOverlay={this.showRemoveRobeOverlay}
+            showAddRobeOverlay={this.showAddRobeOverlay}
+            showAdminControls={showAdminControls}
+            showUserControls={showUserControls}
+          />
+        );
+      }
+
+      return robes;
+    });
 
     const EditOverlay = () => (
-      <div className="edit-overlay">
-        <h3 className="overlay-title">Editare Produs</h3>
+      <div className='edit-overlay'>
+        <h3 className='overlay-title'>Editare Produs</h3>
 
         <ProductForm
           addError={this.props.addError}
@@ -158,34 +199,35 @@ class Robes extends Component {
             this.hideOverlays();
           }}
           robeToEdit={robeToEdit}
-          ctaText="Editează Produsul"
+          ctaText='Editează Produsul'
         />
       </div>
     );
 
     const RemoveOverlay = props => (
-      <div className="remove-overlay">
-        <h3 className="overlay-title">
+      <div className='remove-overlay'>
+        <h3 className='overlay-title'>
           Ești sigur că vrei să ștergi acest produs?
         </h3>
 
         <button
-          className="overlay-cta"
-          id="remove-button"
+          className='overlay-cta'
+          id='remove-button'
           onClick={() => {
             props.handleRemoveRobe();
             props.closeOverlay();
-          }}>
+          }}
+        >
           Ștergere
         </button>
       </div>
     );
 
     return (
-      <section id="robes">
+      <section id='robes'>
         <h2>Halate</h2>
 
-        <div id="robe-list">{robesList}</div>
+        <div id='robe-list'>{robesList}</div>
 
         {showAddOverlay ? (
           <Overlay
@@ -196,7 +238,7 @@ class Robes extends Component {
               />
             }
             closeOverlay={() => this.hideOverlays()}
-            maxWidth="400px"
+            maxWidth='400px'
           />
         ) : null}
 
@@ -204,7 +246,7 @@ class Robes extends Component {
           <Overlay
             content={<EditOverlay />}
             closeOverlay={() => this.hideOverlays()}
-            maxWidth="70%"
+            maxWidth='70%'
           />
         ) : null}
 
@@ -217,13 +259,17 @@ class Robes extends Component {
               />
             }
             closeOverlay={() => this.hideOverlays()}
-            maxWidth="450px"
+            maxWidth='450px'
           />
         ) : null}
       </section>
     );
   }
 }
+
+Robes.defaultProps = {
+  filter: PRODUCT_TYPES.UNISEX
+};
 
 function mapStateToProps(state) {
   return {

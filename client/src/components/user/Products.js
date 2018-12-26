@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
+import { PRODUCT_TYPES } from '../../constants/ProductTypes';
 import '../../css/user/Products.css';
 
+import Filters from './Filters';
 import FullRobe from '../universal/FullRobe';
 import Robes from '../universal/Robes';
 
@@ -10,8 +12,11 @@ class Products extends Component {
     super(props);
 
     this.state = {
-      featuredItems: []
+      featuredItems: [],
+      productsType: PRODUCT_TYPES.UNIVERSAL
     };
+
+    this.changeProductType = this.changeProductType.bind(this);
   }
 
   componentWillMount() {
@@ -35,8 +40,12 @@ class Products extends Component {
     }
   }
 
+  changeProductType(newProductType) {
+    this.setState({ productsType: newProductType });
+  }
+
   render() {
-    const { featuredItems } = this.state;
+    const { featuredItems, productsType } = this.state;
     const { robes, history, featured } = this.props;
 
     const featuredItemsInSlider = featuredItems.map(item => (
@@ -64,12 +73,22 @@ class Products extends Component {
 
     if (featured.length) {
       return (
-        <div id="products">
-          <Slider {...sliderSettings} className="card-slider">
+        <div id='products'>
+          <Filters
+            productsType={productsType}
+            changeProductType={this.changeProductType}
+          />
+
+          <Slider {...sliderSettings} className='card-slider'>
             {featuredItemsInSlider}
           </Slider>
 
-          <Robes robes={robes} history={history} showUserControls={true} />
+          <Robes
+            robes={robes}
+            history={history}
+            showUserControls={true}
+            filter={productsType}
+          />
         </div>
       );
     } else {
