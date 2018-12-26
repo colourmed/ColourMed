@@ -23,7 +23,7 @@ class Filters extends Component {
             style.fontWeight = 'bold';
             break;
           default:
-            style.backgroundColor = '#999';
+            style.backgroundColor = '#333';
             style.color = '#f5f5f5';
             style.fontWeight = 'bold';
         }
