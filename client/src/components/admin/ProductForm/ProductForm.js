@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import idGenerator from "react-id-generator";
-import "../../../css/admin/ProductForm.css";
+import React, { Component } from 'react';
+import idGenerator from 'react-id-generator';
+import '../../../css/admin/ProductForm.css';
 
-import TitleInput from "./TitleInput";
-import Description from "./Description";
-import PriceInput from "./PriceInput";
-import Colors from "./Colors";
-import Images from "./Images";
-import Gender from "./Gender";
-import SizesInput from "./SizesInput";
+import TitleInput from './TitleInput';
+import Description from './Description';
+import PriceInput from './PriceInput';
+import Colors from './Colors';
+import Images from './Images';
+import Gender from './Gender';
+import SizesInput from './SizesInput';
 
 class ProductForm extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class ProductForm extends Component {
       price
     } = this.props.robeToEdit;
 
-    const colorPickerIds = colors.map(() => "color-picker-" + idGenerator());
+    const colorPickerIds = colors.map(() => 'color-picker-' + idGenerator());
 
     this.state = {
       colorPickerIds,
@@ -33,8 +33,8 @@ class ProductForm extends Component {
       description,
       price,
       forMen,
-      imageURLs: images.join(","),
-      sizes: sizes.join(",")
+      imageURLs: images.join(','),
+      sizes: sizes.join(',')
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -65,16 +65,19 @@ class ProductForm extends Component {
       colorPickerValues.push(currentColorPicker.value);
     }
 
+    // Set colors to localStorage
+    localStorage.setItem('lastColors', JSON.stringify(colorPickerValues));
+
     // Get trimmed image urls
-    const images = imageURLs.trim().split(",");
+    const images = imageURLs.trim().split(',');
 
     // Get array of sizes
-    const sizesList = sizes.trim().split(",");
+    const sizesList = sizes.trim().split(',');
 
     // Check if there are any inputed images (input's "required" doesn't check for trimmed strings)
     if (!images.length || !images[0]) {
       this.props.addError(
-        "Te rog adaugă o imagine inainte de a adăuga un produs."
+        'Te rog adaugă o imagine inainte de a adăuga un produs.'
       );
     } else {
       const robe = {
@@ -100,7 +103,7 @@ class ProductForm extends Component {
   }
 
   addColorPicker() {
-    const newColorPickerId = "color-picker-" + idGenerator();
+    const newColorPickerId = 'color-picker-' + idGenerator();
 
     this.setState(prevState => ({
       colorPickerIds: [...prevState.colorPickerIds, newColorPickerId]
@@ -171,11 +174,11 @@ class ProductForm extends Component {
 
 ProductForm.defaultProps = {
   robeToEdit: {
-    colors: ["#000000"],
+    colors: JSON.parse(localStorage.getItem('lastColors')) || ['#000000'],
     sizes: [],
     images: [],
-    title: "",
-    price: "",
+    title: '',
+    price: '',
     forMen: true
   }
 };
