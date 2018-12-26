@@ -46,7 +46,9 @@ class Products extends Component {
     const sliderSettings = {
       dots: true,
       infinite: true,
-      speed: 300,
+      autoplay: true,
+      autoplaySpeed: 5000,
+      speed: 700,
       slidesToShow: 1,
       slidesToScroll: 1,
       easing: 'ease-in',
