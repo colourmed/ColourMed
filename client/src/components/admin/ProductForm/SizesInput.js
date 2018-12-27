@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class Images extends Component {
+class SizesInputs extends Component {
   constructor(props) {
     super(props);
 
@@ -32,4 +32,4 @@ class Images extends Component {
   }
 }
 
-export default Images;
+export default SizesInputs;
