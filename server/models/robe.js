@@ -8,6 +8,12 @@ const robeSchema = new mongoose.Schema({
   description: {
     type: String
   },
+  patterns: [
+    {
+      type: String,
+      required: true
+    }
+  ],
   price: {
     type: Number,
     required: true

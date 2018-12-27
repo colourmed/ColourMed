@@ -4,6 +4,7 @@ import '../../../css/admin/ProductForm.css';
 
 import TitleInput from './TitleInput';
 import Description from './Description';
+import Patterns from './Patterns';
 import PriceInput from './PriceInput';
 import Colors from './Colors';
 import Images from './Images';
@@ -17,6 +18,7 @@ class ProductForm extends Component {
     const {
       forMen,
       colors,
+      patterns,
       images,
       sizes,
       title,
@@ -25,10 +27,12 @@ class ProductForm extends Component {
     } = this.props.robeToEdit;
 
     const colorPickerIds = colors.map(() => 'color-picker-' + idGenerator());
+    const patternInputIds = patterns.map(() => 'pattern-input-' + idGenerator());
 
     this.state = {
       colorPickerIds,
       colorPickerValues: colors,
+      patternInputIds,
       title,
       description,
       price,
@@ -41,6 +45,8 @@ class ProductForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addColorPicker = this.addColorPicker.bind(this);
     this.removeColorPicker = this.removeColorPicker.bind(this);
+    this.addPatternInput = this.addPatternInput.bind(this);
+    this.removePatternInput = this.removePatternInput.bind(this);
     this.changeGender = this.changeGender.bind(this);
   }
 
@@ -49,6 +55,7 @@ class ProductForm extends Component {
 
     const {
       colorPickerIds,
+      patternInputIds,
       imageURLs,
       title,
       description,
@@ -63,6 +70,14 @@ class ProductForm extends Component {
     for (let i = 0; i < colorPickerIds.length; i++) {
       const currentColorPicker = document.getElementById(colorPickerIds[i]);
       colorPickerValues.push(currentColorPicker.value);
+    }
+
+    let patterns = [];
+
+    // Get patterns
+    for (let i = 0; i < patternInputIds.length; i++) {
+      const currentPatternInput = document.getElementById(patternInputIds[i]);
+      patterns.push(currentPatternInput.value);
     }
 
     // Set colors to localStorage
@@ -85,6 +100,7 @@ class ProductForm extends Component {
         description,
         price,
         colorPickerValues,
+        patterns,
         images,
         forMen,
         sizesList
@@ -120,18 +136,37 @@ class ProductForm extends Component {
     this.setState({ colorPickerIds });
   }
 
+  addPatternInput() {
+    const newPatternInputId = 'pattern-input-' + idGenerator();
+
+    this.setState(prevState => ({
+      patternInputIds: [...prevState.patternInputIds, newPatternInputId]
+    }));
+  }
+
+  removePatternInput() {
+    const { patternInputIds } = this.state;
+
+    if (this.state.patternInputIds.length > 1) {
+      patternInputIds.pop();
+    }
+
+    this.setState({ patternInputIds });
+  }
+
   changeGender(forMen) {
     this.setState({ forMen });
   }
 
   render() {
-    const { colorPickerIds, forMen } = this.state;
+    const { colorPickerIds, patternInputIds, forMen } = this.state;
     const { ctaText } = this.props;
 
     const {
       title,
       description,
       colors,
+      patterns,
       sizes,
       images,
       price
@@ -147,6 +182,20 @@ class ProductForm extends Component {
       />
     ));
 
+    const patternInputs = patternInputIds.map((id, index) => (
+      <div className='pattern-field' key={id}>
+        <input
+          type='text'
+          name='pattern-input'
+          required
+          defaultValue={patterns[index]}
+          className='pattern-input'
+          id={id}
+        />
+        <div className='pattern-number'>{index + 1}</div>
+      </div>
+    ));
+
     return (
       <div className='form-container' id='product-form'>
         <form onSubmit={this.handleSubmit}>
@@ -154,6 +203,11 @@ class ProductForm extends Component {
           <Description
             description={description}
             handleChange={this.handleChange}
+          />
+          <Patterns
+            patternInputs={patternInputs}
+            addPatternInput={this.addPatternInput}
+            removePatternInput={this.removePatternInput}
           />
           <PriceInput price={price} handleChange={this.handleChange} />
           <Colors
@@ -175,6 +229,7 @@ class ProductForm extends Component {
 ProductForm.defaultProps = {
   robeToEdit: {
     colors: JSON.parse(localStorage.getItem('lastColors')) || ['#000000'],
+    patterns: [''],
     sizes: [],
     images: [],
     title: '',

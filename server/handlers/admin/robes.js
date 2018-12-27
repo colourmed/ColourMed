@@ -5,6 +5,7 @@ exports.addRobe = async function(req, res, next) {
     let robe = await db.Robe.create({
       title: req.body.title,
       description: req.body.description,
+      patterns: req.body.patterns,
       price: req.body.price,
       colors: req.body.colorPickerValues,
       sizes: req.body.sizesList,

@@ -38,6 +38,50 @@
   min-width: 100%;
 }
 
+#product-form form .pattern-inputs .pattern-inputs-bottons {
+  display: flex;
+  margin-left: -4px;
+  margin-top: 10px;
+}
+
+#product-form form .pattern-inputs .pattern-inputs-bottons input[type='button'] {
+  font-size: 18px;
+  width: 33px;
+  height: 33px;
+  text-align: center;
+  display: block;
+  margin: 4px 5px 0 5px;
+  padding: 0;
+  background-color: transparent;
+  border: 2px solid #999;
+  border-radius: 5px;
+  color: #333;
+}
+
+#product-form form .pattern-field {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+#product-form form .pattern-input {
+  margin-bottom: 0;
+  height: 20px;
+  margin-right: 10px;
+  margin-top: 0;
+}
+
+#product-form form .pattern-number {
+  width: 20px;
+  border: 2px solid #999;
+  border-radius: 5px;
+  background-color: #ddd;
+  font-size: 18px;
+  text-align: center;
+  padding: 10px;
+  height: 20px;
+}
+
 #product-form form .color-pickers {
   display: flex;
   flex-wrap: wrap;
