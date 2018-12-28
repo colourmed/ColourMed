@@ -5,6 +5,23 @@ import Color from '../universal/Color';
 import GenderLabel from '../universal/GenderLabel';
 
 class FullRobe extends Component {
+  truncateDescription(description) {
+    const MAX_CHAR_COUNT = 175;
+
+    let truncatedDescription = '';
+
+    for (let i = 0; i < description.length; i++) {
+      if (i > MAX_CHAR_COUNT) {
+        truncatedDescription += '...';
+        break;
+      } else {
+        truncatedDescription += description[i];
+      }
+    }
+
+    return truncatedDescription;
+  }
+
   render() {
     const { robe, history } = this.props;
 
@@ -12,23 +29,26 @@ class FullRobe extends Component {
       <Color color={color} key={color} />
     ));
 
+    const robeDescription = this.truncateDescription(robe.description);
+
     return (
-      <div className="full-robe-card" key={robe._id}>
-        <div className="left-side">
+      <div className='full-robe-card' key={robe._id}>
+        <div className='left-side'>
           <img src={robe.images[0]} alt={robe.title} />
-          <div className="robe-colors">{robeColors}</div>
+          <div className='robe-colors'>{robeColors}</div>
           <GenderLabel forMen={robe.forMen} />
         </div>
 
-        <div className="right-side">
-          <h2 className="robe-title">{robe.title}</h2>
-          <h3 className="robe-price">{robe.price} RON</h3>
-          <p className="robe-description">{robe.description}</p>
-          <h4 className="robe-sizes">Mărimi: {robe.sizes.join(', ')}</h4>
+        <div className='right-side'>
+          <h2 className='robe-title'>{robe.title}</h2>
+          <h3 className='robe-price'>{robe.price} RON</h3>
+          <p className='robe-description'>{robeDescription}</p>
+          <h4 className='robe-sizes'>Mărimi: {robe.sizes.join(', ')}</h4>
           <button
             onClick={() => {
               history.push(`/products/${robe._id}`);
-            }}>
+            }}
+          >
             Vezi Produsul
           </button>
         </div>
