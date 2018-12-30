@@ -1,31 +1,22 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class Images extends Component {
-  constructor(props) {
-    super(props);
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(e) {
-    this.props.handleChange(e);
-  }
-
   render() {
-    const { images } = this.props;
+    const { imageInputs, removeImageInput, addImageInput } = this.props;
 
     return (
       <div className='images'>
-        <label htmlFor='images-input'>Imagini:</label>
+        <label>Imagini:</label>
         <br />
-        <textarea
-          type='text'
-          name='imageURLs'
-          id='images-input'
-          defaultValue={images.join(",")}
-          required
-          onChange={this.handleChange}
-        />
+
+        <div className='image-inputs'>
+          <div className='image-inputs-bottons'>
+            <input type='button' value='-' onClick={removeImageInput} />
+            <input type='button' value='+' onClick={addImageInput} />
+          </div>
+          {imageInputs}
+        </div>
+        <br />
       </div>
     );
   }

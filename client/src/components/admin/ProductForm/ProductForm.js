@@ -15,29 +15,21 @@ class ProductForm extends Component {
   constructor(props) {
     super(props);
 
-    const {
-      forMen,
-      colors,
-      patterns,
-      images,
-      sizes,
-      title,
-      description,
-      price
-    } = this.props.robeToEdit;
+    const { forMen, colors, patterns, images, sizes, title, description, price } = this.props.robeToEdit;
 
     const colorPickerIds = colors.map(() => 'color-picker-' + idGenerator());
     const patternInputIds = patterns.map(() => 'pattern-input-' + idGenerator());
+    const imageInputIds = images.map(() => 'image-input-' + idGenerator());
 
     this.state = {
       colorPickerIds,
       colorPickerValues: colors,
       patternInputIds,
+      imageInputIds,
       title,
       description,
       price,
       forMen,
-      imageURLs: images.join(','),
       sizes: sizes.join(',')
     };
 
@@ -47,22 +39,15 @@ class ProductForm extends Component {
     this.removeColorPicker = this.removeColorPicker.bind(this);
     this.addPatternInput = this.addPatternInput.bind(this);
     this.removePatternInput = this.removePatternInput.bind(this);
+    this.addImageInput = this.addImageInput.bind(this);
+    this.removeImageInput = this.removeImageInput.bind(this);
     this.changeGender = this.changeGender.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
 
-    const {
-      colorPickerIds,
-      patternInputIds,
-      imageURLs,
-      title,
-      description,
-      price,
-      forMen,
-      sizes
-    } = this.state;
+    const { colorPickerIds, patternInputIds, imageInputIds, title, description, price, forMen, sizes } = this.state;
 
     let colorPickerValues = [];
 
@@ -83,32 +68,29 @@ class ProductForm extends Component {
     // Set colors to localStorage
     localStorage.setItem('lastColors', JSON.stringify(colorPickerValues));
 
-    // Get trimmed image urls
-    const images = imageURLs.trim().split(',');
+    const images = [];
+
+    // Get images
+    for (let i = 0; i < imageInputIds.length; i++) {
+      const currentImageInput = document.getElementById(imageInputIds[i]);
+      images.push(currentImageInput.value);
+    }
 
     // Get array of sizes
     const sizesList = sizes.trim().split(',');
 
-    // Check if there are any inputed images (input's "required" doesn't check for trimmed strings)
-    if (!images.length || !images[0]) {
-      this.props.addError(
-        'Te rog adaugă o imagine inainte de a adăuga un produs.'
-      );
-    } else {
-      const robe = {
-        title,
-        description,
-        price,
-        colorPickerValues,
-        patterns,
-        images,
-        forMen,
-        sizesList
-      };
+    const robe = {
+      title,
+      description,
+      price,
+      colorPickerValues,
+      patterns,
+      images,
+      forMen,
+      sizesList
+    };
 
-      this.props.handleData(robe);
-    }
-
+    this.props.handleData(robe);
     this.props.onSubmitAction();
   }
 
@@ -154,32 +136,36 @@ class ProductForm extends Component {
     this.setState({ patternInputIds });
   }
 
+  addImageInput() {
+    const newImageInputId = 'image-input-' + idGenerator();
+
+    this.setState(prevState => ({
+      imageInputIds: [...prevState.imageInputIds, newImageInputId]
+    }));
+  }
+
+  removeImageInput() {
+    const { imageInputIds } = this.state;
+
+    if (this.state.imageInputIds.length > 1) {
+      imageInputIds.pop();
+    }
+
+    this.setState({ imageInputIds });
+  }
+
   changeGender(forMen) {
     this.setState({ forMen });
   }
 
   render() {
-    const { colorPickerIds, patternInputIds, forMen } = this.state;
+    const { colorPickerIds, patternInputIds, imageInputIds, forMen } = this.state;
     const { ctaText } = this.props;
 
-    const {
-      title,
-      description,
-      colors,
-      patterns,
-      sizes,
-      images,
-      price
-    } = this.props.robeToEdit;
+    const { title, description, colors, patterns, sizes, images, price } = this.props.robeToEdit;
 
     const colorPickers = colorPickerIds.map((id, index) => (
-      <input
-        type='color'
-        name='color'
-        defaultValue={colors[index]}
-        id={id}
-        key={id}
-      />
+      <input type='color' name='color' defaultValue={colors[index]} id={id} key={id} />
     ));
 
     const patternInputs = patternInputIds.map((id, index) => (
@@ -196,14 +182,18 @@ class ProductForm extends Component {
       </div>
     ));
 
+    const imageInputs = imageInputIds.map((id, index) => (
+      <div className='image-field' key={id}>
+        <input type='text' name='image-input' required defaultValue={images[index]} className='image-input' id={id} />
+        <div className='image-number'>{index + 1}</div>
+      </div>
+    ));
+
     return (
       <div className='form-container' id='product-form'>
         <form onSubmit={this.handleSubmit}>
           <TitleInput title={title} handleChange={this.handleChange} />
-          <Description
-            description={description}
-            handleChange={this.handleChange}
-          />
+          <Description description={description} handleChange={this.handleChange} />
           <Patterns
             patternInputs={patternInputs}
             addPatternInput={this.addPatternInput}
@@ -215,7 +205,11 @@ class ProductForm extends Component {
             addColorPicker={this.addColorPicker}
             removeColorPicker={this.removeColorPicker}
           />
-          <Images images={images} handleChange={this.handleChange} />
+          <Images
+            imageInputs={imageInputs}
+            addImageInput={this.addImageInput}
+            removeImageInput={this.removeImageInput}
+          />
           <Gender isToggled={forMen} changeToggledValue={this.changeGender} />
           <SizesInput sizes={sizes} handleChange={this.handleChange} />
 
@@ -231,7 +225,7 @@ ProductForm.defaultProps = {
     colors: JSON.parse(localStorage.getItem('lastColors')) || ['#000000'],
     patterns: [''],
     sizes: [],
-    images: [],
+    images: [''],
     title: '',
     price: '',
     forMen: true

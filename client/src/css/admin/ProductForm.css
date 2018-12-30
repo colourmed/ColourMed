@@ -38,13 +38,15 @@
   min-width: 100%;
 }
 
-#product-form form .pattern-inputs .pattern-inputs-bottons {
+#product-form form .pattern-inputs .pattern-inputs-bottons,
+#product-form form .image-inputs .image-inputs-bottons {
   display: flex;
   margin-left: -4px;
   margin-top: 10px;
 }
 
-#product-form form .pattern-inputs .pattern-inputs-bottons input[type='button'] {
+#product-form form .pattern-inputs .pattern-inputs-bottons input[type='button'],
+#product-form form .image-inputs .image-inputs-bottons input[type='button'] {
   font-size: 18px;
   width: 33px;
   height: 33px;
@@ -58,20 +60,23 @@
   color: #333;
 }
 
-#product-form form .pattern-field {
+#product-form form .pattern-field,
+#product-form form .image-field {
   display: flex;
   justify-content: flex-start;
   margin-top: 10px;
 }
 
-#product-form form .pattern-input {
+#product-form form .pattern-input,
+#product-form form .image-input {
   margin-bottom: 0;
   height: 20px;
   margin-right: 10px;
   margin-top: 0;
 }
 
-#product-form form .pattern-number {
+#product-form form .pattern-number,
+#product-form form .image-number {
   width: 20px;
   border: 2px solid #999;
   border-radius: 5px;
