@@ -89,7 +89,6 @@ class AddToCartOverlay extends Component {
             defaultValue="1"
             required
             min="1"
-            max="150"
           />
 
           <button type="submit">Adaugă in coș</button>
