@@ -268,7 +268,7 @@ class Robes extends Component {
 }
 
 Robes.defaultProps = {
-  filter: PRODUCT_TYPES.UNISEX
+  filter: PRODUCT_TYPES.ALL
 };
 
 function mapStateToProps(state) {

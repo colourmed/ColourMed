@@ -15,7 +15,8 @@ class DetailedProduct extends Component {
       product: {
         colors: [],
         sizes: [],
-        images: []
+        images: [],
+        patterns: []
       },
       showAddToCartOverlay: false
     };
@@ -57,24 +58,17 @@ class DetailedProduct extends Component {
   render() {
     const { product, showAddToCartOverlay } = this.state;
 
-    const productColors = product.colors.map(color => (
-      <Color color={color} key={color} size={20} />
+    const productImages = product.images.map(image => (
+      <img src={image} alt={product.title} key={image} className='slider-image' />
     ));
 
-    const productImages = product.images.map(image => (
-      <img
-        src={image}
-        alt={product.title}
-        key={image}
-        className="slider-image"
-      />
+    const productPatterns = product.patterns.map(pattern => (
+      <img src={pattern} alt={product.title} key={pattern} className='slider-pattern' />
     ));
 
     const sliderSettings = {
       dots: true,
       infinite: true,
-      autoplay: true,
-      autoplaySpeed: 5000,
       speed: 700,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -90,44 +84,44 @@ class DetailedProduct extends Component {
     };
 
     return (
-      <div id="detailed-product">
-        <h2 className="product-title">{product.title}</h2>
-        <div className="flex-container">
-          <div className="left-side">
-            <Slider {...sliderSettings} className="card-slider">
+      <div id='detailed-product'>
+        <h2 className='product-title'>{product.title}</h2>
+        <div className='flex-container'>
+          <div className='left-side'>
+            <h2>Culori:</h2>
+            <Slider {...sliderSettings} className='card-slider'>
               {productImages}
             </Slider>
-            <div className="product-colors">{productColors}</div>
-            <GenderLabel forMen={product.forMen} />
           </div>
 
-          <div className="right-side">
-            <h4>Descriere Produs:</h4>
-            <p className="product-description">{product.description}</p>
-            <h4 className="product-sizes">
-              Mărimi: {product.sizes.join(', ')}
-            </h4>
-            <h3 className="product-price">{product.price} RON</h3>
-            <button
-              className="add-to-cart"
-              onClick={() => {
-                this.setState({ showAddToCartOverlay: true });
-              }}>
-              Adaugă in coș
-            </button>
+          <div className='right-side'>
+            <h2>Modele:</h2>
+            <Slider {...sliderSettings} className='card-slider'>
+              {productPatterns}
+            </Slider>
           </div>
+        </div>
+
+        <div className='product-info'>
+          <h4>Descriere Produs:</h4>
+            <GenderLabel forMen={product.forMen} />
+          <p className='product-description'>{product.description}</p>
+          <h4 className='product-sizes'>Mărimi: {product.sizes.join(', ')}</h4>
+          <h3 className='product-price'>{product.price} RON</h3>
+          <button
+            className='add-to-cart'
+            onClick={() => {
+              this.setState({ showAddToCartOverlay: true });
+            }}>
+            Adaugă in coș
+          </button>
         </div>
 
         {showAddToCartOverlay ? (
           <Overlay
-            content={
-              <AddToCartOverlay
-                robe={product}
-                handleAddToCart={this.handleAddToCart}
-              />
-            }
+            content={<AddToCartOverlay robe={product} handleAddToCart={this.handleAddToCart} />}
             closeOverlay={() => this.setState({ showAddToCartOverlay: false })}
-            maxWidth="300px"
+            maxWidth='300px'
           />
         ) : null}
       </div>

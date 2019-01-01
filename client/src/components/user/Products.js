@@ -13,7 +13,7 @@ class Products extends Component {
 
     this.state = {
       featuredItems: [],
-      productsType: PRODUCT_TYPES.UNIVERSAL
+      productsType: PRODUCT_TYPES.ALL
     };
 
     this.changeProductType = this.changeProductType.bind(this);

@@ -18,6 +18,7 @@
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   border-right: none;
+  border-right: 3px solid #333;
 }
 
 #filters .gender:last-child {
