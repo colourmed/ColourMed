@@ -94,17 +94,19 @@ class DetailedProduct extends Component {
             </Slider>
           </div>
 
-          <div className='right-side'>
-            <h2>Modele:</h2>
-            <Slider {...sliderSettings} className='card-slider'>
-              {productPatterns}
-            </Slider>
-          </div>
+          {productPatterns.length > 0 ? (
+            <div className='right-side'>
+              <h2>Modele:</h2>
+              <Slider {...sliderSettings} className='card-slider'>
+                {productPatterns}
+              </Slider>
+            </div>
+          ) : null}
         </div>
 
         <div className='product-info'>
           <h4>Descriere Produs:</h4>
-            <GenderLabel forMen={product.forMen} />
+          <GenderLabel forMen={product.forMen} />
           <p className='product-description'>{product.description}</p>
           <h4 className='product-sizes'>Mărimi: {product.sizes.join(', ')}</h4>
           <h3 className='product-price'>{product.price} RON</h3>

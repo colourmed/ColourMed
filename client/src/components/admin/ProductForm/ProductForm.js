@@ -129,7 +129,7 @@ class ProductForm extends Component {
   removePatternInput() {
     const { patternInputIds } = this.state;
 
-    if (this.state.patternInputIds.length > 1) {
+    if (this.state.patternInputIds.length > 0) {
       patternInputIds.pop();
     }
 
@@ -170,14 +170,7 @@ class ProductForm extends Component {
 
     const patternInputs = patternInputIds.map((id, index) => (
       <div className='pattern-field' key={id}>
-        <input
-          type='text'
-          name='pattern-input'
-          required
-          defaultValue={patterns[index]}
-          className='pattern-input'
-          id={id}
-        />
+        <input type='text' name='pattern-input' defaultValue={patterns[index]} className='pattern-input' id={id} />
         <div className='pattern-number'>{index + 1}</div>
       </div>
     ));
