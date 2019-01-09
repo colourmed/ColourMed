@@ -18,11 +18,18 @@
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   border-right: none;
-  border-right: 3px solid #333;
+  height: 35px;
+  line-height: 35px;
+}
+
+#filters .gender:nth-child(2) {
+  width: 110px;
 }
 
 #filters .gender:last-child {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   border-left: none;
+  height: 35px;
+  line-height: 35px;
 }

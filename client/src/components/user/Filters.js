@@ -36,7 +36,7 @@ class Filters extends Component {
           style={style}
           onClick={() => changeProductType(gender)}
         >
-          {gender}
+          <span>{gender}</span>
         </div>
       );
     });
