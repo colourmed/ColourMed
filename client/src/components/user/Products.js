@@ -71,24 +71,18 @@ class Products extends Component {
       ]
     };
 
-    if (featured.length) {
+    if (robes.length) {
       return (
         <div id='products'>
-          <Filters
-            productsType={productsType}
-            changeProductType={this.changeProductType}
-          />
+          <Filters productsType={productsType} changeProductType={this.changeProductType} />
 
-          <Slider {...sliderSettings} className='card-slider'>
-            {featuredItemsInSlider}
-          </Slider>
+          {featured.length ? (
+            <Slider {...sliderSettings} className='card-slider'>
+              {featuredItemsInSlider}
+            </Slider>
+          ) : null}
 
-          <Robes
-            robes={robes}
-            history={history}
-            showUserControls={true}
-            filter={productsType}
-          />
+          <Robes robes={robes} history={history} showUserControls={true} filter={productsType} />
         </div>
       );
     } else {
