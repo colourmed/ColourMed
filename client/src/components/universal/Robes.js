@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchRobes } from '../../store/actions/robes';
 import { fetchFeatured, addToFeatured } from '../../store/actions/featured';
-import {
-  fetchCartItems,
-  addItemToCart,
-  removeItemsFromCart
-} from '../../store/actions/cart';
+import { fetchCartItems, addItemToCart, removeItemsFromCart } from '../../store/actions/cart';
 import { PRODUCT_TYPES } from '../../constants/ProductTypes';
 import { stopEventPropagation } from '../../services/stopPropagation';
 import '../../css/universal/Robes.css';
@@ -40,9 +36,13 @@ class Robes extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchRobes();
-    this.props.fetchCartItems();
-    this.props.fetchFeatured();
+    this.props.fetchRobes()
+      .then(() => {
+        this.props.fetchCartItems();
+      })
+      .then(() => {
+        this.props.fetchFeatured();
+      });
   }
 
   handleCardClick(id) {
@@ -110,23 +110,9 @@ class Robes extends Component {
   }
 
   render() {
-    const {
-      showEditOverlay,
-      showRemoveOverlay,
-      showAddOverlay,
-      robeToEdit,
-      robeToAdd
-    } = this.state;
+    const { showEditOverlay, showRemoveOverlay, showAddOverlay, robeToEdit, robeToAdd } = this.state;
 
-    const {
-      robes,
-      showAdminControls,
-      showUserControls,
-      filter,
-      history,
-      removeError,
-      removeSuccess
-    } = this.props;
+    const { robes, showAdminControls, showUserControls, filter, history, removeError, removeSuccess } = this.props;
 
     if (showAdminControls) {
       history.listen(() => {
@@ -206,9 +192,7 @@ class Robes extends Component {
 
     const RemoveOverlay = props => (
       <div className='remove-overlay'>
-        <h3 className='overlay-title'>
-          Ești sigur că vrei să ștergi acest produs?
-        </h3>
+        <h3 className='overlay-title'>Ești sigur că vrei să ștergi acest produs?</h3>
 
         <button
           className='overlay-cta'
@@ -216,8 +200,7 @@ class Robes extends Component {
           onClick={() => {
             props.handleRemoveRobe();
             props.closeOverlay();
-          }}
-        >
+          }}>
           Ștergere
         </button>
       </div>
@@ -231,32 +214,20 @@ class Robes extends Component {
 
         {showAddOverlay ? (
           <Overlay
-            content={
-              <AddToCartOverlay
-                robe={robeToAdd}
-                handleAddToCart={this.handleAddToCart}
-              />
-            }
+            content={<AddToCartOverlay robe={robeToAdd} handleAddToCart={this.handleAddToCart} />}
             closeOverlay={() => this.hideOverlays()}
             maxWidth='400px'
           />
         ) : null}
 
         {showEditOverlay ? (
-          <Overlay
-            content={<EditOverlay />}
-            closeOverlay={() => this.hideOverlays()}
-            maxWidth='70%'
-          />
+          <Overlay content={<EditOverlay />} closeOverlay={() => this.hideOverlays()} maxWidth='70%' />
         ) : null}
 
         {showRemoveOverlay ? (
           <Overlay
             content={
-              <RemoveOverlay
-                handleRemoveRobe={this.handleRemoveRobe}
-                closeOverlay={() => this.hideOverlays()}
-              />
+              <RemoveOverlay handleRemoveRobe={this.handleRemoveRobe} closeOverlay={() => this.hideOverlays()} />
             }
             closeOverlay={() => this.hideOverlays()}
             maxWidth='450px'

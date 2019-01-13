@@ -46,6 +46,11 @@ export const fetchCartItems = () => (dispatch, getState) => {
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
       }
     }
+
+    // If all robes have been removed, remove all cartItems.
+    if (!robes.length) {
+      localStorage.setItem('cartItems', JSON.stringify([]));
+    }
   }
 
   dispatch(setCartItems(cartItems));
@@ -125,13 +130,7 @@ export const placeOrder = (userData, history) => (dispatch, getState) => {
   const { firstName, lastName, address, phoneNumber, email } = userData;
   const { cart } = getState();
 
-  const isUserDataValid = !!(
-    firstName &&
-    lastName &&
-    address &&
-    phoneNumber &&
-    email
-  );
+  const isUserDataValid = !!(firstName && lastName && address && phoneNumber && email);
 
   if (isUserDataValid) {
     const orderData = {
@@ -156,8 +155,6 @@ export const placeOrder = (userData, history) => (dispatch, getState) => {
       });
   } else {
     dispatch(removeSuccess());
-    dispatch(
-      addError('Vă rog completați tot formularul pentru a plasa comanda.')
-    );
+    dispatch(addError('Vă rog completați tot formularul pentru a plasa comanda.'));
   }
 };
