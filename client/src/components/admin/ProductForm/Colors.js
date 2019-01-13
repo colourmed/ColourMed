@@ -10,8 +10,8 @@ class Colors extends Component {
         <br />
         <div className='color-pickers'>
           <input type='button' value='-' onClick={removeColorPicker} />
-          {colorPickers}
           <input type='button' value='+' onClick={addColorPicker} />
+          {colorPickers}
         </div>
         <br />
       </div>
