@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { fetchRobes } from '../../store/actions/robes';
 import { fetchCartItems, placeOrder } from '../../store/actions/cart';
 import '../../css/user/Checkout.css';
 
@@ -20,7 +21,9 @@ class Checkout extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchCartItems();
+    this.props.fetchRobes().then(() => {
+      this.props.fetchCartItems();
+    })
     this.getTotalPrice();
   }
 
@@ -103,5 +106,5 @@ class Checkout extends Component {
 
 export default connect(
   null,
-  { fetchCartItems, placeOrder }
+  { fetchCartItems, fetchRobes, placeOrder }
 )(Checkout);
