@@ -26,6 +26,12 @@
   padding-left: 20px;
 }
 
+.compact-product .robe-pattern {
+  flex-basis: 50px;
+  text-align: center;
+  border-left: 2px solid #ccc;
+}
+
 .compact-product .robe-size {
   flex-basis: 60px;
   text-align: center;
@@ -40,7 +46,7 @@
 }
 
 .compact-product .robe-quantity {
-  padding-left: 15px;
+  padding-left: 35px;
   border-left: 2px solid #ccc;
 }
 

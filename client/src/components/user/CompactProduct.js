@@ -11,11 +11,12 @@ class CompactProduct extends Component {
       <div className="compact-product">
         <img src={robe.images[0]} alt="imagine produs" />
         <p className="robe-title">{robe.title}</p>
+        <p className="robe-pattern">{robe.patterns[0]}</p>
         <p className="robe-size">{robe.sizes[0]}</p>
         <div className="robe-color">
           <Color color={robe.colors[0]} size="15px" />
         </div>
-        <p className="robe-quantity">Cantitate: {robe.quantity}</p>
+        <p className="robe-quantity">x{robe.quantity}</p>
       </div>
     );
   }
