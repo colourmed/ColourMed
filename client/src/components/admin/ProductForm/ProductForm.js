@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import idGenerator from 'react-id-generator';
+import { ALPHABET } from '../../../constants/Alphabet';
 import '../../../css/admin/ProductForm.css';
 
 import TitleInput from './TitleInput';
@@ -171,7 +172,7 @@ class ProductForm extends Component {
     const patternInputs = patternInputIds.map((id, index) => (
       <div className='pattern-field' key={id}>
         <input type='text' name='pattern-input' defaultValue={patterns[index]} className='pattern-input' id={id} />
-        <div className='pattern-number'>{index + 1}</div>
+        <div className='pattern-number'>{ALPHABET.LETTERS[index]}</div>
       </div>
     ));
 

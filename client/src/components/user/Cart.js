@@ -67,7 +67,7 @@ class Cart extends Component {
       <RobeCard
         robe={item}
         colorSize="15px"
-        key={`${item._id}-${item.colors[0]}-${item.sizes[0]}`}
+        key={`${item._id}-${item.colors[0]}-${item.sizes[0]}-${item.patterns[0]}`}
         handleCardClick={() => {
           history.push(`/products/${item._id}`);
         }}

@@ -69,7 +69,8 @@ export const addItemToCart = newItem => dispatch => {
     const areItemsEqual =
       cartItems[i].id === newItem.id &&
       cartItems[i].colors[0] === newItem.colors[0] &&
-      cartItems[i].sizes[0] === newItem.sizes[0];
+      cartItems[i].sizes[0] === newItem.sizes[0] && 
+      cartItems[i].patterns[0] === newItem.patterns[0];
 
     if (areItemsEqual) {
       isNewItemInCart = true;
@@ -102,6 +103,7 @@ export const removeItemsFromCart = itemToRemove => dispatch => {
   const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
   let remainingCartItems = [];
+  console.log(itemToRemove);
 
   // Loop through cart items.
   for (let i = 0; i < cartItems.length; i++) {
@@ -110,7 +112,8 @@ export const removeItemsFromCart = itemToRemove => dispatch => {
     const areItemsEqual =
       cartItems[i].id === itemToRemove.id &&
       cartItems[i].colors[0] === itemToRemove.colors[0] &&
-      cartItems[i].sizes[0] === itemToRemove.sizes[0];
+      cartItems[i].sizes[0] === itemToRemove.sizes[0] &&
+      cartItems[i].patterns[0] === itemToRemove.patterns[0];
 
     // Push to a new array all items that do not match itemToRemove.
     if (!areItemsEqual) {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ALPHABET } from '../../constants/Alphabet';
 import '../../css/user/AddToCartOverlay.css';
 
 import Color from '../universal/Color';
@@ -23,9 +24,13 @@ class AddToCartOverlay extends Component {
     // Get selected color
     const selectedColor = robe.colors[selectedColorIndex];
 
+    // Get selected pattern
+    const patternSelectField = document.getElementById('pattern-select');
+    const selectedPattern = patternSelectField.options[patternSelectField.selectedIndex].value;
+
     // Get selected size
-    const selectField = document.getElementById('size-select');
-    const selectedSize = selectField.options[selectField.selectedIndex].value;
+    const sizeSelectField = document.getElementById('size-select');
+    const selectedSize = sizeSelectField.options[sizeSelectField.selectedIndex].value;
 
     // Get quantity
     const quantityInput = document.getElementById('quantity-input');
@@ -36,6 +41,7 @@ class AddToCartOverlay extends Component {
       id: robe._id,
       colors: [selectedColor],
       sizes: [selectedSize],
+      patterns: [selectedPattern],
       quantity
     };
 
@@ -64,6 +70,12 @@ class AddToCartOverlay extends Component {
       </option>
     ));
 
+    const robePatterns = robe.patterns.map((pattern, index) => (
+      <option key={'pattern-' + index} value={ALPHABET.LETTERS[index]}>
+        {ALPHABET.LETTERS[index]}
+      </option>
+    ));
+
     return (
       <div id="add-to-cart-overlay">
         <form onSubmit={this.handleSubmit}>
@@ -73,6 +85,12 @@ class AddToCartOverlay extends Component {
 
           <h4 className="input-label">Culoare:</h4>
           <div className="robe-colors">{robeColors}</div>
+          <br />
+
+          <h4 className="input-label">Model:</h4>
+          <select name="pattern-select" id="pattern-select">
+            {robePatterns}
+          </select>
           <br />
 
           <h4 className="input-label">Mărime:</h4>

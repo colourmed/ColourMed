@@ -5,8 +5,7 @@ exports.placeOrder = async function(req, res, next) {
     const orderData = req.body;
 
     const date = new Date();
-    const formattedDate = `${date.getDate()}-${date.getMonth() +
-      1}-${date.getFullYear()}`;
+    const formattedDate = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
 
     const mailTransporter = nodemailer.createTransport({
       service: 'gmail',
@@ -26,6 +25,7 @@ exports.placeOrder = async function(req, res, next) {
       ${index + 1}.
       ${item.title}
       Culoare: ${item.colors[0]}
+      Model: ${item.patterns[0]}
       Marime: ${item.sizes[0]}
       Pret: ${item.price}
       Cantitate: ${item.quantity}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
+import { ALPHABET } from '../../constants/Alphabet';
 import '../../css/user/DetailedProduct.css';
 
 import Color from '../universal/Color';
@@ -18,10 +19,12 @@ class DetailedProduct extends Component {
         images: [],
         patterns: []
       },
-      showAddToCartOverlay: false
+      showAddToCartOverlay: false,
+      selectedProductPattern: ALPHABET.LETTERS[0]
     };
 
     this.handleAddToCart = this.handleAddToCart.bind(this);
+    this.handlePatternChange = this.handlePatternChange.bind(this);
   }
 
   componentDidMount() {
@@ -55,8 +58,12 @@ class DetailedProduct extends Component {
     this.props.addItemToCart(product);
   }
 
+  handlePatternChange(index) {
+    this.setState({ selectedProductPattern: ALPHABET.LETTERS[index] });
+  }
+
   render() {
-    const { product, showAddToCartOverlay } = this.state;
+    const { product, showAddToCartOverlay, selectedProductPattern } = this.state;
 
     const productImages = product.images.map(image => (
       <img src={image} alt={product.title} key={image} className='slider-image' />
@@ -97,9 +104,13 @@ class DetailedProduct extends Component {
           {productPatterns.length > 0 ? (
             <div className='right-side'>
               <h2>Modele:</h2>
-              <Slider {...sliderSettings} className='card-slider'>
+              <Slider
+                {...sliderSettings}
+                afterChange={index => this.handlePatternChange(index)}
+                className='card-slider'>
                 {productPatterns}
               </Slider>
+              <h3>Model Selectat: {selectedProductPattern}</h3>
             </div>
           ) : null}
         </div>
