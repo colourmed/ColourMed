@@ -103,7 +103,6 @@ export const removeItemsFromCart = itemToRemove => dispatch => {
   const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
   let remainingCartItems = [];
-  console.log(itemToRemove);
 
   // Loop through cart items.
   for (let i = 0; i < cartItems.length; i++) {
