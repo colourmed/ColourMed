@@ -64,7 +64,7 @@ class Checkout extends Component {
     const compactItems = cart.map(item => (
       <CompactProduct
         robe={item}
-        key={`compact-${item._id}-${item.sizes[0]}-${item.colors[0]}`}
+        key={`compact-${item._id}-${item.sizes[0]}-${item.colors[0]}-${item.patterns[0]}`}
       />
     ));
 
