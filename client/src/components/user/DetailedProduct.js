@@ -116,8 +116,8 @@ class DetailedProduct extends Component {
         </div>
 
         <div className='product-info'>
-          <h4>Descriere Produs:</h4>
           <GenderLabel forMen={product.forMen} />
+          <h4>Descriere Produs:</h4>
           <p className='product-description'>{product.description}</p>
           <h4 className='product-sizes'>Mărimi: {product.sizes.join(', ')}</h4>
           <h3 className='product-price'>{product.price} RON</h3>
