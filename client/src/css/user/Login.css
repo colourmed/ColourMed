@@ -9,7 +9,6 @@
 
 #login form {
   width: 70%;
-  padding: 30px;
   margin: 40px auto;
   border-radius: 5px;
 }
@@ -62,4 +61,19 @@
   cursor: pointer;
   padding: 15px 25px;
   opacity: 1;
+}
+
+@media only screen and (max-width: 780px) {
+  #login .form-container {
+    width: 90%;
+  }
+
+  #login form {
+    width: 80vw;
+    padding: 0;
+  }
+
+  #login form input {
+    width: 85%;
+  }
 }
