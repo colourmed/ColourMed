@@ -14,7 +14,7 @@ class Header extends Component {
         </Link>
 
         <ul id="navigation">
-          <Link to="/admin/products">
+          <Link to="/admin">
             Halate
             <Icon icon={ICONS.MONEY} color="#333" size={24} />
           </Link>

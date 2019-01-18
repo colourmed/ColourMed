@@ -46,7 +46,7 @@ class FullRobe extends Component {
           <h4 className='robe-sizes'>Mărimi: {robe.sizes.join(', ')}</h4>
           <button
             onClick={() => {
-              history.push(`/products/${robe._id}`);
+              history.push(`/${robe._id}`);
             }}
           >
             Vezi Produsul

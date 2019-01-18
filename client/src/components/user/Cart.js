@@ -69,7 +69,7 @@ class Cart extends Component {
         colorSize="15px"
         key={`${item._id}-${item.colors[0]}-${item.sizes[0]}-${item.patterns[0]}`}
         handleCardClick={() => {
-          history.push(`/products/${item._id}`);
+          history.push(`/${item._id}`);
         }}
         showCartControls={true}
         showRemoveFromCartOverlay={(e, item) =>

@@ -41,11 +41,9 @@ class Main extends Component {
         <Success success={success} removeSuccess={removeSuccess} />
 
         <Switch>
-          <Route exact path="/admin" render={() => <Redirect to="/admin/products" />} />
-
           <Route
             exact
-            path="/admin/products"
+            path="/admin"
             render={() => (
               <Robes
                 robes={robes}

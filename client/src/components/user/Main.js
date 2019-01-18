@@ -45,8 +45,6 @@ class Main extends Component {
         <Success success={success} removeSuccess={removeSuccess} />
 
         <Switch>
-          <Route exact path="/" render={() => <Redirect to="/products" />} />
-
           <Route exact path="/contact" component={Contact} />
 
           <Route
@@ -76,7 +74,7 @@ class Main extends Component {
 
           <Route
             exact
-            path="/products"
+            path="/"
             render={() => (
               <Products
                 history={history}
@@ -90,7 +88,7 @@ class Main extends Component {
 
           <Route
             exact
-            path="/products/:product_id"
+            path="/:product_id"
             render={props => (
               <DetailedProduct
                 robes={robes}

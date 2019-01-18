@@ -48,7 +48,7 @@ class Robes extends Component {
   handleCardClick(id) {
     const { history } = this.props;
 
-    history.push(`/products/${id}`);
+    history.push(`/${id}`);
   }
 
   handleEditRobe(updatedRobe) {

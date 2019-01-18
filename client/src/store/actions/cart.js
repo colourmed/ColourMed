@@ -146,7 +146,7 @@ export const placeOrder = (userData, history) => (dispatch, getState) => {
         localStorage.setItem('cartItems', '[]');
         dispatch(setCartItems([]));
 
-        history.push('/products');
+        history.push('/');
 
         dispatch(removeError());
         dispatch(addSuccess('Comanda este finalizată.'));
