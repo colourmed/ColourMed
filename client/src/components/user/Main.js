@@ -86,6 +86,8 @@ class Main extends Component {
             )}
           />
 
+          <Route exact path="/login" component={Login} />
+
           <Route
             exact
             path="/:product_id"
@@ -98,7 +100,6 @@ class Main extends Component {
             )}
           />
 
-          <Route exact path="/login" component={Login} />
         </Switch>
       </div>
     );
