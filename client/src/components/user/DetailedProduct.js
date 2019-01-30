@@ -3,7 +3,6 @@ import Slider from 'react-slick';
 import { ALPHABET } from '../../constants/Alphabet';
 import '../../css/user/DetailedProduct.css';
 
-import Color from '../universal/Color';
 import Overlay from '../universal/Overlay';
 import GenderLabel from '../universal/GenderLabel';
 import AddToCartOverlay from './AddToCartOverlay';
