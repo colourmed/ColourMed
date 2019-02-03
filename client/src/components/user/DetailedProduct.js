@@ -94,7 +94,7 @@ class DetailedProduct extends Component {
         <h2 className='product-title'>{product.title}</h2>
         <div className='flex-container'>
           <div className='left-side'>
-            <h2>Culori:</h2>
+            <h2>Imagini:</h2>
             <Slider {...sliderSettings} className='card-slider'>
               {productImages}
             </Slider>
