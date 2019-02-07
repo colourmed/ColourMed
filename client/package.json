@@ -1,8 +1,7 @@
 {
-  "name": "ColourMed",
+  "name": "colourmed",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://colourmed.github.io",
   "dependencies": {
     "axios": "^0.18.0",
     "jwt-decode": "^2.2.0",
