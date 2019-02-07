@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { ALPHABET } from '../../constants/Alphabet';
 import '../../css/user/AddToCartOverlay.css';
 
@@ -57,10 +57,8 @@ class AddToCartOverlay extends Component {
         color={color}
         key={color}
         selected={selectedColorIndex === colorIndex ? true : false}
-        size="25px"
-        handleColorClick={() =>
-          this.setState({ selectedColorIndex: colorIndex })
-        }
+        size='25px'
+        handleColorClick={() => this.setState({ selectedColorIndex: colorIndex })}
       />
     ));
 
@@ -77,39 +75,35 @@ class AddToCartOverlay extends Component {
     ));
 
     return (
-      <div id="add-to-cart-overlay">
+      <div id='add-to-cart-overlay'>
         <form onSubmit={this.handleSubmit}>
-          <h2 className="overlay-title">Opțiuni Produs</h2>
+          <h2 className='overlay-title'>Opțiuni Produs</h2>
 
-          <h3 className="add-robe-title">{robe.title}</h3>
+          <h3 className='add-robe-title'>{robe.title}</h3>
 
-          <h4 className="input-label">Culoare:</h4>
-          <div className="robe-colors">{robeColors}</div>
+          <h4 className='input-label'>Culoare:</h4>
+          <div className='robe-colors'>{robeColors}</div>
           <br />
+          {robePatterns.length ? (
+            <Fragment>
+              <h4 className='input-label'>Model:</h4>
+              <select name='pattern-select' id='pattern-select'>
+                {robePatterns}
+              </select>
+              <br />
+            </Fragment>
+          ) : null}
 
-          <h4 className="input-label">Model:</h4>
-          <select name="pattern-select" id="pattern-select">
-            {robePatterns}
-          </select>
-          <br />
-
-          <h4 className="input-label">Mărime:</h4>
-          <select name="size-select" id="size-select">
+          <h4 className='input-label'>Mărime:</h4>
+          <select name='size-select' id='size-select'>
             {robeSizes}
           </select>
           <br />
 
-          <h4 className="input-label">Cantitate</h4>
-          <input
-            type="number"
-            name="quantity"
-            id="quantity-input"
-            defaultValue="1"
-            required
-            min="1"
-          />
+          <h4 className='input-label'>Cantitate</h4>
+          <input type='number' name='quantity' id='quantity-input' defaultValue='1' required min='1' />
 
-          <button type="submit">Adaugă in coș</button>
+          <button type='submit'>Adaugă in coș</button>
         </form>
       </div>
     );
