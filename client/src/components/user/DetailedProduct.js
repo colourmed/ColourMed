@@ -123,7 +123,11 @@ class DetailedProduct extends Component {
           <h4 className='product-sizes'>Mărimi: {product.sizes.join(', ')}</h4>
           {
             productSizesReference &&
-            <img src={productSizesReference} alt="Tabel mărimi" className='robe-sizes-reference' />
+            (
+              <a href={productSizesReference} target="_blank" rel="noopener noreferrer">
+                <img src={productSizesReference} alt="Tabel mărimi" className='robe-sizes-reference' />
+              </a>
+            )
           }
           <h3 className='product-price'>{product.price} RON</h3>
           <button
