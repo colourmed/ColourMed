@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class SizesInputs extends Component {
+class SizesReferenceInput extends Component {
   constructor(props) {
     super(props);
 
@@ -12,19 +12,19 @@ class SizesInputs extends Component {
   }
 
   render() {
-    const { sizes } = this.props;
+    const { sizesReference } = this.props;
 
     return (
-      <div className='sizes-input'>
-        <label htmlFor='sizes'>Mărimi:</label>
+      <div className='sizes-reference-input'>
+        <label htmlFor='sizesReference'>Tabel Mărimi:</label>
         <br />
         <input
           type='text'
-          name='sizes'
-          id='sizes'
+          name='sizesReference'
+          id='sizesReference'
+          defaultValue={sizesReference}
           required
           pattern='.*\S+.*'
-          defaultValue={sizes.join(",")}
           onChange={this.handleChange}
         />
         <br />
@@ -33,4 +33,4 @@ class SizesInputs extends Component {
   }
 }
 
-export default SizesInputs;
+export default SizesReferenceInput;

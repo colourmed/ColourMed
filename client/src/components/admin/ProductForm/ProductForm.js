@@ -11,12 +11,13 @@ import Colors from './Colors';
 import Images from './Images';
 import Gender from './Gender';
 import SizesInput from './SizesInput';
+import SizesReferenceInput from './SizesReferenceInput';
 
 class ProductForm extends Component {
   constructor(props) {
     super(props);
 
-    const { forMen, colors, patterns, images, sizes, title, description, price } = this.props.robeToEdit;
+    const { forMen, colors, patterns, images, sizes, sizesReference, title, description, price } = this.props.robeToEdit;
 
     const colorPickerIds = colors.map(() => 'color-picker-' + idGenerator());
     const patternInputIds = patterns.map(() => 'pattern-input-' + idGenerator());
@@ -31,6 +32,7 @@ class ProductForm extends Component {
       description,
       price,
       forMen,
+      sizesReference,
       sizes: sizes.join(',')
     };
 
@@ -48,7 +50,7 @@ class ProductForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    const { colorPickerIds, patternInputIds, imageInputIds, title, description, price, forMen, sizes } = this.state;
+    const { colorPickerIds, patternInputIds, imageInputIds, title, description, price, forMen, sizes, sizesReference } = this.state;
 
     let colorPickerValues = [];
 
@@ -88,7 +90,8 @@ class ProductForm extends Component {
       patterns,
       images,
       forMen,
-      sizesList
+      sizesList,
+      sizesReference
     };
 
     this.props.handleData(robe);
@@ -163,7 +166,7 @@ class ProductForm extends Component {
     const { colorPickerIds, patternInputIds, imageInputIds, forMen } = this.state;
     const { ctaText } = this.props;
 
-    const { title, description, colors, patterns, sizes, images, price } = this.props.robeToEdit;
+    const { title, description, colors, patterns, sizes, sizesReference, images, price } = this.props.robeToEdit;
 
     const colorPickers = colorPickerIds.map((id, index) => (
       <input type='color' name='color' defaultValue={colors[index]} id={id} key={id} />
@@ -206,6 +209,7 @@ class ProductForm extends Component {
           />
           <Gender isToggled={forMen} changeToggledValue={this.changeGender} />
           <SizesInput sizes={sizes} handleChange={this.handleChange} />
+          <SizesReferenceInput sizesReference={sizesReference} handleChange={this.handleChange} />
 
           <button type='submit'>{ctaText}</button>
         </form>

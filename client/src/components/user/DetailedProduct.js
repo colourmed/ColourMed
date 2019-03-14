@@ -72,6 +72,8 @@ class DetailedProduct extends Component {
       <img src={pattern} alt={product.title} key={pattern} className='slider-pattern' />
     ));
 
+    const productSizesReference = product.sizesReference;
+
     const sliderSettings = {
       dots: true,
       infinite: true,
@@ -119,6 +121,10 @@ class DetailedProduct extends Component {
           <h4>Descriere Produs:</h4>
           <p className='product-description'>{product.description}</p>
           <h4 className='product-sizes'>Mărimi: {product.sizes.join(', ')}</h4>
+          {
+            productSizesReference &&
+            <img src={productSizesReference} alt="Tabel mărimi" className='robe-sizes-reference' />
+          }
           <h3 className='product-price'>{product.price} RON</h3>
           <button
             className='add-to-cart'

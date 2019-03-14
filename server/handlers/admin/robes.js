@@ -9,6 +9,7 @@ exports.addRobe = async function(req, res, next) {
       price: req.body.price,
       colors: req.body.colorPickerValues,
       sizes: req.body.sizesList,
+      sizesReference: req.body.sizesReference,
       images: req.body.images,
       forMen: req.body.forMen
     });
@@ -33,6 +34,7 @@ exports.editRobe = async function(req, res, next) {
           price: req.body.price,
           colors: req.body.colorPickerValues,
           sizes: req.body.sizesList,
+          sizesReference: req.body.sizesReference,
           images: req.body.images,
           forMen: req.body.forMen
         }

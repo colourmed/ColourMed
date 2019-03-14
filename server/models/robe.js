@@ -29,6 +29,9 @@ const robeSchema = new mongoose.Schema({
       required: true
     }
   ],
+  sizesReference: {
+    type: String
+  },
   images: [
     {
       type: String,
