@@ -72,6 +72,10 @@
   margin-bottom: 30px;
 }
 
+#detailed-product .robe-sizes-reference {
+  max-width: 400px;
+}
+
 #detailed-product .add-to-cart {
   background-color: transparent;
   color: #333;
