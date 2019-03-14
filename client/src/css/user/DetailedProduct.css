@@ -140,4 +140,8 @@
   #detailed-product .product-info {
     width: 80%;
   }
+
+  #detailed-product .robe-sizes-reference {
+    max-width: 85%;
+  }
 }
