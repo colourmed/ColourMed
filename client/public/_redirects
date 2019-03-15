@@ -1,1 +1,2 @@
-/* /index.html 200
+# Redirect default Netlify subdomain to primary domain
+https://colourmed.netlify.com/* https://www.colormedical.ro/:splat 301!
