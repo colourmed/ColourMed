@@ -1,2 +1,2 @@
 # Redirect default Netlify subdomain to primary domain
-https://colourmed.netlify.com/* https://www.colormedical.ro/:splat 301!
+https://colourmed.netlify.com/* https://www.colormedical.ro/ 301!
