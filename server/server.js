@@ -21,7 +21,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // To be changed for production.
-let corsOrigin = 'https://colourmed.netlify.com';
+let corsOrigin = 'https://www.colormedical.ro';
 
 if (process.env.NODE_ENV !== 'production') {
   corsOrigin = 'http://localhost:3000';
