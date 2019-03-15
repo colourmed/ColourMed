@@ -5,6 +5,13 @@
   margin-bottom: 15px;
   border-radius: 5px;
   width: 530px;
+  height: 100px;
+}
+
+.compact-product * {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
 }
 
 .compact-product img {
@@ -23,7 +30,7 @@
 
 .compact-product .robe-title {
   flex-basis: 150px;
-  padding-left: 20px;
+  margin: 10px;
 }
 
 .compact-product .robe-pattern {
