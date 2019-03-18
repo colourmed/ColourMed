@@ -18,6 +18,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build-git": "npm run build && cd build/ && git init && git remote add origin https://github.com/colourmed/ColourMed.git",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
