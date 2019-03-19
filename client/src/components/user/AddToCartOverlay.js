@@ -26,7 +26,7 @@ class AddToCartOverlay extends Component {
 
     // Get selected pattern
     const patternSelectField = document.getElementById('pattern-select');
-    const selectedPattern = patternSelectField.options[patternSelectField.selectedIndex].value;
+    const selectedPattern = patternSelectField ? patternSelectField.options[patternSelectField.selectedIndex].value : null;
 
     // Get selected size
     const sizeSelectField = document.getElementById('size-select');

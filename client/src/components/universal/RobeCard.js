@@ -79,9 +79,11 @@ class RobeCard extends Component {
             <div className='item-size'>
               Mărime: <span className='bold'>{robe.sizes[0].trim()}</span>
             </div>
-            <div className='item-size'>
-              Model: <span className='bold'>{robe.patterns[0]}</span>
-            </div>
+            {robe.patterns[0] ? (
+              <div className='item-pattern'>
+                Model: <span className='bold'>{robe.patterns[0]}</span>
+              </div>
+            ) : null}
           </div>
         ) : null}
       </div>
