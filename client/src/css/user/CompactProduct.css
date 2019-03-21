@@ -40,6 +40,11 @@
   border-left: 2px solid #ccc;
 }
 
+.compact-product .empty-field {
+  flex-basis: 52px;
+  text-align: center;
+}
+
 .compact-product .robe-size {
   flex-basis: 60px;
   text-align: center;
