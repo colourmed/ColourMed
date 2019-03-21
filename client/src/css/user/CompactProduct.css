@@ -5,7 +5,7 @@
   margin-bottom: 15px;
   border-radius: 5px;
   width: 530px;
-  height: 100px;
+  max-height: 100px;
 }
 
 .compact-product * {
@@ -19,6 +19,7 @@
   max-height: 100px;
   min-width: 100px;
   min-height: 100px;
+  overflow: hidden;
 }
 
 .compact-product > *:not(:first-child) {
@@ -60,6 +61,7 @@
 @media only screen and (max-width: 780px) {
   .compact-product {
     width: 470px;
+    max-height: 60px;
   }
 
   .compact-product img {
