@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import Slider from 'react-slick';
-import { PRODUCT_TYPES } from '../../constants/ProductTypes';
-import '../../css/user/Products.css';
+import React, { Component } from "react";
+import Slider from "react-slick";
+import { PRODUCT_TYPES } from "../../constants/ProductTypes";
+import "../../css/user/Products.css";
 
-import Filters from './Filters';
-import FullRobe from '../universal/FullRobe';
-import Robes from '../universal/Robes';
+import Filters from "./Filters";
+import FullRobe from "../universal/FullRobe";
+import Robes from "../universal/Robes";
 
 class Products extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class Products extends Component {
 
     this.state = {
       featuredItems: [],
-      productsType: PRODUCT_TYPES.ALL
+      productsType: PRODUCT_TYPES.MEN
     };
 
     this.changeProductType = this.changeProductType.bind(this);
@@ -47,10 +47,43 @@ class Products extends Component {
   render() {
     const { featuredItems, productsType } = this.state;
     const { robes, history, featured } = this.props;
+    var featuredItemsInSlider;
 
-    const featuredItemsInSlider = featuredItems.map(item => (
-      <FullRobe robe={item} key={'slider-item-' + item._id} history={history} />
-    ));
+    if (productsType === PRODUCT_TYPES.MEN) {
+      featuredItemsInSlider = featuredItems.map(item => {
+        if (item.forMen) {
+          return (
+            <FullRobe
+              robe={item}
+              key={"slider-item-" + item._id}
+              history={history}
+            />
+          );
+        } else return null;
+      });
+    } else if (productsType === PRODUCT_TYPES.WOMEN) {
+      featuredItemsInSlider = featuredItems.map(item => {
+        if (!item.forMen) {
+          return (
+            <FullRobe
+              robe={item}
+              key={"slider-item-" + item._id}
+              history={history}
+            />
+          );
+        } else return null;
+      });
+    } else {
+      featuredItemsInSlider = featuredItems.map(item => {
+        return (
+          <FullRobe
+            robe={item}
+            key={"slider-item-" + item._id}
+            history={history}
+          />
+        );
+      });
+    }
 
     const sliderSettings = {
       dots: true,
@@ -60,7 +93,7 @@ class Products extends Component {
       speed: 700,
       slidesToShow: 1,
       slidesToScroll: 1,
-      easing: 'ease-in',
+      easing: "ease-in",
       responsive: [
         {
           breakpoint: 1350,
@@ -73,16 +106,24 @@ class Products extends Component {
 
     if (robes.length) {
       return (
-        <div id='products'>
-          <Filters productsType={productsType} changeProductType={this.changeProductType} />
+        <div id="products">
+          <Filters
+            productsType={productsType}
+            changeProductType={this.changeProductType}
+          />
 
           {featured.length ? (
-            <Slider {...sliderSettings} className='card-slider'>
+            <Slider {...sliderSettings} className="card-slider">
               {featuredItemsInSlider}
             </Slider>
           ) : null}
 
-          <Robes robes={robes} history={history} showUserControls={true} filter={productsType} />
+          <Robes
+            robes={robes}
+            history={history}
+            showUserControls={true}
+            filter={productsType}
+          />
         </div>
       );
     } else {
