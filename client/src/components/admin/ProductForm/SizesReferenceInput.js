@@ -23,7 +23,6 @@ class SizesReferenceInput extends Component {
           name='sizesReference'
           id='sizesReference'
           defaultValue={sizesReference}
-          required
           pattern='.*\S+.*'
           onChange={this.handleChange}
         />
