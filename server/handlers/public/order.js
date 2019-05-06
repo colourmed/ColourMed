@@ -25,7 +25,7 @@ exports.placeOrder = async function(req, res, next) {
       ${index + 1}.
       ${item.title}
       Culoare: ${item.colors[0]}
-      Model: ${item.patterns[0]}
+      Model: ${item.patterns[0] ? item.patterns[0] : 'fara model'}
       Marime: ${item.sizes[0]}
       Pret: ${item.price}
       Cantitate: ${item.quantity}
