@@ -129,10 +129,10 @@ export const removeItemsFromCart = itemToRemove => dispatch => {
 };
 
 export const placeOrder = (userData, history) => (dispatch, getState) => {
-  const { firstName, lastName, address, phoneNumber, email } = userData;
+  const { firstName, lastName, address } = userData;
   const { cart } = getState();
 
-  const isUserDataValid = !!(firstName && lastName && address && phoneNumber && email);
+  const isUserDataValid = !!(firstName && lastName && address);
 
   if (isUserDataValid) {
     const orderData = {
