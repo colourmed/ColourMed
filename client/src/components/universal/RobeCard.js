@@ -58,7 +58,7 @@ class RobeCard extends Component {
 
         {showCartControls ? (
           <button className='remove-from-cart-btn' onClick={e => showRemoveFromCartOverlay(e, robe)}>
-            <Icon icon={ICONS.CROSS} color='#333' size={24} />
+            <Icon icon={ICONS.CROSS} color='#eee' size={24} />
           </button>
         ) : null}
 
