@@ -8,7 +8,12 @@ exports.placeOrder = async function(req, res, next) {
     const formattedDate = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
 
     const mailTransporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: "smtp-mail.outlook.com",
+      secureConnection: false,
+      port: 587,
+      tls: {
+        ciphers:'SSLv3'
+      },
       auth: {
         user: process.env.EMAIL,
         pass: process.env.PASSWORD
