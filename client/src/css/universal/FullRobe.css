@@ -63,10 +63,6 @@
     width: 90%;
   }
 
-  .full-robe-card .robe-colors {
-    justify-content: center;
-  }
-
   .full-robe-card img {
     max-height: 300px;
     min-height: 300px;
@@ -88,6 +84,10 @@
   .full-robe-card .robe-title {
     margin-bottom: 10px;
     margin-top: 15px;
+  }
+
+  .full-robe-card .robe-colors {
+    justify-content: center;
   }
 
   .full-robe-card .robe-price {
