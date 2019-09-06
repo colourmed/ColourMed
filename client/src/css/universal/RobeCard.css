@@ -26,7 +26,6 @@
 
 .robe-card img,
 .robe-card .image-container {
-  z-index: 5;
   display: block;
   overflow: hidden;
   max-width: 350px;
