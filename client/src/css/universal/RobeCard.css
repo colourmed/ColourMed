@@ -45,7 +45,7 @@
 .robe-card .robe-colors {
   display: flex;
   flex-wrap: wrap;
-  justify-content: left;
+  justify-content: center;
   margin: 0 10px;
 }
 
