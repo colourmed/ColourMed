@@ -39,11 +39,10 @@ class FullRobe extends Component {
 
         <div className='right-side'>
           <h2 className='robe-title'>{robe.title}</h2>
-          <div className='robe-colors'>{robeColors}</div>
           <GenderLabel forMen={robe.forMen} />
+          <div className='robe-colors'>{robeColors}</div>
           <h3 className='robe-price'>{robe.price} RON</h3>
           <p className='robe-description'>{robeDescription}</p>
-          <h4 className='robe-sizes'>Mărimi: {robe.sizes.join(', ')}</h4>
           <button
             className='check-product-btn'
             onClick={() => {

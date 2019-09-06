@@ -13,7 +13,7 @@
 }
 
 .full-robe-card .left-side {
-  margin-right: 30px;
+  margin-right: 20px;
 }
 
 .full-robe-card .right-side {
@@ -39,11 +39,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: left;
-  margin-bottom: 15px;
-}
-
-.full-robe-card .robe-sizes {
-  margin-bottom: 30px;
+  margin: 15px 0;
 }
 
 .full-robe-card .check-product-btn {
@@ -62,31 +58,36 @@
   background-color: #ccc;
 }
 
-@media only screen and (max-width: 1100px) {
+@media only screen and (max-width: 1200px) {
   .full-robe-card {
-    width: 590px;
+    width: 90%;
   }
 
-  .full-robe-card button {
-    right: 100px;
+  .full-robe-card .robe-colors {
+    justify-content: center;
+  }
+
+  .full-robe-card img {
+    max-height: 300px;
+    min-height: 300px;
+    min-width: 300px;
+  }
+
+  .full-robe-card .robe-title {
+    font-size: 20px;
   }
 }
 
-@media only screen and (max-width: 680px) {
+@media only screen and (max-width: 800px) {
   .full-robe-card {
-    width: 75vw;
+    width: 400px;
     flex-direction: column;
     text-align: center;
   }
-  
+
   .full-robe-card .robe-title {
     margin-bottom: 10px;
     margin-top: 15px;
-  }
-  
-  .full-robe-card .robe-sizes {
-    margin-bottom: 45px;
-    margin-top: 10px;
   }
 
   .full-robe-card .robe-price {
@@ -94,29 +95,27 @@
   }
 
   .full-robe-card img {
-    border-right: none;
     display: block;
-    max-width: 100%;
-    max-height: 100%;
-    width: 100%;
+    margin: auto;
+    max-width: 200px;
+    max-height: 200px;
+    width: 200px;
   }
 
   .full-robe-card .robe-description {
     display: none;
   }
 
-  .full-robe-card .robe-sizes {
-    display: none;
-  }
-
-  .full-robe-card .right-side button {
-    left: 50%;
-    top: 10px;
-    transform: translate(-50%, 0);
-    position: relative;
+  .full-robe-card .check-product-btn {
+    color: #222;
     display: block;
-    margin-top: 0px;
-    margin-bottom: 50px;
+    background-color: #ddd;
+    font-size: 18px;
+    border: none;
+    padding: 10px 15px;
+    margin: 15px auto;
+    cursor: pointer;
+    transition: all 0.2s;
   }
 }
 
