@@ -2,46 +2,49 @@
   position: relative;
   display: block;
   margin: 20px;
-  border: 3px solid #666;
+  padding: 5px;
   border-radius: 3px;
-  width: 300px;
+  width: 350px;
   text-decoration: none;
   color: #444;
   text-align: center;
+  cursor: pointer;
   font-size: 17px;
   transition: all 0.2s;
 }
 
 .robe-card:hover {
-  border-color: #555;
-  box-shadow: 7px 7px 29px 0px #888;
-}
-
-.robe-card:hover img {
-  border-bottom-color: #666;
+  transform: translateY(-10px);
 }
 
 .robe-card img {
   display: block;
-  max-width: 300px;
-  min-width: 300px;
+  max-width: 350px;
+  min-width: 350px;
   min-height: 100px;
   width: auto;
   height: auto;
-  border-bottom: 3px solid #999;
   transition: all 0.2s;
+}
+
+.robe-card .robe-title {
+  text-align: left;
+  font-weight: normal;
 }
 
 .robe-card .robe-colors {
   display: flex;
   flex-wrap: wrap;
-  width: 40%;
-  margin: auto;
-  justify-content: center;
+  justify-content: left;
 }
 
 .robe-card .robe-colors > * {
   margin-bottom: 5px;
+}
+
+.robe-card .robe-price {
+  font-size: 20px;
+  margin: 20px 15px;
 }
 
 .robe-card .admin-controls {
@@ -95,20 +98,17 @@
 
 .robe-card .add-to-cart-btn {
   color: #222;
-  font-size: 17px;
-  border: 2px solid #666;
-  border-radius: 5px;
-  padding: 5px 8px;
-  background-color: none;
-  background: none;
+  background-color: #ddd;
+  font-size: 18px;
+  border: none;
+  padding: 10px 15px;
   margin-bottom: 15px;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .robe-card .add-to-cart-btn:hover {
-  border-color: #333;
-  box-shadow: 3px 3px 13px #888;
+  background-color: #ccc;
 }
 
 .robe-card .order-details {
@@ -123,11 +123,4 @@
 .robe-card .bold {
   font-weight: bold;
   color: #444;
-}
-
-@media only screen and (max-width: 700px) {
-  .robe-card {
-    box-shadow: 7px 7px 29px 0px #888;
-    color: #333;
-  }
 }
