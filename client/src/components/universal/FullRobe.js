@@ -35,12 +35,12 @@ class FullRobe extends Component {
       <div className='full-robe-card' key={robe._id}>
         <div className='left-side'>
           <img src={robe.images[0]} alt={robe.title} />
-          <div className='robe-colors'>{robeColors}</div>
-          <GenderLabel forMen={robe.forMen} />
         </div>
 
         <div className='right-side'>
           <h2 className='robe-title'>{robe.title}</h2>
+          <div className='robe-colors'>{robeColors}</div>
+          <GenderLabel forMen={robe.forMen} />
           <h3 className='robe-price'>{robe.price} RON</h3>
           <p className='robe-description'>{robeDescription}</p>
           <h4 className='robe-sizes'>Mărimi: {robe.sizes.join(', ')}</h4>

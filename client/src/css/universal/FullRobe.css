@@ -3,9 +3,8 @@
   position: relative;
   justify-content: space-between;
   margin: 20px;
-  border: 3px solid #666;
   border-radius: 3px;
-  width: 900px;
+  width: 1000px;
   margin: auto;
   text-decoration: none;
   color: #444;
@@ -14,7 +13,7 @@
 }
 
 .full-robe-card .left-side {
-  text-align: center;
+  margin-right: 30px;
 }
 
 .full-robe-card .right-side {
@@ -22,55 +21,44 @@
   padding: 0 20px;
 }
 
-.full-robe-card .right-side > * {
-  margin-top: 35px;
-}
-
 .full-robe-card img {
   display: block;
-  max-height: 300px;
-  min-height: 300px;
-  min-width: 300px;
+  border-radius: 5px;
+  max-height: 400px;
+  min-height: 400px;
+  min-width: 400px;
   width: auto;
   height: auto;
-  border-bottom: 3px solid #999;
-  border-right: 3px solid #999;
+}
+
+.full-robe-card .robe-title {
+  margin-bottom: 20px;
 }
 
 .full-robe-card .robe-colors {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  margin: 20px auto;
-}
-
-.full-robe-card .gender-label {
+  justify-content: left;
   margin-bottom: 15px;
 }
 
-.full-robe-card .robe-title {
+.full-robe-card .robe-sizes {
   margin-bottom: 30px;
 }
 
-.full-robe-card .robe-sizes {
-  margin-bottom: 100px;
-}
-
-.full-robe-card button {
+.full-robe-card .check-product-btn {
   color: #222;
+  display: block;
   background-color: #ddd;
   font-size: 18px;
   border: none;
   padding: 10px 15px;
-  margin-bottom: 15px;
+  margin: 15px auto;
   cursor: pointer;
   transition: all 0.2s;
-  position: absolute;
-  bottom: 25px;
-  right: 250px;
 }
 
-.full-robe-card button:hover {
+.full-robe-card .check-product-btn:hover {
   background-color: #ccc;
 }
 
@@ -103,10 +91,6 @@
 
   .full-robe-card .robe-price {
     margin-top: 25px;
-  }
-
-  .full-robe-card .gender-label {
-    margin-bottom: 0;
   }
 
   .full-robe-card img {
