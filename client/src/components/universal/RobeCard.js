@@ -26,7 +26,10 @@ class RobeCard extends Component {
 
     return (
       <div onClick={() => handleCardClick(robe._id)} className='robe-card' key={robe._id}>
-        <img src={robe.images[0]} alt={robe.title} />
+        <div className='image-container'>
+          <img src={robe.images[0]} alt={robe.title} />
+        </div>
+
         <h3 className='robe-title'>{robe.title}</h3>
         <div className='robe-colors'>{robeColors}</div>
         <h4 className='robe-price'>{robe.price} RON</h4>

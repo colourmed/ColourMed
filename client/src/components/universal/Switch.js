@@ -46,7 +46,7 @@ class Switch extends Component {
             <p>Femei</p>
           </div>
           <div className="toggle">
-            <p>Barbati</p>
+            <p>Bărbați</p>
           </div>
         </div>
 
@@ -55,7 +55,7 @@ class Switch extends Component {
             <p>Femei</p>
           </div>
           <div className="toggle">
-            <p>Barbati</p>
+            <p>Bărbați</p>
           </div>
         </div>
       </div>

@@ -35,7 +35,7 @@ exports.placeOrder = async function(req, res, next) {
       Pret: ${item.price}
       Cantitate: ${item.quantity}
       Imagine: ${item.images[0]}
-      ${item.forMen ? 'Barbati' : 'Femei'}
+      ${item.forMen ? 'Bărbați' : 'Femei'}
 
       `;
 

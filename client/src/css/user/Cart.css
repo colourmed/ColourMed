@@ -21,17 +21,16 @@
   display: block;
   margin: 40px auto;
   color: #222;
-  font-size: 17px;
-  border: 2px solid #666;
-  border-radius: 5px;
-  padding: 5px 8px;
-  background-color: none;
-  background: none;
+  background-color: #ddd;
+  font-size: 18px;
+  border: none;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  margin: auto;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 #cart .checkout-btn:hover {
-  border-color: #333;
-  box-shadow: 3px 3px 13px #888;
+  background-color: #ccc;
 }

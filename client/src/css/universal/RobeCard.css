@@ -1,41 +1,53 @@
 .robe-card {
   position: relative;
   display: block;
+  border-radius: 5px;
+  z-index: 10;
   margin: 20px;
-  padding: 5px;
-  border-radius: 3px;
   width: 350px;
   text-decoration: none;
   color: #444;
   text-align: center;
+  border: 2px solid transparent;
   cursor: pointer;
   font-size: 17px;
-  transition: all 0.2s;
+  transition: all 0.4s;
 }
 
-.robe-card:hover {
-  transform: translateY(-10px);
+.robe-card:hover img {
+  transform: scale(1.1);
 }
 
-.robe-card img {
+.robe-card .image-container {
+  z-index: 10;
+  max-width: 350px;
+  min-width: 350px;
+}
+
+.robe-card img,
+.robe-card .image-container {
+  z-index: 5;
   display: block;
+  overflow: hidden;
   max-width: 350px;
   min-width: 350px;
   min-height: 100px;
   width: auto;
   height: auto;
-  transition: all 0.2s;
+  transition: all 0.3s ease-out;
 }
 
 .robe-card .robe-title {
   text-align: left;
   font-weight: normal;
+  padding: 10px;
 }
 
 .robe-card .robe-colors {
   display: flex;
   flex-wrap: wrap;
   justify-content: left;
+  margin: 0 10px;
 }
 
 .robe-card .robe-colors > * {
@@ -102,7 +114,7 @@
   font-size: 18px;
   border: none;
   padding: 10px 15px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   cursor: pointer;
   transition: all 0.2s;
 }
