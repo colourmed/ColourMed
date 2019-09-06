@@ -57,22 +57,21 @@
 }
 
 .full-robe-card button {
-  background-color: transparent;
-  color: #333;
+  color: #222;
+  background-color: #ddd;
   font-size: 18px;
+  border: none;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: all 0.2s;
   position: absolute;
   bottom: 25px;
   right: 250px;
-  border: 2px solid #555;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  box-shadow: 3px 3px 7px #888;
-  transition: all 0.2s;
 }
 
 .full-robe-card button:hover {
-  box-shadow: 3px 3px 16px #666;
+  background-color: #ccc;
 }
 
 @media only screen and (max-width: 1100px) {

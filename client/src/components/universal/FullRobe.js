@@ -45,6 +45,7 @@ class FullRobe extends Component {
           <p className='robe-description'>{robeDescription}</p>
           <h4 className='robe-sizes'>Mărimi: {robe.sizes.join(', ')}</h4>
           <button
+            className='check-product-btn'
             onClick={() => {
               history.push(`/${robe._id}`);
             }}
