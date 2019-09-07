@@ -38,16 +38,16 @@ class RobeCard extends Component {
           <div className='admin-controls'>
             <div className='controls-left'>
               <button title='Adauga la Produse Recomandate.' onClick={e => addRobeToFeatured(e, robe._id)}>
-                <Icon icon={ICONS.NEW} color='#444' size={24} />
+                <Icon icon={ICONS.NEW} color='#eee' size={24} />
               </button>
             </div>
 
             <div className='controls-right'>
               <button title='Editeaza Produsul.' onClick={e => showEditRobeOverlay(e, robe._id)}>
-                <Icon icon={ICONS.EDIT} color='#777' size={24} />
+                <Icon icon={ICONS.EDIT} color='#eee' size={24} />
               </button>
               <button title='Sterge Produsul.' onClick={e => showRemoveRobeOverlay(e, robe._id)}>
-                <Icon icon={ICONS.REMOVE} color='#c92e2e' size={24} />
+                <Icon icon={ICONS.REMOVE} color='#ff413a' size={24} />
               </button>
             </div>
           </div>
@@ -70,7 +70,7 @@ class RobeCard extends Component {
             className='remove-from-featured-btn'
             title='Elimina din recomandate'
             onClick={() => this.props.removeFromFeatured(robe._id)}>
-            <Icon icon={ICONS.CROSS} color='#c51e1e' size={24} />
+            <Icon icon={ICONS.CROSS} color='#ff413a' size={24} />
           </button>
         ) : null}
 
