@@ -79,9 +79,11 @@
 #detailed-product .add-to-cart {
   color: #222;
   background-color: #ddd;
+  display: block;
   font-size: 18px;
   border: none;
   padding: 10px 15px;
+  margin: auto;
   margin-bottom: 15px;
   cursor: pointer;
   transition: all 0.2s;
