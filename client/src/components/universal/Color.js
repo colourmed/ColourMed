@@ -13,7 +13,6 @@ class Color extends Component {
           width: size,
           height: size,
           boxShadow: selected ? '2px 2px 10px #777' : 'none',
-          border: '1px solid #999',
           transform: selected ? 'scale(1.2)' : 'none'
         }}
         onClick={handleColorClick}
