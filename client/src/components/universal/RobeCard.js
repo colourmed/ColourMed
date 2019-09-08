@@ -26,69 +26,74 @@ class RobeCard extends Component {
 
     return (
       <div onClick={() => handleCardClick(robe._id)} className='robe-card' key={robe._id}>
-        <div className='image-container'>
-          <img src={robe.images[0]} alt={robe.title} />
+        <div className='card-top'>
+          <div className='image-container'>
+            <img src={robe.images[0]} alt={robe.title} />
+          </div>
+
+          <h3 className='robe-title'>{robe.title}</h3>
         </div>
 
-        <h3 className='robe-title'>{robe.title}</h3>
-        <div className='robe-colors'>{robeColors}</div>
-        <h4 className='robe-price'>{robe.price} RON</h4>
+        <div className='card-bottom'>
+          <div className='robe-colors'>{robeColors}</div>
+          <h4 className='robe-price'>{robe.price} RON</h4>
 
-        {showAdminControls ? (
-          <div className='admin-controls'>
-            <div className='controls-left'>
-              <button title='Adauga la Produse Recomandate.' onClick={e => addRobeToFeatured(e, robe._id)}>
-                <Icon icon={ICONS.NEW} color='#eee' size={24} />
-              </button>
-            </div>
-
-            <div className='controls-right'>
-              <button title='Editeaza Produsul.' onClick={e => showEditRobeOverlay(e, robe._id)}>
-                <Icon icon={ICONS.EDIT} color='#eee' size={24} />
-              </button>
-              <button title='Sterge Produsul.' onClick={e => showRemoveRobeOverlay(e, robe._id)}>
-                <Icon icon={ICONS.REMOVE} color='#ff413a' size={24} />
-              </button>
-            </div>
-          </div>
-        ) : null}
-
-        {showUserControls ? (
-          <button className='add-to-cart-btn' onClick={e => showAddRobeOverlay(e, robe)}>
-            Adaugă in coș
-          </button>
-        ) : null}
-
-        {showCartControls ? (
-          <button className='remove-from-cart-btn' onClick={e => showRemoveFromCartOverlay(e, robe)}>
-            <Icon icon={ICONS.CROSS} color='#eee' size={24} />
-          </button>
-        ) : null}
-
-        {showFeaturedControls ? (
-          <button
-            className='remove-from-featured-btn'
-            title='Elimina din recomandate'
-            onClick={() => this.props.removeFromFeatured(robe._id)}>
-            <Icon icon={ICONS.CROSS} color='#ff413a' size={24} />
-          </button>
-        ) : null}
-
-        {robe.quantity ? (
-          <div className='order-details'>
-            <div className='item-count'>
-              Cantitate: <span className='bold'>{robe.quantity}</span>
-            </div>
-            <div className='item-size'>
-              Mărime: <span className='bold'>{robe.sizes[0].trim()}</span>
-            </div>
-            {robe.patterns[0] ? (
-              <div className='item-pattern'>
-                Model: <span className='bold'>{robe.patterns[0]}</span>
+          {showAdminControls ? (
+            <div className='admin-controls'>
+              <div className='controls-left'>
+                <button title='Adauga la Produse Recomandate.' onClick={e => addRobeToFeatured(e, robe._id)}>
+                  <Icon icon={ICONS.NEW} color='#eee' size={24} />
+                </button>
               </div>
-            ) : null}
-          </div>
-        ) : null}
+
+              <div className='controls-right'>
+                <button title='Editeaza Produsul.' onClick={e => showEditRobeOverlay(e, robe._id)}>
+                  <Icon icon={ICONS.EDIT} color='#eee' size={24} />
+                </button>
+                <button title='Sterge Produsul.' onClick={e => showRemoveRobeOverlay(e, robe._id)}>
+                  <Icon icon={ICONS.REMOVE} color='#ff413a' size={24} />
+                </button>
+              </div>
+            </div>
+          ) : null}
+
+          {showUserControls ? (
+            <button className='add-to-cart-btn' onClick={e => showAddRobeOverlay(e, robe)}>
+              Adaugă in coș
+            </button>
+          ) : null}
+
+          {showCartControls ? (
+            <button className='remove-from-cart-btn' onClick={e => showRemoveFromCartOverlay(e, robe)}>
+              <Icon icon={ICONS.CROSS} color='#eee' size={24} />
+            </button>
+          ) : null}
+
+          {showFeaturedControls ? (
+            <button
+              className='remove-from-featured-btn'
+              title='Elimina din recomandate'
+              onClick={() => this.props.removeFromFeatured(robe._id)}>
+              <Icon icon={ICONS.CROSS} color='#ff413a' size={24} />
+            </button>
+          ) : null}
+
+          {robe.quantity ? (
+            <div className='order-details'>
+              <div className='item-count'>
+                Cantitate: <span className='bold'>{robe.quantity}</span>
+              </div>
+              <div className='item-size'>
+                Mărime: <span className='bold'>{robe.sizes[0].trim()}</span>
+              </div>
+              {robe.patterns[0] ? (
+                <div className='item-pattern'>
+                  Model: <span className='bold'>{robe.patterns[0]}</span>
+                </div>
+              ) : null}
+            </div>
+          ) : null}
+        </div>
       </div>
     );
   }
