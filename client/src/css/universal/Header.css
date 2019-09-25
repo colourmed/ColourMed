@@ -1,11 +1,11 @@
+#admin #header {
+  border-bottom: 2px solid #999;
+}
+
 #header {
   display: flex;
   justify-content: space-between;
   padding: 20px 50px;
-  border: 2px solid #999;
-  border-top: none;
-  border-bottom-right-radius: 8px;
-  border-bottom-left-radius: 8px;
 }
 
 #header #page-title {
