@@ -2,6 +2,7 @@
 
 # configs
 .vscode
+.env
 
 # dependencies
 /client/node_modules
