@@ -1,2 +1,5 @@
 # Redirect default Netlify subdomain to primary domain
 https://colourmed.netlify.com/* https://www.colormedical.ro/ 301!
+
+# Redirect all routes to / for client-side routing
+/*    /index.html   200
