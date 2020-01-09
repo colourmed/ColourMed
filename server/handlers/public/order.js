@@ -1,48 +1,46 @@
-const nodemailer = require('nodemailer');
+const sendgrid = require('@sendgrid/mail');
+sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
 
 exports.placeOrder = async function(req, res, next) {
   try {
-    const orderData = req.body;
+    const { subject, text } = await getEmailText(req);
 
-    const date = new Date();
-    const formattedDate = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
-
-    const mailTransporter = nodemailer.createTransport({
-      host: "smtp-mail.outlook.com",
-      secureConnection: false,
-      port: 587,
-      tls: {
-        ciphers:'SSLv3'
-      },
-      auth: {
-        user: process.env.EMAIL,
-        pass: process.env.PASSWORD
-      }
+    sendEmail(subject, text).then(() => {
+      res.status(200).json({
+        message: 'Success!'
+      });
     });
+  } catch (err) {
+    return next(err);
+  }
+};
 
-    const { userData, items } = orderData;
+const getEmailText = async function(req) {
+  const orderData = req.body;
 
-    let formattedItems = '';
-    let totalPrice = 0;
+  const { userData, items } = orderData;
 
-    items.forEach((item, index) => {
-      formattedItems += `
-      ${index + 1}.
-      ${item.title}
-      Culoare: ${item.colors[0]}
-      Model: ${item.patterns[0] ? item.patterns[0] : 'fara model'}
-      Marime: ${item.sizes[0]}
-      Pret: ${item.price}
-      Cantitate: ${item.quantity}
-      Imagine: ${item.images[0]}
-      ${item.forMen ? 'Bărbați' : 'Femei'}
+  let formattedItems = '';
+  let totalPrice = 0;
 
-      `;
+  items.forEach((item, index) => {
+    formattedItems += `
+    ${index + 1}.
+    ${item.title}
+    Culoare: ${item.colors[0]}
+    Model: ${item.patterns[0] ? item.patterns[0] : 'fără model'}
+    Marime: ${item.sizes[0]}
+    Pret: ${item.price}
+    Cantitate: ${item.quantity}
+    Imagine: ${item.images[0]}
+    ${item.forMen ? 'Bărbați' : 'Femei'}
+    ------------------------------------
+    `;
 
-      totalPrice += item.price * item.quantity;
-    });
+    totalPrice += item.price * item.quantity;
+  });
 
-    const mailText = `
+  const mailText = `
     Nume: ${userData.firstName}
     Prenume: ${userData.lastName}
     Adresa: ${userData.address}
@@ -55,22 +53,25 @@ exports.placeOrder = async function(req, res, next) {
     Produse:
 
     ${formattedItems}
-    `;
+  `;
 
-    const mailOptions = {
-      from: process.env.EMAIL,
-      to: process.env.ADMIN_EMAIL,
-      subject: 'Comanda noua: ' + formattedDate,
-      text: mailText
-    };
+  const date = new Date();
+  const formattedDate = `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`;
+  const mailSubject = `Comanda noua: ${formattedDate}`;
 
-    mailTransporter.sendMail(mailOptions, function(err, info) {
-      if (err) {
-        return next(err);
-      } else {
-        return res.status(200).json({ message: 'Success' });
-      }
-    });
+  return { subject: mailSubject, text: mailText };
+};
+
+const sendEmail = async function(subject, text) {
+  const email = {
+    to: process.env.EMAIL,
+    from: process.env.ADMIN_EMAIL,
+    subject,
+    text
+  };
+
+  try {
+    return sendgrid.send(email);
   } catch (err) {
     return next(err);
   }
