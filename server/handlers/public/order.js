@@ -64,8 +64,8 @@ const getEmailText = async function(req) {
 
 const sendEmail = async function(subject, text) {
   const email = {
-    to: process.env.EMAIL,
-    from: process.env.ADMIN_EMAIL,
+    to: process.env.ADMIN_EMAIL,
+    from: process.env.EMAIL,
     subject,
     text
   };
