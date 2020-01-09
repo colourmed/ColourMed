@@ -70,9 +70,5 @@ const sendEmail = async function(subject, text) {
     text
   };
 
-  try {
-    return sendgrid.send(email);
-  } catch (err) {
-    return next(err);
-  }
+  return sendgrid.send(email);
 };
