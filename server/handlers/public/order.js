@@ -24,33 +24,37 @@ const getEmailText = async function(req) {
   let totalPrice = 0;
 
   items.forEach((item, index) => {
+    const formattedColor = `
+      <span style="background: ${item.colors[0]}; height: 15px; width: 15px; border: 1px solid #000000; display: inline-block" />
+    `;
+
     formattedItems += `
-    ${index + 1}.
-    ${item.title}
-    Culoare: ${item.colors[0]}
-    Model: ${item.patterns[0] ? item.patterns[0] : 'fără model'}
-    Marime: ${item.sizes[0]}
-    Pret: ${item.price}
-    Cantitate: ${item.quantity}
-    Imagine: ${item.images[0]}
-    ${item.forMen ? 'Bărbați' : 'Femei'}
-    ------------------------------------
+    ${index + 1}.<br />
+    ${item.title}<br />
+    Culoare: ${formattedColor}<br />
+    Model: ${item.patterns[0] ? item.patterns[0] : 'fără model'}<br />
+    Marime: ${item.sizes[0]}<br />
+    Pret: ${item.price}<br />
+    Cantitate: ${item.quantity}<br />
+    Imagine: ${item.images[0]}<br />
+    Pentru: ${item.forMen ? 'Bărbați' : 'Femei'}<br />
+    ------------------------------------<br /><br />
     `;
 
     totalPrice += item.price * item.quantity;
   });
 
   const mailText = `
-    Nume: ${userData.firstName}
-    Prenume: ${userData.lastName}
-    Adresa: ${userData.address}
-    Nr. Telefon: ${userData.phoneNumber}
-    Email: ${userData.email}
+    Nume: ${userData.firstName}<br />
+    Prenume: ${userData.lastName}<br />
+    Adresa: ${userData.address}<br />
+    Nr. Telefon: ${userData.phoneNumber}<br />
+    Email: ${userData.email}<br /><br />
 
-    Pret Total: ${totalPrice} lei
+    Pret Total: ${totalPrice} lei<br /><br />
 
 
-    Produse:
+    Produse:<br /><br />
 
     ${formattedItems}
   `;
@@ -67,7 +71,7 @@ const sendEmail = async function(subject, text) {
     to: process.env.ADMIN_EMAIL,
     from: process.env.EMAIL,
     subject,
-    text
+    html: text
   };
 
   return sendgrid.send(email);
