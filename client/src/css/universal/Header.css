@@ -65,20 +65,20 @@
   box-shadow: 2px 2px 5px #888;
 }
 
-@media only screen and (max-width: 1350px) {
+@media only screen and (max-width: 1518px) {
   #header {
     margin: 0 40px;
   }
 }
 
-@media only screen and (max-width: 1050px) {
+@media only screen and (max-width: 1145px) {
   #header {
     flex-direction: column;
     text-align: center;
   }
 }
 
-@media only screen and (max-width: 780px) {
+@media only screen and (max-width: 850px) {
   #header {
     border-radius: 0;
     border: none;

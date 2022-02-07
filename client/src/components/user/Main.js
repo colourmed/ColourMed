@@ -15,6 +15,7 @@ import Products from './Products';
 import DetailedProduct from './DetailedProduct';
 import Cart from './Cart';
 import Checkout from './Checkout';
+import About from './About';
 import Login from './Login';
 
 class Main extends Component {
@@ -87,6 +88,14 @@ class Main extends Component {
           />
 
           <Route exact path="/login" component={Login} />
+
+          <Route
+            exact
+            path="/about"
+            render={() => (
+              <About />
+            )}
+          />
 
           <Route
             exact

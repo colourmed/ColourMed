@@ -28,7 +28,7 @@ export const fetchFeatured = () => dispatch => {
     })
     .catch(err => {
       dispatch(removeSuccess());
-      dispatch(addError(err.message));
+      dispatch(addError(err?.message));
     });
 };
 
@@ -41,7 +41,7 @@ export const addToFeatured = newRobeId => dispatch => {
     })
     .catch(err => {
       dispatch(removeSuccess());
-      dispatch(addError(err.message));
+      dispatch(addError(err?.message));
     });
 };
 
@@ -54,6 +54,6 @@ export const removeFromFeatured = robeId => dispatch => {
     })
     .catch(err => {
       dispatch(removeSuccess());
-      dispatch(addError(err.message));
+      dispatch(addError(err?.message));
     });
 };

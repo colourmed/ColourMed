@@ -26,7 +26,7 @@ export const fetchRobes = () => dispatch => {
     })
     .catch(err => {
       dispatch(removeSuccess());
-      dispatch(addError(err.message));
+      dispatch(addError(err?.message));
     });
 };
 
@@ -39,7 +39,7 @@ export const addRobe = robe => dispatch => {
     })
     .catch(err => {
       dispatch(removeSuccess());
-      dispatch(addError(err.message));
+      dispatch(addError(err?.message));
     });
 };
 

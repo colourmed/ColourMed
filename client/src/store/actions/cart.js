@@ -153,7 +153,7 @@ export const placeOrder = (userData, history) => (dispatch, getState) => {
       })
       .catch(err => {
         dispatch(removeSuccess());
-        dispatch(addError(err.message));
+        dispatch(addError(err?.message));
       });
   } else {
     dispatch(removeSuccess());
